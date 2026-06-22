@@ -853,3 +853,38 @@ test('Button snapshot', () => {
 ---
 
 *← [Internationalization](./05-i18n.md) | [Master Index](../reference/00-master-index.md) | [React 19 →](./07-react19.md)*
+
+---
+
+## REACT-258
+
+### What is the ReactTestUtils package?
+
+`ReactTestUtils` (from `react-dom/test-utils`) is the low-level testing utility shipped with React. It pre-dates React Testing Library and is rarely used directly in modern codebases.
+
+Key utilities:
+
+```jsx
+import { act, Simulate } from 'react-dom/test-utils';
+
+// act() — wraps state updates in tests so React flushes them synchronously
+act(() => {
+  root.render(<Counter />);
+});
+
+// Simulate — triggers synthetic events imperatively
+Simulate.click(buttonElement);
+Simulate.change(inputElement, { target: { value: 'hello' } });
+
+// findRenderedComponentWithType — find a component instance in the tree
+const counter = TestUtils.findRenderedComponentWithType(tree, Counter);
+```
+
+**Why it's rarely used now:** React Testing Library (RTL) is built on top of `ReactTestUtils` but adds user-centric querying (`getByRole`, `getByText`) and encourages testing behavior rather than implementation. RTL's `fireEvent` and `userEvent` are preferred over `Simulate`.
+
+`act()` is still directly useful for wrapping state-updating code in unit tests that don't use RTL.
+
+**Related:** [REACT-089 — React Testing Library](./06-testing.md#react-089) | [REACT-100 — TestRenderer](./06-testing.md#react-100)
+
+**Source:** [SudheerJ SDJ-098](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+

@@ -1,6 +1,6 @@
 # IntPrep-Docs
 
-> React & Next.js interview preparation knowledge base. 144 canonical questions across 10 sections, organized by topic, with original answers, cross-links, and full source traceability.
+> React & Next.js interview preparation knowledge base. **282 canonical questions across 11 sections**, organized by topic, with original answers, cross-links, and full source traceability.
 
 ---
 
@@ -8,9 +8,9 @@
 
 | | |
 |---|---|
-| 📖 [React Master Index](docs/react/master-index.md) | All 144 React questions — tech-level overview |
+| 📖 [React Master Index](docs/react/master-index.md) | All 282 React questions — tech-level overview |
 | 📖 [Reference Master Index](docs/reference/00-master-index.md) | Original GFE-sourced questions (REACT-001 to 110) |
-| ⚛️ [React Knowledge Base](#react-knowledge-base) | 10 topic files, REACT-001 to REACT-144 |
+| ⚛️ [React Knowledge Base](#react-knowledge-base) | 11 topic files, REACT-001 to REACT-282 |
 | 🗂️ [Question Registry](docs/reference/01-question-registry.md) | Full metadata for every question |
 | 📚 [Source Library](docs/reference/02-source-library.md) | Attribution and source tracking |
 | 🗺️ [Core Learning Path](playbooks/core-learning-path.md) | Structured 3–4 week study plan |
@@ -22,16 +22,17 @@
 
 | File | IDs | Topics |
 |---|---|---|
-| [01-fundamentals.md](docs/react/01-fundamentals.md) | REACT-001 – 023 | JSX, Virtual DOM, Props, State, Reconciliation, Pure Components |
-| [02-hooks.md](docs/react/02-hooks.md) | REACT-024 – 034 | useEffect, useRef, useMemo, useCallback, useReducer, custom hooks |
-| [03-advanced.md](docs/react/03-advanced.md) | REACT-035 – 065 | Re-rendering, Portals, Suspense, SSR, SSG, HOCs, Composition, Data Fetching |
-| [04-routing.md](docs/react/04-routing.md) | REACT-066 – 079 | React Router v6, dynamic routes, guards, navigation, query params |
-| [05-i18n.md](docs/react/05-i18n.md) | REACT-080 – 086 | react-intl, FormatJS, localization, date formatting |
-| [06-testing.md](docs/react/06-testing.md) | REACT-087 – 100 | Jest, RTL, async testing, MSW, hooks testing, snapshots |
-| [07-react19.md](docs/react/07-react19.md) | REACT-101 – 110 | Actions, useActionState, useOptimistic, use(), Server Components, React Compiler |
-| [08-redux.md](docs/react/08-redux.md) | REACT-111 – 135 | Redux core, Thunk, Saga, selectors, DevTools, middleware |
-| [09-react-native.md](docs/react/09-react-native.md) | REACT-136 – 139 | React Native vs React, testing, logging, debugging |
-| [10-libraries.md](docs/react/10-libraries.md) | REACT-140 – 144 | Reselect, Flow, PropTypes, DevTools, Styled Components |
+| [01-fundamentals.md](docs/react/01-fundamentals.md) | REACT-001–023, 145–195 | JSX, Virtual DOM, Props, State, Reconciliation, Pure Components, JSX deep dives |
+| [02-hooks.md](docs/react/02-hooks.md) | REACT-024–034, 196–225 | useEffect, useRef, useMemo, useCallback, useReducer, custom hooks, advanced hooks internals |
+| [03-advanced.md](docs/react/03-advanced.md) | REACT-035–065, 226–255 | Re-rendering, Portals, Suspense, SSR, HOCs, Composition, Data Fetching, MobX, windowing |
+| [04-routing.md](docs/react/04-routing.md) | REACT-066–079, 256–257 | React Router v6, dynamic routes, guards, navigation, analytics, legacy warnings |
+| [05-i18n.md](docs/react/05-i18n.md) | REACT-080–086 | react-intl, FormatJS, localization, date formatting |
+| [06-testing.md](docs/react/06-testing.md) | REACT-087–100, 258 | Jest, RTL, async testing, MSW, hooks testing, snapshots, ReactTestUtils |
+| [07-react19.md](docs/react/07-react19.md) | REACT-101–110 | Actions, useActionState, useOptimistic, use(), Server Components, React Compiler |
+| [08-redux.md](docs/react/08-redux.md) | REACT-111–135, 259–261 | Redux core, Thunk, Saga, selectors, DevTools, middleware, RxJS comparison |
+| [09-react-native.md](docs/react/09-react-native.md) | REACT-136–139 | React Native vs React, testing, logging, debugging |
+| [10-libraries.md](docs/react/10-libraries.md) | REACT-140–144, 262–267 | Reselect, Flow, DevTools, Styled Components, Formik, Font Awesome, React vs Vue/Angular |
+| [11-legacy-class.md](docs/react/11-legacy-class.md) | REACT-268–282 | Lifecycle methods, binding, getDerivedStateFromProps, string refs, legacy context |
 
 ---
 

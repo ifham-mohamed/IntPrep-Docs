@@ -749,3 +749,82 @@ If every route needs access to the same data (e.g., current user), provide it vi
 ---
 
 *← [Advanced Concepts](./03-advanced.md) | [Master Index](../reference/00-master-index.md) | [Internationalization →](./05-i18n.md)*
+
+---
+
+## REACT-256
+
+### How to add Google Analytics tracking to React Router?
+
+Use `useEffect` or a route change listener to fire a pageview event on every navigation:
+
+```jsx
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+function useGoogleAnalytics() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('config', 'G-XXXXXXXX', {
+      page_path: location.pathname + location.search,
+    });
+  }, [location]);
+}
+
+// Use in a top-level layout component
+function AppLayout() {
+  useGoogleAnalytics();
+  return <Outlet />;
+}
+```
+
+For GA4 with `react-ga4`:
+
+```jsx
+import ReactGA from 'react-ga4';
+ReactGA.initialize('G-XXXXXXXX');
+
+// In the effect above:
+ReactGA.send({ hitType: 'pageview', page: location.pathname });
+```
+
+**Related:** [REACT-066 — React Router](./04-routing.md#react-066)
+
+**Source:** [SudheerJ SDJ-070](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-257
+
+### Why do you get "Router may have only one child element" warning?
+
+This warning appears in older React Router versions (v3/v4) when you wrap multiple `<Route>` components in a `<Router>` or `<Switch>` without a wrapper element.
+
+In React Router v6, this constraint was removed — `<Routes>` accepts multiple children directly:
+
+```jsx
+// React Router v6 — no wrapper needed
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/about" element={<About />} />
+  <Route path="/contact" element={<Contact />} />
+</Routes>
+
+// React Router v3/v4 — needed a <Switch> or wrapper
+// <Router> required exactly one child → wrap in <Switch>
+<Router>
+  <Switch>
+    <Route path="/" component={Home} />
+    <Route path="/about" component={About} />
+  </Switch>
+</Router>
+```
+
+If you see this error in modern code, you're likely using an outdated Router API. Migrate to `<Routes>` (v6) or add a wrapping `<Switch>` (v5).
+
+**Related:** [REACT-066 — React Router](./04-routing.md#react-066) | [REACT-071 — Router components](./04-routing.md#react-071)
+
+**Source:** [SudheerJ SDJ-085](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+

@@ -1454,3 +1454,1035 @@ const [user, posts] = await Promise.all([fetchUser(id), fetchPosts(id)]);
 ---
 
 *← [React Hooks](./02-hooks.md) | [Master Index](../reference/00-master-index.md) | [React Router →](./04-routing.md)*
+
+---
+
+## REACT-226
+
+### What is render hijacking in React?
+
+Render hijacking refers to a Higher-Order Component (HOC) intercepting and altering what another component renders — "hijacking" its output. It is one of the primary use cases for HOCs.
+
+```jsx
+function withLoadingState(WrappedComponent) {
+  return function WithLoadingState({ isLoading, ...props }) {
+    // Hijack the render — show Spinner instead of WrappedComponent
+    if (isLoading) return <Spinner />;
+    // Or alter props before passing them through
+    return <WrappedComponent {...props} className="loaded" />;
+  };
+}
+
+const DataTable = withLoadingState(RawDataTable);
+<DataTable isLoading={true} data={[]} />  // Renders Spinner
+<DataTable isLoading={false} data={rows} /> // Renders RawDataTable
+```
+
+Other render hijacking patterns:
+- Wrapping the output in extra DOM/context
+- Conditionally rendering based on auth/permissions
+- Injecting additional props or overriding existing ones
+
+Modern React prefers custom hooks for shared logic — HOC render hijacking is still valid for third-party library wrapping or render-level concerns.
+
+**Related:** [REACT-059 — HOCs](./03-advanced.md#react-059) | [REACT-061 — Render props](./03-advanced.md#react-061)
+
+**Source:** [SudheerJ SDJ-160](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-227
+
+### How to prevent unnecessary setState updates?
+
+`useState`'s `setState` (and class component's `this.setState`) bails out of re-rendering if the new value is the same as the current one (`Object.is` equality).
+
+```jsx
+const [count, setCount] = useState(0);
+
+// No re-render if count is already 5
+setCount(5); // if count === 5, React skips the re-render
+
+// For objects, reference must change — Object.is compares references
+const [obj, setObj] = useState({ x: 0 });
+setObj(obj); // Same reference — no re-render
+setObj({ ...obj }); // New reference — re-render even if values are identical
+```
+
+**To avoid unnecessary updates:**
+
+```jsx
+// Check before setting
+function increment() {
+  setCount((prev) => {
+    const next = prev + 1;
+    return next === prev ? prev : next; // no-op if same
+  });
+}
+
+// For objects/arrays — only update when values actually change
+function updateName(name) {
+  if (name === user.name) return; // bail out before dispatch
+  setUser((prev) => ({ ...prev, name }));
+}
+```
+
+**Related:** [REACT-049 — setState mechanics](./03-advanced.md#react-049) | [REACT-035 — Re-rendering](./03-advanced.md#react-035)
+
+**Source:** [SudheerJ SDJ-166](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-228
+
+### What are the differences between Flux and Redux?
+
+| Aspect | Flux | Redux |
+|---|---|---|
+| Stores | Multiple stores | Single store |
+| Dispatcher | Central dispatcher object | No dispatcher — reducers are pure functions |
+| Mutability | Stores can mutate state | State is immutable — reducers return new state |
+| Setup | More boilerplate | Less boilerplate (especially with RTK) |
+| DevTools | Limited | Redux DevTools with time-travel |
+| Middleware | Not built-in | Middleware system (thunk, saga) |
+| Async | Handled per-store | Handled via middleware |
+
+Redux distilled the best ideas from Flux and added the constraint that there is only one store and reducers must be pure. This makes state transitions fully predictable and enables features like time-travel debugging.
+
+**Related:** [REACT-044 — Flux](./03-advanced.md#react-044) | [REACT-111 — What is Redux](../react/08-redux.md#react-111)
+
+**Source:** [SudheerJ SDJ-171](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-229
+
+### What happens to uncaught errors in React 16 and later?
+
+React 16 changed error behavior significantly: **any unhandled error during rendering causes the entire React component tree to unmount**.
+
+Before React 16, a rendering error would leave the component in a broken state — potentially showing corrupt UI. React 16's behavior is more drastic but safer: users see nothing rather than incorrect data.
+
+**Error boundary strategy:**
+
+```jsx
+// Without error boundaries — the whole app unmounts on any render error
+
+// With error boundaries — only the subtree with the error unmounts
+<AppShell>
+  <ErrorBoundary fallback={<CrashedWidget />}>
+    <UserWidget />       {/* If this crashes, only UserWidget is unmounted */}
+  </ErrorBoundary>
+  <ErrorBoundary fallback={<CrashedFeed />}>
+    <NewsFeed />         {/* This is unaffected */}
+  </ErrorBoundary>
+</AppShell>
+```
+
+Best practice: place error boundaries at meaningful UI boundaries — each major section, not every component. Too granular and you hide real bugs; too coarse and the user loses too much UI on a minor error.
+
+**Related:** [REACT-037 — Error boundaries](./03-advanced.md#react-037)
+
+**Source:** [SudheerJ SDJ-175](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-230
+
+### What are the scenarios where error boundaries don't catch errors?
+
+Error boundaries catch errors during rendering, lifecycle methods, and constructors of components in the tree below them. They do **not** catch:
+
+1. **Event handlers** — `onClick`, `onChange`, etc. Use try/catch inside handlers instead.
+2. **Asynchronous code** — `setTimeout`, `Promise.then`, `fetch` callbacks, async/await. Use try/catch or `.catch()`.
+3. **Server-side rendering** — error boundaries are client-side only.
+4. **Errors in the error boundary itself** — an error thrown inside the boundary component is not caught by that same boundary.
+
+```jsx
+// ✗ Error boundary DOES NOT catch this
+class MyComponent extends Component {
+  handleClick = () => {
+    throw new Error('Event handler error'); // Not caught by boundary
+  };
+  render() { return <button onClick={this.handleClick}>Click</button>; }
+}
+
+// ✓ Use try/catch in event handlers
+handleClick = () => {
+  try {
+    riskyOperation();
+  } catch (err) {
+    this.setState({ error: err });
+  }
+};
+```
+
+**Related:** [REACT-037 — Error boundaries](./03-advanced.md#react-037) | [REACT-229 — Uncaught errors](#react-229)
+
+**Source:** [SudheerJ SDJ-174](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-231
+
+### What is the proper placement for error boundaries?
+
+Placement determines how much UI is preserved when something breaks:
+
+**Too coarse (single top-level boundary)** — the user loses the entire app on any error:
+
+```jsx
+<ErrorBoundary><App /></ErrorBoundary> // Too broad
+```
+
+**Too fine (every component)** — hides bugs and adds boilerplate:
+
+```jsx
+<ErrorBoundary><Button /></ErrorBoundary> // Overkill
+```
+
+**Recommended — route-level and feature-level:**
+
+```jsx
+<Layout>
+  <ErrorBoundary fallback={<PageError />}>
+    <Route path="/dashboard" element={<Dashboard />} />
+  </ErrorBoundary>
+
+  <Sidebar>
+    <ErrorBoundary fallback={<WidgetError />}>
+      <RecommendationsWidget />
+    </ErrorBoundary>
+  </Sidebar>
+</Layout>
+```
+
+Rule of thumb: wrap each independently usable feature that can crash without taking down the rest of the page. The user should be able to continue using unaffected parts of the app.
+
+**Related:** [REACT-037 — Error boundaries](./03-advanced.md#react-037) | [REACT-230 — Error boundary limits](#react-230)
+
+**Source:** [SudheerJ SDJ-176](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-232
+
+### What is MobX?
+
+MobX is a reactive state management library. Unlike Redux's single store + actions + reducers model, MobX uses **observable state** — any property marked as observable is automatically tracked, and components re-render only when their specific observables change.
+
+```jsx
+import { makeAutoObservable } from 'mobx';
+import { observer } from 'mobx-react-lite';
+
+class CounterStore {
+  count = 0;
+
+  constructor() { makeAutoObservable(this); }
+
+  increment() { this.count++; }
+  decrement() { this.count--; }
+}
+
+const store = new CounterStore();
+
+const Counter = observer(() => (
+  <div>
+    <p>{store.count}</p>
+    <button onClick={() => store.increment()}>+</button>
+  </div>
+));
+```
+
+MobX mutations are direct (no dispatch, no action creators) — it wraps mutations in transactions automatically. The `observer` HOC subscribes the component to exactly the observables it reads during render.
+
+**Related:** [REACT-111 — Redux](../react/08-redux.md#react-111) | [REACT-233 — MobX vs Redux](#react-233)
+
+**Source:** [SudheerJ SDJ-227](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-233
+
+### What are the differences between Redux and MobX?
+
+| Aspect | Redux | MobX |
+|---|---|---|
+| Mental model | Unidirectional data flow, immutable | Reactive, observable state |
+| Mutation | Immutable — pure reducers return new state | Mutable — direct mutations in actions |
+| Boilerplate | More (reducers, actions, selectors) | Less (auto-observable, no action types) |
+| Learning curve | Steeper | Gentler |
+| Debugging | Excellent — DevTools, time-travel | Good — MobX DevTools |
+| Performance | Opt-in memoization (selectors, memo) | Automatic — fine-grained subscriptions |
+| Predictability | Very high — strict data flow | Moderate — mutation anywhere is easier to misuse |
+| Testability | Very easy — pure functions | Requires setup for observable state |
+
+**When to choose:**
+- Redux: large teams, complex state, need strict architecture and excellent DevTools
+- MobX: smaller teams, rapid development, mutable OOP-style preferred
+
+**Related:** [REACT-232 — MobX](#react-232) | [REACT-111 — Redux](../react/08-redux.md#react-111)
+
+**Source:** [SudheerJ SDJ-228](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-234
+
+### What is the difference between async mode and concurrent mode?
+
+"Async mode" was an earlier name used during React 16's experimental phase. "Concurrent mode" is the final, stable term used in React 18+.
+
+The concept is the same: React can pause, interrupt, and resume rendering work, rather than blocking the main thread with a synchronous render.
+
+| Term | React version | Status |
+|---|---|---|
+| Async mode | React 16 experimental | Renamed / deprecated terminology |
+| Concurrent mode | React 18 opt-in (Experimental API) | Also superseded |
+| Concurrent features | React 18 stable | `createRoot` enables by default |
+
+In React 18, concurrent features (`useTransition`, `useDeferredValue`, `Suspense` for data fetching) are available by default when you use `createRoot`. There's no longer a separate "mode" to opt into — it's the default behavior.
+
+**Related:** [REACT-054 — Concurrent rendering](./03-advanced.md#react-054) | [REACT-109 — useTransition vs useDeferredValue](../react/07-react19.md#react-109)
+
+**Source:** [SudheerJ SDJ-231](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-235
+
+### Can you use JavaScript URLs in React?
+
+`javascript:` URLs (e.g., `href="javascript:void(0)"`) are a security risk — they can execute arbitrary JavaScript in the page context. React 16.9 added a deprecation warning when `javascript:` URLs are used in `href`, `src`, or `action` attributes.
+
+```jsx
+// ✗ Security risk — deprecated in React 16.9+
+<a href="javascript:void(0)" onClick={handleClick}>Click</a>
+
+// ✓ Use a button for click-only behavior
+<button onClick={handleClick} type="button">Click</button>
+
+// ✓ Use '#' with preventDefault if you must use an anchor
+<a href="#" onClick={(e) => { e.preventDefault(); handleClick(); }}>Click</a>
+```
+
+The correct semantic choice for actions is `<button>`, not `<a>`. Anchor tags are for navigation; buttons are for actions.
+
+**Related:** [REACT-187 — JSX injection prevention](../react/01-fundamentals.md#react-187)
+
+**Source:** [SudheerJ SDJ-232](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-236
+
+### What are the benefits of using TypeScript with React?
+
+**Compile-time prop validation.** TypeScript catches incorrect prop types before the browser runs the code, unlike PropTypes which only warn at runtime:
+
+```tsx
+type ButtonProps = { label: string; disabled?: boolean; onClick: () => void };
+
+function Button({ label, disabled = false, onClick }: ButtonProps) { ... }
+
+<Button label={42} /> // TypeScript error at compile time
+```
+
+**Autocomplete and IDE support.** TypeScript enables IntelliSense for props, hook return values, and event types — faster development with fewer lookups.
+
+**Safer refactoring.** Renaming a prop type propagates the error everywhere it's used — the compiler tells you what to fix.
+
+**Self-documenting APIs.** Type signatures describe what a component expects without a separate docs page.
+
+**Hook typing.** Generics make hook return types explicit:
+
+```tsx
+const [count, setCount] = useState<number>(0);
+const data = useRef<HTMLDivElement>(null);
+```
+
+**Drawback:** Added build complexity, steeper learning curve, and verbose types for complex generics. Most teams consider the trade-off well worth it for projects beyond prototype scale.
+
+**Related:** [REACT-021 — Static type checking](../react/01-fundamentals.md#react-021) | [REACT-141 — Flow](../react/10-libraries.md#react-141)
+
+**Source:** [SudheerJ SDJ-235](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-237
+
+### How to keep a user authenticated on page refresh when using Context?
+
+Context state is in-memory and is lost on page refresh. To persist authentication across refreshes, initialize Context from a persistent store (localStorage, sessionStorage, or a cookie):
+
+```jsx
+function AuthProvider({ children }) {
+  const [user, setUser] = useState(() => {
+    // Lazy initializer — reads from localStorage on first render only
+    try {
+      const stored = localStorage.getItem('auth_user');
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  const login = (userData) => {
+    setUser(userData);
+    localStorage.setItem('auth_user', JSON.stringify(userData));
+  };
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('auth_user');
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+```
+
+For security-sensitive auth, prefer **HttpOnly cookies** (sent automatically with requests, not accessible to JavaScript — protects against XSS). The pattern above is suitable for non-sensitive user preferences but not for auth tokens that protect API access.
+
+**Related:** [REACT-033 — useContext](../react/02-hooks.md#react-033) | [REACT-074 — Private routes](../react/04-routing.md#react-074)
+
+**Source:** [SudheerJ SDJ-236](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-238
+
+### What is a wrapper component?
+
+A wrapper component (also called a layout component or container component) wraps other components to provide shared structure, styling, or context — without dictating the inner content.
+
+```jsx
+// Card wrapper — provides consistent styling and layout
+function Card({ children, title, className = '' }) {
+  return (
+    <div className={`card ${className}`}>
+      {title && <div className="card-header"><h3>{title}</h3></div>}
+      <div className="card-body">{children}</div>
+    </div>
+  );
+}
+
+// Page layout wrapper
+function PageLayout({ sidebar, children }) {
+  return (
+    <div className="page">
+      <aside>{sidebar}</aside>
+      <main>{children}</main>
+    </div>
+  );
+}
+
+// Usage
+<Card title="User Info">
+  <UserForm />
+</Card>
+```
+
+Wrapper components use the `children` prop (or named slot props like `sidebar`) to accept any content. This is the **composition pattern** — preferred over inheritance for sharing structure in React.
+
+**Related:** [REACT-148 — Children prop](../react/01-fundamentals.md#react-148) | [REACT-062 — Composition pattern](./03-advanced.md#react-062)
+
+**Source:** [SudheerJ SDJ-242](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-239
+
+### Why does Strict Mode render twice in development?
+
+React Strict Mode intentionally double-invokes certain functions in development to help detect side effects:
+
+- Component `render` functions / function component bodies
+- `useState`, `useMemo`, `useReducer` initializer functions
+- Functions passed to `setState`
+
+The double invocation surfaces unintentional side effects — if your render function has a side effect (mutating a ref, writing to localStorage, etc.) you'll see it fire twice in dev and notice the bug.
+
+```jsx
+function Counter() {
+  console.log('render'); // logs twice in Strict Mode dev
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
+}
+```
+
+This only happens in **development** — production builds never double-invoke. React also discards the second render's output; the UI renders normally.
+
+React 18 extended this to also unmount and remount components once after initial mount (to verify effects are written correctly for concurrent mode).
+
+**Related:** [REACT-041 — Strict Mode](./03-advanced.md#react-041)
+
+**Source:** [SudheerJ SDJ-247](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-240
+
+### What is the windowing (virtualization) technique?
+
+Windowing (also called virtual scrolling or list virtualization) is a technique that renders only the visible portion of a large list rather than all items. For a list of 10,000 rows, only the ~20 visible rows are in the DOM at any time.
+
+```jsx
+import { FixedSizeList } from 'react-window';
+
+function Row({ index, style }) {
+  return <div style={style}>Row #{index}</div>;
+}
+
+function VirtualList() {
+  return (
+    <FixedSizeList
+      height={400}          // visible window height
+      itemCount={10000}     // total items
+      itemSize={35}         // each row height in px
+      width="100%"
+    >
+      {Row}
+    </FixedSizeList>
+  );
+}
+```
+
+**Libraries:** `react-window` (lightweight), `react-virtual` (TanStack Virtual, flexible), `react-virtualized` (feature-rich, heavier).
+
+**When to use:** Lists/tables with hundreds or thousands of items that cause performance issues. For a list of 50 items, virtualization adds complexity without meaningful benefit.
+
+**Related:** [REACT-056 — Expensive computations](./03-advanced.md#react-056)
+
+**Source:** [SudheerJ SDJ-207](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-241
+
+### Can you use web components in React?
+
+Yes. React renders web components (custom elements) in JSX like any HTML tag. There are some friction points:
+
+```jsx
+// Using a web component in React
+function App() {
+  return (
+    <div>
+      <my-button onClick={handleClick}>Click me</my-button>
+    </div>
+  );
+}
+```
+
+**Friction points:**
+- **Events:** Web component events don't bubble through React's synthetic event system. Add event listeners via `useRef`:
+
+```jsx
+const ref = useRef();
+useEffect(() => {
+  ref.current.addEventListener('my-custom-event', handler);
+  return () => ref.current.removeEventListener('my-custom-event', handler);
+}, []);
+<my-component ref={ref} />
+```
+
+- **Props:** Web components receive attributes (strings) not React props. Complex data must be set imperatively via the ref.
+- **React 19** significantly improves web component support — props are passed as properties, events are handled more naturally.
+
+**Related:** [REACT-001 — What is React](../react/01-fundamentals.md#react-001)
+
+**Source:** [SudheerJ SDJ-196](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-242
+
+### What are loadable components?
+
+`@loadable/component` is a code-splitting library (an alternative to `React.lazy`) that supports server-side rendering — which `React.lazy` does not natively support:
+
+```jsx
+import loadable from '@loadable/component';
+
+// With @loadable/component — works with SSR
+const HeavyChart = loadable(() => import('./HeavyChart'), {
+  fallback: <Spinner />,
+});
+
+// Named exports work too (unlike React.lazy)
+const Chart = loadable(() => import('./charts'), {
+  resolveComponent: (components) => components.BarChart,
+});
+```
+
+**vs React.lazy:**
+| Feature | React.lazy | @loadable/component |
+|---|---|---|
+| SSR support | ❌ (client only) | ✅ |
+| Named exports | ❌ | ✅ |
+| Prefetching | ❌ | ✅ |
+| Built-in | ✅ | Requires install |
+
+For Next.js, use `next/dynamic` which has its own SSR-compatible lazy loading.
+
+**Related:** [REACT-042 — Code splitting](./03-advanced.md#react-042) | [REACT-150 — React.lazy named exports](../react/01-fundamentals.md#react-150)
+
+**Source:** [SudheerJ SDJ-198](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-243
+
+### What is the purpose of the default context value?
+
+The default value passed to `createContext(defaultValue)` is used when a component consumes the context but is **not** wrapped in a matching Provider:
+
+```jsx
+// Default value used when no Provider is in the tree
+const ThemeContext = createContext({ mode: 'light', primary: '#6200ea' });
+
+// This component works without a Provider — uses the default
+function ThemedButton() {
+  const { mode } = useContext(ThemeContext);
+  return <button className={mode}>Click</button>;
+}
+```
+
+**When it matters:**
+1. **Testing in isolation** — render a component without its Provider in unit tests
+2. **Component library distribution** — ship components that work standalone without requiring consumers to set up Providers
+3. **Documentation examples** — code samples in docs don't need Provider boilerplate
+
+If the default is `null` or `undefined` and consumers try to destructure it, you'll get a runtime error. Provide a valid empty/default shape matching your context structure.
+
+**Related:** [REACT-033 — useContext](../react/02-hooks.md#react-033) | [REACT-208 — No matching provider](../react/02-hooks.md#react-208)
+
+**Source:** [SudheerJ SDJ-201](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-244
+
+### What are the rules covered by the diffing algorithm?
+
+React's reconciliation uses two heuristics to make diffing O(n) rather than the O(n³) of a generic tree diff:
+
+**Rule 1 — Different type, full rebuild.** If the root element changes type (e.g., `<div>` → `<span>`, or `<ComponentA>` → `<ComponentB>`), React tears down the entire subtree and mounts a new one:
+
+```jsx
+// Old: <div><Counter /></div>
+// New: <span><Counter /></span>
+// React unmounts Counter, mounts a fresh Counter — state is lost
+```
+
+**Rule 2 — Same type, update in place.** If the type is the same, React updates the existing DOM node's attributes and recurses into children:
+
+```jsx
+// Old: <div className="a" />
+// New: <div className="b" />
+// React updates just className — no unmount
+```
+
+**Rule 3 — Keys for lists.** Without keys, React diffs children positionally. With keys, React matches children by key across reorders — enabling efficient reordering without destroying state.
+
+**Related:** [REACT-012 — Reconciliation](../react/01-fundamentals.md#react-012) | [REACT-006 — key prop](../react/01-fundamentals.md#react-006)
+
+**Source:** [SudheerJ SDJ-203](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-245
+
+### Does the render prop have to be named "render"?
+
+No — the render prop pattern refers to any prop that accepts a function to be called during render. The prop can have any name:
+
+```jsx
+// Classic "render" prop name
+<DataFetcher render={(data) => <Table data={data} />} />
+
+// "children" as a function (most common pattern)
+<DataFetcher>
+  {(data) => <Table data={data} />}
+</DataFetcher>
+
+// Any custom name works
+<Slider formatLabel={(value) => `${value}%`} />
+<List renderItem={(item) => <Row item={item} />} />
+<Modal trigger={(open) => <Button onClick={open}>Open</Button>} />
+```
+
+The `children` as function pattern is particularly clean because you don't need a custom prop name — the content between the tags is naturally the children. The key characteristic of render props is that **a function is passed as a prop and called within the component's render**, regardless of what that prop is named.
+
+**Related:** [REACT-061 — Render props](./03-advanced.md#react-061) | [REACT-148 — Children prop](../react/01-fundamentals.md#react-148)
+
+**Source:** [SudheerJ SDJ-205](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-246
+
+### What are the problems of using render props with Pure Components?
+
+When a render prop is defined as an inline function in JSX, it creates a new function reference on every parent render. A `PureComponent` or `React.memo` child that receives this prop will always see a "changed" prop and re-render — defeating the optimization:
+
+```jsx
+// ✗ New function reference every render — PureComponent re-renders always
+class Parent extends Component {
+  render() {
+    return (
+      <PureChildComponent
+        render={() => <ExpensiveView />}  // New arrow function each render
+      />
+    );
+  }
+}
+
+// ✓ Define the render prop as a class method — stable reference
+class Parent extends Component {
+  renderContent = () => <ExpensiveView />;
+  render() {
+    return <PureChildComponent render={this.renderContent} />;
+  }
+}
+
+// ✓ Modern equivalent — useCallback for stable reference
+function Parent() {
+  const renderContent = useCallback(() => <ExpensiveView />, []);
+  return <MemoizedChild render={renderContent} />;
+}
+```
+
+**Related:** [REACT-061 — Render props](./03-advanced.md#react-061) | [REACT-016 — React.memo](../react/01-fundamentals.md#react-016) | [REACT-029 — useCallback](../react/02-hooks.md#react-029)
+
+**Source:** [SudheerJ SDJ-206](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-247
+
+### How to prevent automatic batching in React 18?
+
+React 18 introduced automatic batching — all state updates in any context (event handlers, `setTimeout`, Promises) are batched into a single re-render. In rare cases you may want to force a synchronous flush:
+
+```jsx
+import { flushSync } from 'react-dom';
+
+function handleClick() {
+  // ✓ Forces an immediate synchronous re-render after each setState
+  flushSync(() => {
+    setCount(c => c + 1);
+  });
+  // DOM is updated here, before the next line
+  flushSync(() => {
+    setFlag(f => !f);
+  });
+}
+```
+
+`flushSync` is rare. It's useful when:
+- You need to read the DOM immediately after a state update (e.g., scroll position after adding an item)
+- Third-party code or testing utilities require synchronous updates
+
+**Related:** [REACT-049 — setState mechanics](./03-advanced.md#react-049)
+
+**Source:** [SudheerJ SDJ-254](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-248
+
+### How to update objects inside state?
+
+Always spread the existing state and override only the changed fields — don't mutate the original object:
+
+```jsx
+const [user, setUser] = useState({ name: 'Akar', role: 'engineer', age: 28 });
+
+// ✓ Spread and override the changed field
+setUser((prev) => ({ ...prev, role: 'senior engineer' }));
+
+// ✗ Never mutate state directly
+user.role = 'senior'; // mutation — React won't detect the change, no re-render
+setUser(user);        // same reference — React bails out
+```
+
+For nested objects:
+
+```jsx
+const [config, setConfig] = useState({ server: { host: 'localhost', port: 3000 } });
+
+// Spread at every level
+setConfig((prev) => ({
+  ...prev,
+  server: { ...prev.server, port: 8080 },
+}));
+```
+
+For deeply nested state, consider using `immer` (via RTK's `createSlice` or directly) which lets you write mutating syntax safely:
+
+```jsx
+import { produce } from 'immer';
+setConfig(produce(draft => { draft.server.port = 8080; }));
+```
+
+**Related:** [REACT-022 — Immutable state](../react/01-fundamentals.md#react-022) | [REACT-249 — Update arrays in state](#react-249)
+
+**Source:** [SudheerJ SDJ-256, SDJ-257](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-249
+
+### How to update arrays inside state?
+
+Arrays in state must be replaced with new arrays — never mutate the original. Use non-mutating array operations:
+
+```jsx
+const [items, setItems] = useState([1, 2, 3]);
+
+// Add
+setItems((prev) => [...prev, 4]);
+
+// Remove
+setItems((prev) => prev.filter((item) => item !== 2));
+
+// Update specific item
+setItems((prev) => prev.map((item) => item === 2 ? 99 : item));
+
+// Insert at position
+setItems((prev) => [...prev.slice(0, 2), 10, ...prev.slice(2)]);
+
+// Reorder / sort
+setItems((prev) => [...prev].sort((a, b) => a - b)); // copy first, then sort
+```
+
+**Avoid these mutating methods in state updates:**
+`push`, `pop`, `shift`, `unshift`, `splice`, `reverse`, `sort` (without copying first).
+
+**Related:** [REACT-248 — Update objects in state](#react-248) | [REACT-022 — Immutable state](../react/01-fundamentals.md#react-022)
+
+**Source:** [SudheerJ SDJ-258, SDJ-261](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-250
+
+### What are the benefits of Immer for state updates?
+
+Immer lets you write state mutations in a natural "mutable" style while producing a new immutable state under the hood:
+
+```jsx
+import { produce } from 'immer';
+
+const [state, setState] = useState({ user: { name: 'Akar', scores: [90, 85] } });
+
+// Without Immer — verbose spreads for nested state
+setState((prev) => ({
+  ...prev,
+  user: {
+    ...prev.user,
+    scores: [...prev.user.scores, 95],
+  },
+}));
+
+// With Immer — write as if mutating directly
+setState(produce((draft) => {
+  draft.user.scores.push(95);  // Immer converts this to an immutable update
+}));
+```
+
+Immer uses ES6 Proxies to intercept mutations on the `draft` object and produce a new immutable result. Redux Toolkit's `createSlice` uses Immer by default — that's why you can write `state.count++` in RTK reducers.
+
+**Related:** [REACT-248 — Update objects](#react-248) | [REACT-249 — Update arrays](#react-249) | [REACT-112 — Redux principles](../react/08-redux.md#react-112)
+
+**Source:** [SudheerJ SDJ-259](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-251
+
+### What happens when you define nested function components?
+
+Defining a component inside another component is an anti-pattern. On every render of the outer component, the inner component is redefined — giving it a new identity. React sees a different component type and remounts it from scratch, resetting all its state and running all effects again.
+
+```jsx
+// ✗ Anti-pattern — InnerForm is redefined on every AppForm render
+function AppForm() {
+  // This is a new component type every render
+  function InnerForm({ label }) {
+    const [value, setValue] = useState('');
+    return <input value={value} onChange={e => setValue(e.target.value)} />;
+  }
+  return <InnerForm label="Name" />;
+}
+// Problem: every time AppForm re-renders, InnerForm's state is lost
+
+// ✓ Define at module level
+function InnerForm({ label }) {
+  const [value, setValue] = useState('');
+  return <input value={value} onChange={e => setValue(e.target.value)} />;
+}
+
+function AppForm() {
+  return <InnerForm label="Name" />;
+}
+```
+
+The fix: always define components at the module's top level. If the inner component needs access to outer variables, pass them as props.
+
+**Related:** [REACT-035 — Re-rendering](./03-advanced.md#react-035) | [REACT-047 — Anti-patterns](./03-advanced.md#react-047)
+
+**Source:** [SudheerJ SDJ-262](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-252
+
+### What are capture phase events in React?
+
+DOM events go through three phases: **capture** (root → target), **target**, **bubble** (target → root). React's standard event handlers fire in the bubble phase. Appending `Capture` to any React event name fires in the capture phase:
+
+```jsx
+function EventDemo() {
+  return (
+    <div
+      onClickCapture={() => console.log('div capture')} // fires first
+      onClick={() => console.log('div bubble')}          // fires last
+    >
+      <button
+        onClickCapture={() => console.log('button capture')}
+        onClick={() => console.log('button click')}
+      >
+        Click me
+      </button>
+    </div>
+  );
+}
+// Click order: div capture → button capture → button click → div bubble
+```
+
+All React events have capture variants: `onFocusCapture`, `onMouseDownCapture`, `onKeyDownCapture`, etc.
+
+**Use cases:** Implementing a global click-outside detector, intercepting events before they reach child handlers, implementing modal/overlay dismiss behavior.
+
+**Related:** [REACT-052 — Synthetic events](./03-advanced.md#react-052)
+
+**Source:** [SudheerJ SDJ-251](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-253
+
+### What is the popular choice for form handling in React?
+
+Two libraries dominate modern React form handling:
+
+**React Hook Form (most popular):**
+
+```jsx
+import { useForm } from 'react-hook-form';
+
+function LoginForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = (data) => console.log(data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register('email', { required: true })} />
+      {errors.email && <span>Email is required</span>}
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+```
+
+Uncontrolled inputs — minimal re-renders, tiny bundle (~9KB).
+
+**Formik:**
+
+```jsx
+import { Formik, Field, Form } from 'formik';
+
+<Formik initialValues={{ email: '' }} onSubmit={values => console.log(values)}>
+  <Form>
+    <Field name="email" type="email" />
+    <button type="submit">Login</button>
+  </Form>
+</Formik>
+```
+
+Controlled inputs — more re-renders, larger bundle, more explicit API.
+
+**Comparison:** React Hook Form is generally preferred for its performance (uncontrolled inputs), smaller bundle, and better TypeScript support. Formik is more explicit and easier to reason about for complex nested forms.
+
+**Related:** [REACT-131 — Redux Form](../react/08-redux.md#react-131) | [REACT-014 — Controlled components](../react/01-fundamentals.md#react-014)
+
+**Source:** [SudheerJ SDJ-193, SDJ-223](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-254
+
+### Why is inheritance not used in React?
+
+React's component model is built on composition, not inheritance. The React team explicitly recommends against inheriting from custom base components:
+
+```jsx
+// ✗ Inheritance — React discourages this
+class FancyButton extends Button {
+  render() { ... }
+}
+
+// ✓ Composition — wrap, don't extend
+function FancyButton({ children, ...props }) {
+  return <Button {...props} className="fancy">{children}</Button>;
+}
+```
+
+**Why:**
+- Inheritance creates tight coupling between parent and child component implementations
+- Multiple inheritance is not possible in JavaScript
+- Props and composition already give you all the flexibility inheritance provides
+- The `children` prop and render props allow full customization without inheritance
+
+The React team's guidance: "If you want to reuse non-UI functionality between components, extract it into a separate JavaScript module. Components can import it and use that function, object, or class, without extending it."
+
+**Related:** [REACT-062 — Composition](./03-advanced.md#react-062) | [REACT-148 — Children prop](../react/01-fundamentals.md#react-148)
+
+**Source:** [SudheerJ SDJ-195](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-255
+
+### Do I need to rewrite all class components as hooks/function components?
+
+No. React has no plans to remove class components. The React team has stated that class components will continue to be supported.
+
+**When to convert:**
+- When actively working in the file and the class component needs significant changes
+- When you want to adopt concurrent features (some features like `useTransition` are hooks-only)
+- When adding new functionality that would be significantly cleaner as hooks
+
+**When NOT to convert:**
+- Stable components that work correctly and don't need new features
+- Large, complex class components where conversion risk outweighs benefit
+- When the team doesn't have time for the testing overhead
+
+```jsx
+// Both are valid in modern React
+class StableWidget extends React.Component { /* works, no need to change */ }
+function NewFeature() { return <div>...</div>; } // new code uses hooks
+```
+
+The best approach: write all **new** components as function components with hooks. Convert existing class components opportunistically when you're already editing them.
+
+**Related:** [REACT-009 — Class vs functional](../react/01-fundamentals.md#react-009) | [REACT-023 — Benefits of hooks](../react/01-fundamentals.md#react-023)
+
+**Source:** [SudheerJ SDJ-216, SDJ-218](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+

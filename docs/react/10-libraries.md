@@ -202,3 +202,178 @@ Alternatives in the same space: Emotion, vanilla-extract, CSS Modules, Tailwind 
 ---
 
 *← [09-react-native.md](./09-react-native.md) | [Master Index →](../../docs/reference/00-master-index.md)*
+
+---
+
+## REACT-262
+
+### How to use Font Awesome icons in React?
+
+Install the official React Font Awesome packages:
+
+```bash
+npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+```
+
+```jsx
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee, faHome, faUser } from '@fortawesome/free-solid-svg-icons';
+
+function App() {
+  return (
+    <div>
+      <FontAwesomeIcon icon={faCoffee} />
+      <FontAwesomeIcon icon={faHome} size="2x" color="blue" />
+      <FontAwesomeIcon icon={faUser} spin />
+      <FontAwesomeIcon icon={faCoffee} className="icon-custom" />
+    </div>
+  );
+}
+```
+
+Font Awesome renders SVGs, not icon fonts — better accessibility and no network request for a font file. Individual icon imports enable tree-shaking so only used icons are bundled.
+
+**Related:** [REACT-001 — React overview](../react/01-fundamentals.md#react-001)
+
+**Source:** [SudheerJ SDJ-143](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-263
+
+### Why does React DevTools not load in Chrome for local files?
+
+Chrome restricts extension access to `file://` URLs by default. The React DevTools extension can't inspect pages opened as local files (`file:///path/to/index.html`).
+
+**Fix — enable file access:**
+1. Go to `chrome://extensions/`
+2. Find "React Developer Tools"
+3. Click "Details"
+4. Enable "Allow access to file URLs"
+
+**Alternative fixes:**
+- Serve the file through a local HTTP server instead of opening directly: `npx serve .` or `python3 -m http.server`
+- Use Vite's dev server (`npm run dev`) — runs at `localhost`, always accessible
+
+For production debugging, React DevTools requires the development build of React. Production builds don't expose the hook React DevTools uses.
+
+**Related:** [REACT-143 — React DevTools](./10-libraries.md#react-143)
+
+**Source:** [SudheerJ SDJ-145](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-264
+
+### Why does the React tab not show up in DevTools?
+
+Common causes:
+
+1. **Production build** — React DevTools only works with development builds. Production builds don't expose the DevTools hook. Run `npm run dev` or check your build config.
+
+2. **Stale cache / reload needed** — open DevTools before the page loads, or hard-refresh (`Cmd+Shift+R`).
+
+3. **Extension not updated** — ensure React DevTools extension is up to date. Older versions don't support React 18/19 APIs.
+
+4. **iframe or cross-origin content** — DevTools may not detect React inside cross-origin iframes.
+
+5. **Custom renderer** — React DevTools detects React via a global hook (`__REACT_DEVTOOLS_GLOBAL_HOOK__`). Custom renderers or unusual setups may not expose this.
+
+6. **Electron / non-Chrome environment** — use the standalone `react-devtools` npm package: `npx react-devtools`.
+
+**Related:** [REACT-143 — React DevTools](./10-libraries.md#react-143) | [REACT-263 — DevTools local files](#react-263)
+
+**Source:** [SudheerJ SDJ-149](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-265
+
+### What are the advantages of React over Vue.js?
+
+This comparison depends on context, but commonly cited React advantages:
+
+**Ecosystem size.** React has a larger ecosystem — more libraries, more tutorials, more job market demand, and broader community support.
+
+**JavaScript-centric.** React uses JSX and plain JavaScript. Vue uses `.vue` single-file components with its own template syntax, directives, and options API — more to learn.
+
+**Flexibility.** React is a library; you choose your own router, state manager, and form library. Vue is more opinionated but also provides more out of the box (Vue Router, Pinia are official).
+
+**TypeScript integration.** React + TypeScript is extremely well-supported and widely adopted. Vue's TypeScript support has improved but JSX + TS is more mature in React.
+
+**Server Components.** React 19's RSC model has no Vue equivalent and enables new full-stack patterns.
+
+**Vue advantages:** Simpler learning curve, official integration of routing/state, cleaner template syntax for HTML-oriented developers, smaller initial bundle.
+
+Neither is objectively better — both are excellent choices.
+
+**Source:** [SudheerJ SDJ-147](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-266
+
+### What is the difference between React and Angular?
+
+| Aspect | React | Angular |
+|---|---|---|
+| Type | UI library | Full framework |
+| Language | JavaScript + JSX | TypeScript (required) |
+| Data binding | One-way | Two-way (ngModel) |
+| DOM | Virtual DOM | Real DOM with change detection |
+| Architecture | Flexible — you choose | Opinionated — routing, HTTP, forms built-in |
+| Learning curve | Moderate | Steep (decorators, DI, modules, zones) |
+| Bundle size | Smaller | Larger |
+| State management | Third-party (Redux, Zustand) | Services + NgRx (optional) |
+| Updates | Hooks-based | Zone.js + signals (v17+) |
+| Mobile | React Native | Ionic (different ecosystem) |
+
+React is a library that focuses on the view layer. Angular is a complete framework that includes routing, HTTP client, forms, animations, DI container, and testing infrastructure.
+
+React is more flexible and has a larger ecosystem. Angular provides more structure, which some teams prefer for large enterprise projects with many developers.
+
+**Source:** [SudheerJ SDJ-148](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-267
+
+### What is Formik?
+
+Formik is a form management library for React that handles form state, validation, and submission in a structured, controlled way.
+
+```jsx
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+const schema = Yup.object({ email: Yup.string().email().required() });
+
+function LoginForm() {
+  return (
+    <Formik
+      initialValues={{ email: '' }}
+      validationSchema={schema}
+      onSubmit={(values, { setSubmitting }) => {
+        submitLogin(values).finally(() => setSubmitting(false));
+      }}
+    >
+      {({ isSubmitting }) => (
+        <Form>
+          <Field type="email" name="email" placeholder="Email" />
+          <ErrorMessage name="email" component="p" />
+          <button type="submit" disabled={isSubmitting}>Login</button>
+        </Form>
+      )}
+    </Formik>
+  );
+}
+```
+
+Formik manages: field values, touched state, validation errors (via Yup or custom), and submission loading state. It uses controlled inputs and re-renders on every change.
+
+**vs React Hook Form:** Formik is more verbose but explicit; React Hook Form uses uncontrolled inputs and re-renders far less. React Hook Form is generally preferred for performance-sensitive forms.
+
+**Related:** [REACT-253 — Popular form libraries](./03-advanced.md#react-253) | [REACT-131 — Redux Form](./08-redux.md#react-131)
+
+**Source:** [SudheerJ SDJ-223, SDJ-194](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+

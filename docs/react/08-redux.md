@@ -802,3 +802,99 @@ dispatch(increment()); // Calls the auto-generated action creator
 
 *← [07-react19.md](./07-react19.md) | [09-react-native.md →](./09-react-native.md)*
 *[Master Index](../../docs/reference/00-master-index.md)*
+
+---
+
+## REACT-259
+
+### Are there similarities between Redux and RxJS?
+
+Both Redux and RxJS involve streams of events/actions that produce new states, but they operate at different abstraction levels:
+
+| Aspect | Redux | RxJS |
+|---|---|---|
+| Focus | Application state management | Reactive programming / async streams |
+| Core unit | Action (plain object) | Observable (event stream) |
+| Composition | Reducers combine state slices | Operators compose streams |
+| Subscriptions | `store.subscribe()` | `observable.subscribe()` |
+| Middleware | Custom middleware (thunk, saga) | Operators (map, filter, debounce, mergeMap) |
+
+**Similarities:**
+- Both model state changes as sequences of events
+- Both provide a way to react to changes (subscriptions)
+- `redux-observable` is a middleware that brings RxJS into Redux — actions become Observables that can be composed with RxJS operators (called "Epics")
+
+RxJS is a general-purpose reactive library; Redux is specifically for UI state management. They complement each other rather than compete.
+
+**Related:** [REACT-111 — Redux](./08-redux.md#react-111) | [REACT-125 — redux-saga](./08-redux.md#react-125)
+
+**Source:** [SudheerJ SDJ-110](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-260
+
+### Can Redux be used without React?
+
+Yes — Redux is a standalone JavaScript library with no dependency on React. It can be used with any UI framework or with vanilla JavaScript:
+
+```js
+// Pure JavaScript — no React
+import { createStore } from 'redux';
+
+function counterReducer(state = 0, action) {
+  switch (action.type) {
+    case 'increment': return state + 1;
+    default: return state;
+  }
+}
+
+const store = createStore(counterReducer);
+
+store.subscribe(() => {
+  document.getElementById('count').textContent = store.getState();
+});
+
+document.getElementById('btn').addEventListener('click', () => {
+  store.dispatch({ type: 'increment' });
+});
+```
+
+Redux is used with Vue (via `pinia` typically, but Redux works), Angular, Svelte, or any framework. The `react-redux` package is the React binding — it's optional.
+
+**Related:** [REACT-111 — What is Redux](./08-redux.md#react-111)
+
+**Source:** [SudheerJ SDJ-155](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-261
+
+### Do you need a specific build tool to use Redux?
+
+No. Redux is just a JavaScript package — it works in any environment that can run JavaScript and import npm packages:
+
+```html
+<!-- Browser via CDN — no build tool -->
+<script src="https://unpkg.com/redux/dist/redux.min.js"></script>
+<script>
+  const store = Redux.createStore(reducer);
+</script>
+```
+
+```js
+// Node.js — no bundler needed
+const { createStore } = require('redux');
+```
+
+In practice, React + Redux projects use Vite, webpack, or Create React App because:
+- JSX requires transpilation (Babel/SWC)
+- ES modules need bundling for broad browser support
+- Tree-shaking removes unused Redux code
+
+But Redux itself has zero build requirements.
+
+**Related:** [REACT-111 — Redux](./08-redux.md#react-111) | [REACT-260 — Redux without React](#react-260)
+
+**Source:** [SudheerJ SDJ-156](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
