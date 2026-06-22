@@ -70,21 +70,53 @@ Sources are stored under `sources/{technology}/{source-type}/{source-name}/`.
 
 ---
 
+### GFE-NJS — GreatFrontEnd: Next.js Interview Questions for Freshers (2026)
+
+| Field | Value |
+|---|---|
+| **Source ID** | GFE-NJS |
+| **Title** | Next.js Interview Questions for Freshers: 35 Questions with Answers |
+| **Publisher** | GreatFrontEnd |
+| **URL** | https://www.greatfrontend.com/blog/next-js-interview-questions-for-freshers |
+| **Published** | Jun 9, 2026 |
+| **Technology** | Next.js |
+| **Source type** | Website |
+| **Questions extracted** | 35 |
+| **Mapped to existing IDs** | 0 (Next.js domain was empty) |
+| **New canonical IDs created** | NEXT-001 – NEXT-035 (35 new) |
+| **All questions canonicalized** | Yes — all 35 questions have canonical entries |
+| **Archive file** | [sources/nextjs/website/greatfrontend/question-map.md](../../sources/nextjs/website/greatfrontend/question-map.md) |
+
+**Coverage map:**
+
+| Source Section | Questions | Canonical IDs |
+|---|---|---|
+| Framework & App Router fundamentals | Q1–Q10 | NEXT-001 – NEXT-010 |
+| Server Components & Client Components | Q11–Q14 | NEXT-011 – NEXT-014 |
+| Rendering models (SSR, SSG, CSR, ISR) | Q15–Q18 | NEXT-015 – NEXT-018 |
+| Data fetching & caching | Q19–Q22 | NEXT-019 – NEXT-022 |
+| Navigation | Q23–Q25 | NEXT-023 – NEXT-025 |
+| Route Handlers & Server Actions | Q26–Q28 | NEXT-026 – NEXT-028 |
+| SEO, assets & metadata | Q29–Q31 | NEXT-029 – NEXT-031 |
+| Infrastructure (Proxy, env, auth, deploy) | Q32–Q35 | NEXT-032 – NEXT-035 |
+
+---
+
 ## Adding a New Source
 
 When adding questions from a new source, follow this process:
 
-**Rule: Every question in a source must become (or link to) a canonical entry.** There is no "source-only" bucket — all questions get a REACT-NNN ID.
+**Rule: Every question in a source must become (or link to) a canonical entry.** There is no "source-only" bucket — all questions get a REACT-NNN or NEXT-NNN ID.
 
 1. **Assign a Source ID** — format: `ABBREV-NNN` (e.g., `YT-001` for YouTube, `RD-001` for Roadmap.sh).
 2. **Create source directory** — `sources/{technology}/{source-type}/{source-name}/`.
 3. **Create a question-map.md** — map EVERY source question to either an existing canonical ID or a new one.
-4. **For new canonicals** — assign next available ID (currently REACT-283), write original answer in the correct doc file.
+4. **For new canonicals** — assign next available ID (React: REACT-283 | Next.js: NEXT-036), write original answer in the correct doc file.
 5. **Update this Source Library** — add the new source entry and coverage map.
-6. **Update [docs/react/master-index.md](../react/master-index.md)** — add new ID rows.
+6. **Update `docs/nextjs/README.md` or `docs/react/master-index.md`** — add new ID rows.
 7. **Update [docs/reference/00-master-index.md](./00-master-index.md)** — add new rows.
 8. **Update [docs/reference/01-question-registry.md](./01-question-registry.md)** — add new registry rows.
-9. **Update [README.md](../../README.md)** — add to Sources table and update count.
+9. **Update [README.md](../../README.md)** — update Sources table and question count.
 
 ---
 
@@ -97,6 +129,7 @@ When adding questions from a new source, follow this process:
 | React Official Docs — Key Concepts | React | Website | Planned | ~20 |
 | Roadmap.sh — React Developer Path | React | Website | Planned | ~15 |
 | Next.js Official Docs | Next.js | Website | Planned | ~50 |
+| GreatFrontEnd — Next.js Interview Questions (intermediate) | Next.js | Website | Planned | ~30 |
 
 ---
 

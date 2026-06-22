@@ -1,6 +1,6 @@
 # IntPrep-Docs
 
-> React & Next.js interview preparation knowledge base. **282 canonical questions across 11 sections**, organized by topic, with original answers, cross-links, and full source traceability.
+> React & Next.js interview preparation knowledge base. **282 React + 35 Next.js canonical questions**, organized by topic, with original answers, cross-links, and full source traceability.
 
 ---
 
@@ -9,9 +9,11 @@
 | | |
 |---|---|
 | 📖 [React Master Index](docs/react/master-index.md) | All 282 React questions — tech-level overview |
+| 📖 [Next.js Master Index](docs/nextjs/README.md) | All 35 Next.js questions — NEXT-001 to NEXT-035 |
 | 📖 [Reference Master Index](docs/reference/00-master-index.md) | Original GFE-sourced questions (REACT-001 to 110) |
-| ⚛️ [React Knowledge Base](#react-knowledge-base) | 11 topic files, REACT-001 to REACT-282 |
-| 🗂️ [Question Registry](docs/reference/01-question-registry.md) | Full metadata for every question |
+| ⛛️ [React Knowledge Base](#react-knowledge-base) | 11 topic files, REACT-001 to REACT-282 |
+| ▲ [Next.js Knowledge Base](#nextjs-knowledge-base) | 8 topic files, NEXT-001 to NEXT-035 |
+| 🗏️ [Question Registry](docs/reference/01-question-registry.md) | Full metadata for every question |
 | 📚 [Source Library](docs/reference/02-source-library.md) | Attribution and source tracking |
 | 🗺️ [Core Learning Path](playbooks/core-learning-path.md) | Structured 3–4 week study plan |
 | 🚀 [Advanced Learning Path](playbooks/advanced-learning-path.md) | Senior/staff depth track |
@@ -38,9 +40,16 @@
 
 ## Next.js Knowledge Base
 
-[docs/nextjs/README.md](docs/nextjs/README.md) — planned, in progress.
-
-Covers: App Router, data fetching, Server Actions, middleware, image optimization, deployment.
+| File | IDs | Topics |
+|---|---|---|
+| [01-fundamentals.md](docs/nextjs/01-fundamentals.md) | NEXT-001–010 | What is Next.js, App Router vs Pages Router, file-based routing, dynamic routes, `generateStaticParams`, `loading.tsx`, `error.tsx`, `not-found.tsx` |
+| [02-server-client.md](docs/nextjs/02-server-client.md) | NEXT-011–014 | Server Components, Client Components, `"use client"` guidance, composition boundary rules |
+| [03-rendering.md](docs/nextjs/03-rendering.md) | NEXT-015–018 | SSR, SSG, CSR, ISR, static vs dynamic rendering, hydration, hydration errors |
+| [04-data-fetching.md](docs/nextjs/04-data-fetching.md) | NEXT-019–022 | `async/await` in Server Components, ISR, caching layers, `"use cache"` / `cacheLife` / `cacheTag` |
+| [05-navigation.md](docs/nextjs/05-navigation.md) | NEXT-023–025 | `next/link`, `useRouter`, `redirect()` vs client navigation |
+| [06-api-actions.md](docs/nextjs/06-api-actions.md) | NEXT-026–028 | Route Handlers, Server Functions, Server Actions, Route Handler vs Server Action |
+| [07-seo-assets.md](docs/nextjs/07-seo-assets.md) | NEXT-029–031 | `generateMetadata`, `next/image`, `next/font` |
+| [08-infra.md](docs/nextjs/08-infra.md) | NEXT-032–035 | Proxy (Middleware), environment variables, authentication, deployment |
 
 ---
 
@@ -53,7 +62,8 @@ Sources are organized by technology → source type → source name.
 | React | Website | [GreatFrontEnd — 100 React Interview Questions (2026)](https://www.greatfrontend.com/blog/100-react-interview-questions-straight-from-ex-interviewers) | 110 | [sources/react/website/greatfrontend/](sources/react/website/greatfrontend/react-100-questions.md) |
 | React | GitHub | [SudheerJ — reactjs-interview-questions](https://github.com/sudheerj/reactjs-interview-questions) | 408 | [sources/react/github/sudheerj-reactjs-interview-questions/](sources/react/github/sudheerj-reactjs-interview-questions/question-map.md) |
 | React | YouTube | Interview series | Planned | — |
-| Next.js | Website | Official docs + GFE | Planned | — |
+| Next.js | Website | [GreatFrontEnd — Next.js Interview Questions for Freshers (2026)](https://www.greatfrontend.com/blog/next-js-interview-questions-for-freshers) | 35 | [sources/nextjs/website/greatfrontend/](sources/nextjs/website/greatfrontend/question-map.md) |
+| Next.js | Website | Official docs + GFE intermediate | Planned | — |
 
 ---
 
@@ -66,6 +76,17 @@ Follow the **[Core Learning Path](playbooks/core-learning-path.md)**:
 3. Advanced Concepts — REACT-035 to REACT-065
 4. React Router — REACT-066 to REACT-079
 5. Testing — REACT-087 to REACT-100
+
+### Next.js Fundamentals Track
+Study NEXT-001 to NEXT-035 (`docs/nextjs/`) in order:
+1. Fundamentals & App Router — NEXT-001 to NEXT-010
+2. Server vs Client Components — NEXT-011 to NEXT-014
+3. Rendering Models — NEXT-015 to NEXT-018
+4. Data Fetching & Caching — NEXT-019 to NEXT-022
+5. Navigation — NEXT-023 to NEXT-025
+6. Route Handlers & Server Actions — NEXT-026 to NEXT-028
+7. SEO, Assets & Metadata — NEXT-029 to NEXT-031
+8. Infrastructure — NEXT-032 to NEXT-035
 
 ### Senior / Staff Depth
 Follow the **[Advanced Learning Path](playbooks/advanced-learning-path.md)**:
@@ -88,45 +109,57 @@ Study REACT-111 to REACT-135 (`docs/react/08-redux.md`) — covers:
 
 ```
 IntPrep-Docs/
-├── README.md                          ← you are here
+├── README.md                            ← you are here
 ├── docs/
 │   ├── react/
-│   │   ├── master-index.md            React tech-level index (144 questions)
-│   │   ├── 01-fundamentals.md         REACT-001 – 023
-│   │   ├── 02-hooks.md                REACT-024 – 034
-│   │   ├── 03-advanced.md             REACT-035 – 065
-│   │   ├── 04-routing.md              REACT-066 – 079
-│   │   ├── 05-i18n.md                 REACT-080 – 086
-│   │   ├── 06-testing.md              REACT-087 – 100
-│   │   ├── 07-react19.md              REACT-101 – 110
-│   │   ├── 08-redux.md                REACT-111 – 135
-│   │   ├── 09-react-native.md         REACT-136 – 139
-│   │   └── 10-libraries.md            REACT-140 – 144
+│   │   ├── master-index.md              React tech-level index (282 questions)
+│   │   ├── 01-fundamentals.md           REACT-001 – 023, 145–195
+│   │   ├── 02-hooks.md                  REACT-024 – 034, 196–225
+│   │   ├── 03-advanced.md               REACT-035 – 065, 226–255
+│   │   ├── 04-routing.md                REACT-066 – 079, 256–257
+│   │   ├── 05-i18n.md                   REACT-080 – 086
+│   │   ├── 06-testing.md                REACT-087 – 100, 258
+│   │   ├── 07-react19.md                REACT-101 – 110
+│   │   ├── 08-redux.md                  REACT-111 – 135, 259–261
+│   │   ├── 09-react-native.md           REACT-136 – 139
+│   │   ├── 10-libraries.md              REACT-140 – 144, 262–267
+│   │   └── 11-legacy-class.md           REACT-268 – 282
 │   ├── nextjs/
-│   │   └── README.md                  (planned)
+│   │   ├── README.md                    Next.js master index (35 questions)
+│   │   ├── 01-fundamentals.md           NEXT-001 – 010
+│   │   ├── 02-server-client.md          NEXT-011 – 014
+│   │   ├── 03-rendering.md              NEXT-015 – 018
+│   │   ├── 04-data-fetching.md          NEXT-019 – 022
+│   │   ├── 05-navigation.md             NEXT-023 – 025
+│   │   ├── 06-api-actions.md            NEXT-026 – 028
+│   │   ├── 07-seo-assets.md             NEXT-029 – 031
+│   │   └── 08-infra.md                  NEXT-032 – 035
 │   └── reference/
-│       ├── 00-master-index.md         GFE-sourced questions navigation
-│       ├── 01-question-registry.md    all IDs + metadata
-│       ├── 02-source-library.md       source attribution
-│       └── 03-visual-assets.md        diagram references
+│       ├── 00-master-index.md           GFE-sourced questions navigation
+│       ├── 01-question-registry.md      all IDs + metadata
+│       ├── 02-source-library.md         source attribution
+│       └── 03-visual-assets.md          diagram references
 ├── sources/
-│   └── react/
-│       ├── github/
-│       │   └── sudheerj-reactjs-interview-questions/
-│       │       └── question-map.md    408 questions → canonical IDs
-│       └── website/
-│           └── greatfrontend/
-│               └── react-100-questions.md  GFE source archive
+│   ├── react/
+│   │   ├── github/sudheerj-reactjs-interview-questions/question-map.md
+│   │   └── website/greatfrontend/react-100-questions.md
+│   └── nextjs/
+│       └── website/greatfrontend/question-map.md
 └── playbooks/
-    ├── core-learning-path.md          3–4 week plan
-    └── advanced-learning-path.md      senior depth track
+    ├── core-learning-path.md            3–4 week plan
+    └── advanced-learning-path.md        senior depth track
 ```
 
 ---
 
 ## Question ID Scheme
 
-All canonical questions follow the format `REACT-NNN` (React) and `NEXT-NNN` (Next.js, planned). The scheme scales to 999 questions per domain.
+All canonical questions follow the format `REACT-NNN` (React) and `NEXT-NNN` (Next.js). The scheme scales to 999 questions per domain.
+
+| Domain | Current Range | Next Available |
+|---|---|---|
+| React | REACT-001 – REACT-282 | REACT-283 |
+| Next.js | NEXT-001 – NEXT-035 | NEXT-036 |
 
 Every question entry includes: answer, code example, related question links, and source attribution.
 
@@ -135,15 +168,15 @@ Every question entry includes: answer, code example, related question links, and
 ## Contribution Guidelines
 
 **Adding a question from a new source:**
-1. Check the [React Master Index](docs/react/master-index.md) — does this question already exist?
-2. If yes → add the new source to the existing entry's `Source` section.
+1. Check the relevant master index — does this question already exist?
+2. If yes → add the new source to the existing entry’s `Source` section.
 3. If no → assign the next available ID, write a canonical answer in the appropriate file, update the master index, question registry, and source library.
 
 **Adding a new source entirely:**
 1. Create `sources/{technology}/{source-type}/{source-name}/` directory.
 2. Create a `question-map.md` mapping source questions to canonical IDs.
 3. Add the source to [docs/reference/02-source-library.md](docs/reference/02-source-library.md).
-4. Update this README's Sources table.
+4. Update this README’s Sources table.
 
 **Formatting rules:**
 - Answers are original — not copied verbatim from sources.
@@ -153,4 +186,4 @@ Every question entry includes: answer, code example, related question links, and
 
 ---
 
-*Last updated: June 2026 | Questions: 144 | Sources: 2 (GFE, SudheerJ)*
+*Last updated: June 2026 | React: 282 questions | Next.js: 35 questions | Sources: 3 (GFE React, SudheerJ, GFE Next.js)*
