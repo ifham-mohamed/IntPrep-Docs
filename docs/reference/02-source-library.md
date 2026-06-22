@@ -48,24 +48,25 @@ Sources are stored under `sources/{technology}/{source-type}/{source-name}/`.
 | **Technology** | React |
 | **Source type** | GitHub repository |
 | **Total questions** | 408 |
-| **New canonical IDs created** | REACT-111 – REACT-144 (34 new) |
-| **Mapped to existing IDs** | ~85 questions (cross-referenced) |
-| **SDJ-exclusive** | ~289 questions (niche/practical/legacy, see map) |
+| **New canonical IDs created** | REACT-111 – REACT-282 (172 new) |
+| **Mapped to existing IDs** | ~85 questions (cross-referenced to GFE canonicals) |
+| **All questions canonicalized** | Yes — every SDJ question maps to a canonical entry |
 | **Archive file** | [sources/react/github/sudheerj-reactjs-interview-questions/question-map.md](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md) |
 
 **Section breakdown:**
 
-| SDJ Section | SDJ Questions | Mapped to Canonicals |
+| SDJ Section | SDJ Questions | Canonical IDs |
 |---|---|---|
-| Core React | 78 | REACT-001–023, 040, 052, 057, 059, 063 (and others) |
-| React Router | 11 | REACT-066–079 |
-| React Internationalization | 6 | REACT-081–086 |
-| React Testing | 6 | REACT-088, 095, 100 |
-| React Redux | 34 | REACT-111–135 (new) |
+| Core React | 78 | REACT-001–023 (mapped) + REACT-145–195 (new extended) |
+| React Router | 11 | REACT-066–079 (mapped) + REACT-256–257 (new) |
+| React Internationalization | 6 | REACT-081–086 (mapped) |
+| React Testing | 6 | REACT-088, 095, 100 (mapped) + REACT-258 (new) |
+| React Redux | 34 | REACT-111–135 (new) + REACT-259–261 (new extended) |
 | React Native | 4 | REACT-136–139 (new) |
-| Libraries & Integration | 13 | REACT-140–144 (new) |
-| Miscellaneous | 167 | Scattered across all sections |
-| Old Q&A | 89 | Legacy class component patterns |
+| Libraries & Integration | 13 | REACT-140–144 (new) + REACT-262–267 (new extended) |
+| Hooks (miscellaneous/extended) | — | REACT-196–225 (new) |
+| Advanced (miscellaneous/extended) | — | REACT-226–255 (new) |
+| Old Q&A | 89 | REACT-268–282 (new — legacy class components) |
 
 ---
 
@@ -73,13 +74,17 @@ Sources are stored under `sources/{technology}/{source-type}/{source-name}/`.
 
 When adding questions from a new source, follow this process:
 
-1. **Assign a Source ID** — format: `ABBREV-NNN` (e.g., `YT-001` for a YouTube source, `RD-001` for Roadmap.sh).
+**Rule: Every question in a source must become (or link to) a canonical entry.** There is no "source-only" bucket — all questions get a REACT-NNN ID.
+
+1. **Assign a Source ID** — format: `ABBREV-NNN` (e.g., `YT-001` for YouTube, `RD-001` for Roadmap.sh).
 2. **Create source directory** — `sources/{technology}/{source-type}/{source-name}/`.
-3. **Create a question-map.md** — map each source question to a canonical ID, or flag as source-exclusive.
-4. **For new canonicals** — assign next available ID, write original answer in appropriate doc file.
+3. **Create a question-map.md** — map EVERY source question to either an existing canonical ID or a new one.
+4. **For new canonicals** — assign next available ID (currently REACT-283), write original answer in the correct doc file.
 5. **Update this Source Library** — add the new source entry and coverage map.
-6. **Update [docs/react/master-index.md](../react/master-index.md)** — add new IDs.
-7. **Update [README.md](../../README.md)** — add to Sources table.
+6. **Update [docs/react/master-index.md](../react/master-index.md)** — add new ID rows.
+7. **Update [docs/reference/00-master-index.md](./00-master-index.md)** — add new rows.
+8. **Update [docs/reference/01-question-registry.md](./01-question-registry.md)** — add new registry rows.
+9. **Update [README.md](../../README.md)** — add to Sources table and update count.
 
 ---
 

@@ -16,8 +16,11 @@
 | Status | Count |
 |---|---|
 | Maps to existing canonical (GFE-sourced) | ~85 |
-| New canonical entries created (Redux, Native, Libraries) | 51 |
-| Niche/legacy/practical questions (source-only) | ~272 |
+| New canonical entries created | 172 (REACT-111 – REACT-282) |
+| Source-only / uncovered questions | 0 — every SDJ question has a canonical entry |
+| **Total SDJ questions canonicalized** | **408** |
+
+> All SDJ questions are now mapped to canonical entries. Previously "SDJ-exclusive" questions were added to the correct category files. See the [master index](../../../../docs/react/master-index.md) for the full list.
 
 ---
 
