@@ -68,10 +68,10 @@ Next.js loads environment variables from `.env` files and makes them available t
 
 ```bash
 # .env.local
-DATABASE_URL=postgres://user:pass@host/db   # server-only, secret
-STRIPE_SECRET_KEY=sk_live_...               # server-only, secret
-NEXT_PUBLIC_API_BASE=https://api.example.com  # exposed to browser, public
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX              # exposed to browser, public
+DATABASE_URL=postgres://user:pass@host/db      # server-only, secret
+STRIPE_SECRET_KEY=sk_live_...                  # server-only, secret
+NEXT_PUBLIC_API_BASE=https://api.example.com   # exposed to browser, public
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX                 # exposed to browser, public
 ```
 
 ```tsx
@@ -81,7 +81,7 @@ const db = createClient(process.env.DATABASE_URL); // ✅
 // Client Component — can only read NEXT_PUBLIC_ vars
 "use client";
 const apiBase = process.env.NEXT_PUBLIC_API_BASE; // ✅
-const secret = process.env.STRIPE_SECRET_KEY;     // ❌ undefined in browser
+const secret  = process.env.STRIPE_SECRET_KEY;    // ❌ undefined in browser
 ```
 
 **File loading order** (later files override earlier):
@@ -99,13 +99,10 @@ const secret = process.env.STRIPE_SECRET_KEY;     // ❌ undefined in browser
 
 🟡 Intermediate
 
-Authentication in Next.js typically involves three layers working together: verifying identity (login), persisting the session, and protecting routes.
-
-**Recommended approach using Auth.js (NextAuth v5):**
+Authentication in Next.js typically involves three layers working together: verifying identity (login), persisting the session, and protecting routes. The recommended approach is **Auth.js (NextAuth v5)**, which integrates natively with the App Router.
 
 ```tsx
-// 1. Configure Auth.js
-// auth.ts
+// 1. Configure Auth.js — auth.ts (project root)
 import NextAuth from 'next-auth';
 import GitHub from 'next-auth/providers/github';
 
@@ -113,14 +110,90 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [GitHub],
 });
 
-// 2. Mount the Route Handler
+// 2. Mount the Route Handler (OAuth callback endpoint)
 // app/api/auth/[...nextauth]/route.ts
 import { handlers } from '@/auth';
 export const { GET, POST } = handlers;
 
-// 3. Protect routes in Proxy (Middleware) — runs on every request
+// 3. Protect routes in Proxy — runs before every request, at the edge
 // middleware.ts
 import { auth } from '@/auth';
 export default auth((req) => {
-  if (!req.auth && req.nextUrl.pathname.startsWith('/dashboard')) {
-    return Response.redirect(new URL('/login', re
+  const isProtected = req.nextUrl.pathname.startsWith('/dashboard');
+  if (!req.auth && isProtected) {
+    return Response.redirect(new URL('/login', req.url));
+  }
+});
+
+export const config = { matcher: ['/dashboard/:path*'] };
+
+// 4. Read session in a Server Component
+// app/dashboard/page.tsx
+import { auth } from '@/auth';
+export default async function Dashboard() {
+  const session = await auth();
+  if (!session) return null; // Proxy already redirected, but defensive check
+  return <h1>Welcome, {session.user?.name}</h1>;
+}
+```
+
+**The three-layer model:**
+- **Proxy / Middleware** — fast edge-level redirect for unauthenticated access
+- **Server Components** — secondary check, access session data for UI personalization
+- **Server Actions / Route Handlers** — always re-verify session before mutating data
+
+> **Scenario:** A user navigates directly to `/dashboard`. Proxy runs first, calls `auth()`, finds no session, and redirects to `/login` before Next.js even starts rendering the page — no flash, no leaked HTML.
+
+**Related:** NEXT-032 — Proxy | NEXT-025 — redirect() | NEXT-033 — Environment variables
+
+**Source:** GFE-NJS-034
+
+---
+
+## NEXT-035
+
+### How do you deploy a Next.js app and what features require a runtime?
+
+🟢 Beginner
+
+Next.js has two deployment modes: **static export** (a folder of HTML/CSS/JS files) and **server deployment** (a Node.js process or edge runtime that handles requests). Which you need depends on which Next.js features you use.
+
+**Static export (`output: 'export'` in `next.config.ts`)**
+Pre-renders all routes to HTML at build time. Can be hosted on any CDN (GitHub Pages, Netlify, S3 + CloudFront) with no server.
+
+Limitations: no SSR, no Route Handlers, no Server Actions, no ISR, no Proxy.
+
+**Server deployment (standard `next build` + `next start`)**
+Requires a Node.js server. Supports all Next.js features. You can self-host on a VPS (DigitalOcean, EC2, Fly.io) or use Vercel.
+
+**Vercel (recommended for full feature support)**
+Vercel is the platform built by the Next.js team. It handles build, deployment, CDN, edge functions, ISR regeneration, and image optimization automatically with zero config.
+
+```bash
+# Standard build — requires Node.js runtime
+next build   # builds the app
+next start   # starts the production server on port 3000
+
+# Static export — no server needed
+# next.config.ts
+export default { output: 'export' };
+
+next build   # generates /out directory of static files
+# Deploy /out to any static host
+```
+
+**Feature → Runtime requirement:**
+
+| Feature | Static export | Node.js server | Vercel edge |
+|---|---|---|---|
+| SSG pages | ✅ | ✅ | ✅ |
+| SSR / dynamic routes | ❌ | ✅ | ✅ |
+| Server Actions | ❌ | ✅ | ✅ |
+| Route Handlers | ❌ | ✅ | ✅ |
+| ISR | ❌ | ✅ | ✅ |
+| Proxy (Middleware) | ❌ | ✅ | ✅ |
+| Image optimization | ❌ | ✅ | ✅ |
+
+**Related:** NEXT-032 — Proxy | NEXT-033 — Environment variables
+
+**Source:** GFE-NJS-035
