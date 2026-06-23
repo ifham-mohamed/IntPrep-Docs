@@ -102,6 +102,53 @@ Sources are stored under `sources/{technology}/{source-type}/{source-name}/`.
 
 ---
 
+### MRH-NJS — mrhrifat: Next.js Interview Questions (GitHub)
+
+| Field | Value |
+|---|---|
+| **Source ID** | MRH-NJS |
+| **Title** | nextjs-interview-questions |
+| **Author** | @mrhrifat |
+| **GitHub** | https://github.com/mrhrifat/nextjs-interview-questions |
+| **Technology** | Next.js |
+| **Source type** | GitHub repository |
+| **Total questions** | 150 |
+| **Mapped to existing IDs** | 44 (cross-referenced to GFE-NJS canonicals) |
+| **New canonical IDs created** | 106 (NEXT-036 – NEXT-134) |
+| **All questions canonicalized** | Yes — all 150 questions have canonical entries |
+| **Archive file** | [sources/nextjs/github/mrhrifat/question-map.md](../../sources/nextjs/github/mrhrifat/question-map.md) |
+
+**Section breakdown:**
+
+| MRH-NJS Section | Questions | Canonical IDs |
+|---|---|---|
+| Common | 77 | NEXT-001–035 (mapped) + NEXT-036–081 (new) |
+| Pages Router | 30 | NEXT-003, 006, 030, 032, 034 (mapped) + NEXT-082–101 (new) |
+| App Router + bonus | 43 + 6 | NEXT-003–013, 019, 026–028, 032, 034 (mapped) + NEXT-102–134 (new) |
+
+**New file targets:**
+
+| Target File | New IDs | Count |
+|---|---|---|
+| docs/nextjs/01-fundamentals.md | NEXT-036, NEXT-079 | 2 |
+| docs/nextjs/03-rendering.md | NEXT-048, NEXT-058 | 2 |
+| docs/nextjs/05-navigation.md | NEXT-037, NEXT-061 | 2 |
+| docs/nextjs/06-api-actions.md | NEXT-112–114, NEXT-122–127 | 9 |
+| docs/nextjs/08-infra.md | NEXT-134 | 1 |
+| docs/nextjs/09-pages-router.md *(new)* | NEXT-050, NEXT-075, NEXT-082–101 | 22 |
+| docs/nextjs/10-config-tooling.md *(new)* | NEXT-038–049, NEXT-051–058, NEXT-060, NEXT-063 | 22 |
+| docs/nextjs/11-styling.md *(new)* | NEXT-045–047 | 3 |
+| docs/nextjs/12-scripts-seo.md *(new)* | NEXT-062, NEXT-065, NEXT-068–069, NEXT-074 | 5 |
+| docs/nextjs/13-security.md *(new)* | NEXT-070–072, NEXT-076, NEXT-080–081, NEXT-104, NEXT-111, NEXT-123, NEXT-130 | 10 |
+| docs/nextjs/14-app-router-advanced.md *(new)* | NEXT-040, NEXT-067, NEXT-102–103, NEXT-105–110, NEXT-115–120, NEXT-131, NEXT-133 | 17 |
+| docs/nextjs/15-i18n.md *(new)* | NEXT-059, NEXT-066, NEXT-073, NEXT-099, NEXT-121 | 5 |
+| docs/nextjs/16-integrations.md *(new)* | NEXT-064, NEXT-128–129 | 3 |
+| docs/nextjs/16-performance.md *(new)* | NEXT-076–078 | 3 |
+| docs/nextjs/17-testing.md *(new)* | NEXT-132 | 1 |
+| **Total** | **NEXT-036 → NEXT-134** | **106** |
+
+---
+
 ## Adding a New Source
 
 When adding questions from a new source, follow this process:
@@ -111,7 +158,7 @@ When adding questions from a new source, follow this process:
 1. **Assign a Source ID** — format: `ABBREV-NNN` (e.g., `YT-001` for YouTube, `RD-001` for Roadmap.sh).
 2. **Create source directory** — `sources/{technology}/{source-type}/{source-name}/`.
 3. **Create a question-map.md** — map EVERY source question to either an existing canonical ID or a new one.
-4. **For new canonicals** — assign next available ID (React: REACT-283 | Next.js: NEXT-036), write original answer in the correct doc file.
+4. **For new canonicals** — assign next available ID (React: REACT-283 | Next.js: NEXT-135), write original answer in the correct doc file.
 5. **Update this Source Library** — add the new source entry and coverage map.
 6. **Update `docs/nextjs/README.md` or `docs/react/master-index.md`** — add new ID rows.
 7. **Update [docs/reference/00-master-index.md](./00-master-index.md)** — add new rows.
