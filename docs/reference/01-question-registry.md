@@ -1,6 +1,6 @@
 # Question Registry
 
-> Complete metadata registry for all **418 canonical questions**: 284 React (REACT-001–REACT-284) + 134 Next.js (NEXT-001–NEXT-134).
+> Complete metadata registry for all **432 canonical questions**: 288 React (REACT-001–REACT-288) + 144 Next.js (NEXT-001–NEXT-144).
 
 ---
 
@@ -444,3 +444,17 @@ ID | Title | Category | Difficulty | Sources | Related IDs
 | NEXT-132 | How do you test Next.js App Router components? | Testing | 🟡 | MRH-NJS | 17 |
 | NEXT-133 | How do you implement optimistic UI? | App Router Adv | 🔴 | MRH-NJS | 14 |
 | NEXT-134 | How do you choose between Edge and Node.js runtimes? | Infrastructure | 🔴 | MRH-NJS | 08 |
+| REACT-285 | How do you use Immer for state updates in React? | Libraries | 🟡 | CDM-001 | 10-libraries |
+| REACT-286 | How do you build a progress bar component in React? | Advanced | 🟢 | CDM-001 | 03-advanced |
+| REACT-287 | How do you persist React state with localStorage? | Hooks | 🟡 | CDM-001 | 02-hooks |
+| REACT-288 | How do you implement form validation in React? | Advanced | 🟡 | CDM-001 | 03-advanced |
+| NEXT-135 | What is the difference between SSR (Pages Router) and React Server Components? | Rendering | 🔴 | YTH-NJS | 03-rendering |
+| NEXT-136 | What is styled-jsx in Next.js? | Styling | 🟢 | YTE-NJS | 11-styling |
+| NEXT-137 | What are the main scripts in a Next.js package.json? | Config/Tooling | 🟢 | YTE-NJS | 10-config-tooling |
+| NEXT-138 | What properties does the context object have in getInitialProps? | Pages Router | 🟡 | YTE-NJS | 09-pages-router |
+| NEXT-139 | What is the difference between Next.js and Create React App? | Fundamentals | 🟢 | YTE-NJS | 01-fundamentals |
+| NEXT-140 | How do you configure the build ID in Next.js? | Config/Tooling | 🟡 | YTE-NJS | 10-config-tooling |
+| NEXT-141 | How do you configure a CDN in Next.js? | Config/Tooling | 🟡 | YTE-NJS | 10-config-tooling |
+| NEXT-142 | Can Next.js be hosted on nginx or traditional web servers? | Infrastructure | 🟡 | YTE-NJS | 08-infra |
+| NEXT-143 | What are the competitors and alternatives to Next.js? | Fundamentals | 🟢 | YTE-NJS | 01-fundamentals |
+| NEXT-144 | In what language is Next.js written? | Fundamentals | 🟢 | YTE-NJS | 01-fundamentals |

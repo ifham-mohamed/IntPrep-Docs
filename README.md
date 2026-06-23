@@ -1,6 +1,6 @@
 # IntPrep-Docs
 
-> React & Next.js interview preparation knowledge base. **284 React + 134 Next.js canonical questions**, organized by topic, with original answers, cross-links, and full source traceability.
+> React & Next.js interview preparation knowledge base. **288 React + 144 Next.js canonical questions**, organized by topic, with original answers, cross-links, and full source traceability.
 
 ---
 
@@ -8,11 +8,11 @@
 
 | | |
 |---|---|
-| 📖 [React Master Index](docs/react/master-index.md) | All 284 React questions — tech-level overview |
-| 📖 [Next.js Master Index](docs/nextjs/README.md) | All 134 Next.js questions — NEXT-001 to NEXT-134 |
+| 📖 [React Master Index](docs/react/master-index.md) | All 288 React questions — tech-level overview |
+| 📖 [Next.js Master Index](docs/nextjs/README.md) | All 144 Next.js questions — NEXT-001 to NEXT-144 |
 | 📖 [Reference Master Index](docs/reference/00-master-index.md) | GFE-001 sourced questions (REACT-001 to REACT-110) |
-| ⚛️ [React Knowledge Base](#react-knowledge-base) | 11 topic files, REACT-001 to REACT-284 |
-| ▲ [Next.js Knowledge Base](#nextjs-knowledge-base) | 18 topic files, NEXT-001 to NEXT-134 |
+| ⚛️ [React Knowledge Base](#react-knowledge-base) | 11 topic files, REACT-001 to REACT-288 |
+| ▲ [Next.js Knowledge Base](#nextjs-knowledge-base) | 18 topic files, NEXT-001 to NEXT-144 |
 | 🗂️ [Question Registry](docs/reference/01-question-registry.md) | Full metadata for every React question |
 | 📚 [Source Library](docs/reference/02-source-library.md) | Attribution and source tracking |
 | 🗺️ [Core Learning Path](playbooks/core-learning-path.md) | Structured 3–4 week study plan |
@@ -25,15 +25,15 @@
 | File | IDs | Topics |
 |---|---|---|
 | [01-fundamentals.md](docs/react/01-fundamentals.md) | REACT-001–023, 145–195 | JSX, Virtual DOM, Props, State, Reconciliation, Pure Components, JSX deep dives |
-| [02-hooks.md](docs/react/02-hooks.md) | REACT-024–034, 196–225 | useEffect, useRef, useMemo, useCallback, useReducer, custom hooks, advanced hooks internals |
-| [03-advanced.md](docs/react/03-advanced.md) | REACT-035–065, 226–255, 284 | Re-rendering, Portals, Suspense, SSR, HOCs, Composition, Data Fetching, MobX, windowing, debugging |
+| [02-hooks.md](docs/react/02-hooks.md) | REACT-024–034, 196–225, 287 | useEffect, useRef, useMemo, useCallback, useReducer, custom hooks, advanced hooks internals, localStorage persistence |
+| [03-advanced.md](docs/react/03-advanced.md) | REACT-035–065, 226–255, 284, 286, 288 | Re-rendering, Portals, Suspense, SSR, HOCs, Composition, Data Fetching, MobX, windowing, debugging, progress bar, form validation |
 | [04-routing.md](docs/react/04-routing.md) | REACT-066–079, 256–257 | React Router v6, dynamic routes, guards, navigation, analytics, legacy warnings |
 | [05-i18n.md](docs/react/05-i18n.md) | REACT-080–086 | react-intl, FormatJS, localization, date formatting |
 | [06-testing.md](docs/react/06-testing.md) | REACT-087–100, 258 | Jest, RTL, async testing, MSW, hooks testing, snapshots, ReactTestUtils |
 | [07-react19.md](docs/react/07-react19.md) | REACT-101–110 | Actions, useActionState, useOptimistic, use(), Server Components, React Compiler |
 | [08-redux.md](docs/react/08-redux.md) | REACT-111–135, 259–261 | Redux core, Thunk, Saga, selectors, DevTools, middleware, RxJS comparison |
 | [09-react-native.md](docs/react/09-react-native.md) | REACT-136–139 | React Native vs React, testing, logging, debugging |
-| [10-libraries.md](docs/react/10-libraries.md) | REACT-140–144, 262–267, 283 | Reselect, Flow, DevTools, Styled Components, Formik, Font Awesome, React vs Vue/Angular, Polymer |
+| [10-libraries.md](docs/react/10-libraries.md) | REACT-140–144, 262–267, 283, 285 | Reselect, Flow, DevTools, Styled Components, Formik, Font Awesome, React vs Vue/Angular, Polymer, Immer |
 | [11-legacy-class.md](docs/react/11-legacy-class.md) | REACT-268–282 | Lifecycle methods, binding, getDerivedStateFromProps, string refs, legacy context |
 
 ---
@@ -42,17 +42,17 @@
 
 | File | IDs | Topics |
 |---|---|---|
-| [01-fundamentals.md](docs/nextjs/01-fundamentals.md) | NEXT-001–010, 036, 079 | What is Next.js, App Router vs Pages Router, file-based routing, dynamic routes, loading/error/not-found, create project |
+| [01-fundamentals.md](docs/nextjs/01-fundamentals.md) | NEXT-001–010, 036, 079, 139, 143, 144 | What is Next.js, App Router vs Pages Router, file-based routing, dynamic routes, loading/error/not-found, create project, vs CRA, alternatives, language |
 | [02-server-client.md](docs/nextjs/02-server-client.md) | NEXT-011–014 | Server Components, Client Components, `"use client"` guidance, composition rules |
-| [03-rendering.md](docs/nextjs/03-rendering.md) | NEXT-015–018, 048 | SSR, SSG, CSR, ISR, static vs dynamic rendering, hydration, pre-rendering |
+| [03-rendering.md](docs/nextjs/03-rendering.md) | NEXT-015–018, 048, 135 | SSR, SSG, CSR, ISR, static vs dynamic rendering, hydration, pre-rendering, SSR vs RSC |
 | [04-data-fetching.md](docs/nextjs/04-data-fetching.md) | NEXT-019–022 | fetch in Server Components, ISR, caching layers, `"use cache"` APIs |
 | [05-navigation.md](docs/nextjs/05-navigation.md) | NEXT-023–025, 037, 061 | next/link, useRouter, redirect(), push vs replace, singleton router |
 | [06-api-actions.md](docs/nextjs/06-api-actions.md) | NEXT-026–028, 112–114, 122, 124–127 | Route Handlers, Server Actions, benefits/drawbacks/alternatives, API best practices |
 | [07-seo-assets.md](docs/nextjs/07-seo-assets.md) | NEXT-029–031 | generateMetadata, next/image, next/font |
-| [08-infra.md](docs/nextjs/08-infra.md) | NEXT-032–035, 134 | Middleware, env vars, auth, deployment, Edge vs Node runtime |
-| [09-pages-router.md](docs/nextjs/09-pages-router.md) | NEXT-050, 075, 082–101 | Pages Router, `_app`, `_document`, getStaticProps, getServerSideProps, getStaticPaths |
-| [10-config-tooling.md](docs/nextjs/10-config-tooling.md) | NEXT-038–039, 041–044, 049, 051–058, 060, 063 | TypeScript, public folder, port config, Fast Refresh, next.config.js, Webpack, polyfills |
-| [11-styling.md](docs/nextjs/11-styling.md) | NEXT-045–047 | CSS Modules, global CSS, Tailwind CSS |
+| [08-infra.md](docs/nextjs/08-infra.md) | NEXT-032–035, 134, 142 | Middleware, env vars, auth, deployment, Edge vs Node runtime, nginx hosting |
+| [09-pages-router.md](docs/nextjs/09-pages-router.md) | NEXT-050, 075, 082–101, 138 | Pages Router, `_app`, `_document`, getStaticProps, getServerSideProps, getStaticPaths, context object |
+| [10-config-tooling.md](docs/nextjs/10-config-tooling.md) | NEXT-038–039, 041–044, 049, 051–058, 060, 063, 137, 140, 141 | TypeScript, public folder, port config, Fast Refresh, next.config.js, Webpack, polyfills, scripts, build ID, CDN |
+| [11-styling.md](docs/nextjs/11-styling.md) | NEXT-045–047, 136 | CSS Modules, global CSS, Tailwind CSS, styled-jsx |
 | [12-scripts-seo.md](docs/nextjs/12-scripts-seo.md) | NEXT-062, 065, 068–069, 074 | next/script, next-seo, Google Analytics, sitemaps, AMP |
 | [13-security.md](docs/nextjs/13-security.md) | NEXT-070–072, 080–081, 104, 111, 123, 130 | CORS, cookies, security practices, JWT, auth tokens, authorization, input validation |
 | [14-app-router-advanced.md](docs/nextjs/14-app-router-advanced.md) | NEXT-040, 067, 102–103, 105–110, 115–120, 131, 133 | next/dynamic, ssr:false, form handling, Auth.js, route groups, parallel/intercepting routes, streaming |
@@ -74,7 +74,9 @@ Sources are organized by technology → source type → source name.
 | React | GitHub | SDJ-001 | [SudheerJ — reactjs-interview-questions](https://github.com/sudheerj/reactjs-interview-questions) | 408 | [sources/react/github/sudheerj-reactjs-interview-questions/](sources/react/github/sudheerj-reactjs-interview-questions/question-map.md) |
 | Next.js | Website | GFE-NJS | [GreatFrontEnd — Next.js Interview Questions for Freshers](https://www.greatfrontend.com/blog/next-js-interview-questions-for-freshers) | 35 | [sources/nextjs/website/greatfrontend/](sources/nextjs/website/greatfrontend/question-map.md) |
 | Next.js | GitHub | MRH-NJS | [mrhrifat — nextjs-interview-questions](https://github.com/mrhrifat/nextjs-interview-questions) | 150 | [sources/nextjs/github/mrhrifat/](sources/nextjs/github/mrhrifat/question-map.md) |
-| React | YouTube | — | Interview series | Planned | — |
+| React | YouTube | CDM-001 | [CodeDam — 10 React Interview-Level Problems](https://www.youtube.com/watch?v=qUx6ajDs5UM) | 11 | [sources/react/youtube/codedam-10-react-problems/](sources/react/youtube/codedam-10-react-problems/question-map.md) |
+| Next.js | YouTube | YTH-NJS | [Hindi: 15 Next.js Interview Q&A](https://www.youtube.com/watch?v=Qyw1Q8BqGmM) | 15 | [sources/nextjs/youtube/hindi-nextjs-15-questions/](sources/nextjs/youtube/hindi-nextjs-15-questions/question-map.md) |
+| Next.js | YouTube | YTE-NJS | [Next.js Interview Questions — English](https://www.youtube.com/watch?v=BYTh9UAVHdY) | 39 | [sources/nextjs/youtube/nextjs-interview-english/](sources/nextjs/youtube/nextjs-interview-english/question-map.md) |
 
 ---
 

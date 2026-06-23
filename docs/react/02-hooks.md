@@ -1572,3 +1572,93 @@ setCount((prev) => prev + 1); // not setCount(count + 1)
 
 **Source:** [SudheerJ SDJ-318](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
 
+
+---
+
+## REACT-287
+
+**Q: How do you persist React state with localStorage across page refreshes?**
+
+Use a lazy initializer in `useState` to read from `localStorage` on mount, then synchronize back with `useEffect` on every state change.
+
+```jsx
+import { useState, useEffect } from 'react';
+
+function useLocalStorage(key, defaultValue) {
+  const [value, setValue] = useState(() => {
+    // Lazy initializer — runs once on mount, reads persisted value
+    try {
+      const stored = localStorage.getItem(key);
+      return stored !== null ? JSON.parse(stored) : defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  });
+
+  useEffect(() => {
+    // Sync to localStorage whenever value changes
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch {
+      // Quota exceeded or private browsing — silently ignore
+    }
+  }, [key, value]);
+
+  return [value, setValue];
+}
+
+// Usage: persistent counter
+export default function Counter() {
+  const [count, setCount] = useLocalStorage('counter', 0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount((c) => c + 1)}>Increment</button>
+      <button onClick={() => setCount(0)}>Reset</button>
+    </div>
+  );
+}
+```
+
+**Why lazy initializer instead of `useEffect` for initial read:**
+
+```jsx
+// ❌ Wrong — causes flicker (renders with 0 first, then re-renders with stored value)
+const [count, setCount] = useState(0);
+useEffect(() => {
+  setCount(Number(localStorage.getItem('counter') ?? 0));
+}, []);
+
+// ✅ Correct — reads storage synchronously before first render
+const [count, setCount] = useState(() => {
+  return Number(localStorage.getItem('counter') ?? 0);
+});
+```
+
+**Common pitfalls:**
+
+| Pitfall | Fix |
+|---|---|
+| `localStorage.getItem` returns `null`, not the default | Check `!== null` before using stored value |
+| Non-string values (numbers, arrays, objects) | Wrap with `JSON.parse` / `JSON.stringify` |
+| SSR (Next.js) — `localStorage` doesn't exist on server | Guard with `typeof window !== 'undefined'` |
+| Storage quota exceeded (5MB typical limit) | Wrap in `try/catch` |
+
+**SSR-safe version:**
+
+```jsx
+const [value, setValue] = useState(() => {
+  if (typeof window === 'undefined') return defaultValue;
+  try {
+    const stored = localStorage.getItem(key);
+    return stored !== null ? JSON.parse(stored) : defaultValue;
+  } catch {
+    return defaultValue;
+  }
+});
+```
+
+**Related:** [REACT-024 — useState](./02-hooks.md#react-024) | [REACT-029 — useEffect](./02-hooks.md#react-029) | [REACT-034 — Custom hooks](./02-hooks.md#react-034)
+
+**Source:** [CodeDam 10 React Problems CDM-001 Q8](../../sources/react/youtube/codedam-10-react-problems/question-map.md)

@@ -540,3 +540,173 @@ In production, the port is controlled by the environment variable `PORT` passed 
 **Related:** [NEXT-041 — Default port](./10-config-tooling.md#next-041) | [NEXT-035 — Deployment](../nextjs/08-infra.md#next-035)
 
 **Source:** [mrhrifat/nextjs-interview-questions MRH-NJS C-18](../../sources/nextjs/github/mrhrifat/question-map.md)
+
+---
+
+## NEXT-137
+
+**Q: What are the main scripts in a Next.js `package.json` and what does each do?**
+
+A freshly bootstrapped Next.js project ships with four scripts:
+
+```json
+{
+  "scripts": {
+    "dev":   "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint":  "next lint"
+  }
+}
+```
+
+| Script | Command | What it does |
+|---|---|---|
+| `dev` | `next dev` | Starts a local development server with **Hot Module Replacement (HMR)** and fast refresh. Runs on `http://localhost:3000` by default. Performs no optimization — builds are incremental and unminified. |
+| `build` | `next build` | Compiles and optimizes the app for production. Runs type-checking, linting, and static analysis; generates the `.next/` build artifact. Must be run before `start`. |
+| `start` | `next start` | Serves the **production build** (`.next/`) locally. Requires `next build` to have already been run. Does not support HMR. |
+| `lint` | `next lint` | Runs ESLint with Next.js's built-in ruleset (`next/core-web-vitals`). Checks for common React and Next.js mistakes. |
+
+**Custom port examples:**
+
+```bash
+# Dev on port 4000
+next dev -p 4000
+# or
+next dev --port 4000
+
+# Start production on port 8080
+next start -p 8080
+```
+
+**Additional useful flags:**
+
+```bash
+next dev --turbopack          # Opt into Turbopack bundler (faster dev)
+next build --debug            # Extra verbose build output
+next info                     # Print system + Next.js version info (for bug reports)
+```
+
+**Typical CI workflow:**
+
+```yaml
+- run: npm ci
+- run: npm run build        # Fails if type errors or lint errors (next build runs them)
+- run: npm run start &      # Start production server in background
+- run: npx playwright test  # Run E2E tests against production build
+```
+
+**Related:** [NEXT-041 — Default port](./10-config-tooling.md#next-041) | [NEXT-036 — Getting started / installation](../nextjs/01-fundamentals.md#next-036)
+
+**Source:** [Next.js Interview Questions English YTE-NJS Q15](../../sources/nextjs/youtube/nextjs-interview-english/question-map.md)
+
+---
+
+## NEXT-140
+
+**Q: How do you configure the build ID in Next.js?**
+
+The **build ID** is a unique identifier for each production build, used by Next.js to version static assets and invalidate caches. By default, Next.js generates a random build ID on each `next build` run.
+
+You can customize it via `generateBuildId` in `next.config.js`:
+
+```js
+// next.config.js
+module.exports = {
+  generateBuildId: async () => {
+    // Return a deterministic ID based on git commit SHA (recommended for deployments)
+    const { execSync } = require('child_process');
+    return execSync('git rev-parse HEAD').toString().trim();
+  },
+};
+```
+
+**Why customize the build ID?**
+
+| Scenario | Why it matters |
+|---|---|
+| Multi-server deployments | All servers must use the same build ID so clients requesting assets from any server get consistent responses |
+| Blue/green deploys | A stable, commit-based ID allows cache busting precisely when code changes |
+| CDN cache invalidation | Build ID is embedded in asset paths (`/_next/static/{buildId}/`); changing it forces CDN to fetch new assets |
+| CI reproducibility | Deterministic ID (e.g., git SHA) makes builds traceable to source |
+
+**Build ID in asset paths:**
+
+```
+/_next/static/abc123def456/  ← buildId embedded here
+/_next/static/abc123def456/chunks/main.js
+/_next/static/abc123def456/pages/index.js
+```
+
+**Environment-variable approach:**
+
+```js
+module.exports = {
+  generateBuildId: async () => {
+    return process.env.BUILD_ID ?? 'local-dev';
+  },
+};
+```
+
+Then in CI: `BUILD_ID=$(git rev-parse --short HEAD) npm run build`
+
+**Related:** [NEXT-038 — next.config.js](./10-config-tooling.md#next-038) | [NEXT-035 — Deployment](../nextjs/08-infra.md#next-035) | [NEXT-141 — CDN setup](./10-config-tooling.md#next-141)
+
+**Source:** [Next.js Interview Questions English YTE-NJS Q21](../../sources/nextjs/youtube/nextjs-interview-english/question-map.md)
+
+---
+
+## NEXT-141
+
+**Q: How do you configure a CDN in Next.js?**
+
+Set `assetPrefix` in `next.config.js` to point static asset requests at your CDN origin. Next.js will prefix all `/_next/static/` URLs with the CDN URL.
+
+```js
+// next.config.js
+const isProd = process.env.NODE_ENV === 'production';
+
+module.exports = {
+  assetPrefix: isProd ? 'https://cdn.example.com' : undefined,
+};
+```
+
+**How it works:**
+
+1. You run `next build` — static assets are placed in `.next/static/`
+2. You upload `.next/static/` to your CDN (e.g., S3 + CloudFront, Cloudflare, Fastly)
+3. With `assetPrefix` set, Next.js rewrites JS/CSS `<script>` and `<link>` tags to point at `https://cdn.example.com/_next/static/...`
+4. The browser fetches assets from the CDN edge, not your origin server
+
+**CDN on a separate domain — `crossOrigin` config:**
+
+If your CDN is on a different domain than your app (cross-origin), set `crossOrigin` to avoid CORS issues with scripts and stylesheets:
+
+```js
+module.exports = {
+  assetPrefix: 'https://cdn.example.com',
+  crossOrigin: 'anonymous',   // Adds crossorigin="anonymous" to <script> and <link> tags
+};
+```
+
+`'anonymous'` sends no credentials (cookies/auth headers) with cross-origin asset requests — appropriate for public static files.
+
+**Verify CDN origin setup:**
+
+Your CDN must be configured to pull from your Next.js server origin for cache misses:
+
+```
+Browser → cdn.example.com/_next/static/abc123/chunks/main.js
+       → Cache HIT: CDN serves directly
+       → Cache MISS: CDN fetches from yourapp.com/_next/static/abc123/chunks/main.js
+```
+
+**What `assetPrefix` does NOT affect:**
+
+- `pages/api/` routes — still served from your Node.js server
+- `public/` files — handled separately (upload to CDN manually or use `next.config.js` headers)
+- Vercel deployments — Vercel manages CDN automatically; `assetPrefix` is unnecessary
+
+**Related:** [NEXT-038 — next.config.js](./10-config-tooling.md#next-038) | [NEXT-140 — Build ID](./10-config-tooling.md#next-140) | [NEXT-035 — Deployment](../nextjs/08-infra.md#next-035)
+
+**Source:** [Next.js Interview Questions English YTE-NJS Q27–28](../../sources/nextjs/youtube/nextjs-interview-english/question-map.md)

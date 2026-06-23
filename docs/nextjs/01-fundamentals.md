@@ -450,3 +450,120 @@ This means a single Next.js project can replace a React frontend + a separate RE
 **Related:** [NEXT-026 — Route Handlers](./06-api-actions.md#next-026) | [NEXT-027 — Server Actions](./06-api-actions.md#next-027)
 
 **Source:** [mrhrifat/nextjs-interview-questions MRH-NJS C-75](../../sources/nextjs/github/mrhrifat/question-map.md)
+
+---
+
+## NEXT-139
+
+**Q: What is the difference between Next.js and Create React App (CRA)?**
+
+Create React App (CRA) is a boilerplate tool that generates a client-side-only React application. Next.js is a full-stack framework built on React that adds server-side rendering, file-system routing, API routes, and production optimizations out of the box.
+
+| Feature | Next.js | Create React App |
+|---|---|---|
+| **Rendering** | SSR, SSG, ISR, CSR — choose per page | CSR only — all rendering in the browser |
+| **Routing** | File-system based (`pages/` or `app/`) | None built-in — must install React Router |
+| **API layer** | Built-in API routes / Route Handlers + Server Actions | None — requires a separate backend |
+| **SEO** | Strong — server-rendered HTML for crawlers | Poor — blank HTML until JS loads |
+| **Performance** | Automatic code splitting, image opt, font opt | Basic — relies on the app to optimize |
+| **Build output** | Node.js server (or static export) | Static files (HTML/JS/CSS) only |
+| **Initial setup** | Production-ready from day 1 | Good for prototypes; needs config for production |
+| **TypeScript** | First-class support | Supported via template |
+| **Maintenance** | Actively developed by Vercel | Officially deprecated (succeeded by Vite + React) |
+
+**When CRA was appropriate (historically):**
+
+- Simple client-side SPAs where SEO doesn't matter (dashboards, internal tools behind auth)
+- Learning React without framework complexity
+- Projects where a separate API server already exists
+
+**Why Next.js is preferred today:**
+
+- CRA was officially deprecated in 2023; Vite is now the community replacement for client-side-only React apps
+- Next.js handles the full stack, eliminating the need for a separate backend for many use cases
+- Server-side rendering significantly improves Core Web Vitals and SEO ranking
+- Incremental adoption is possible — you can mix static and dynamic pages in one project
+
+> **In interviews:** Frame CRA as "a tool for learning or simple SPAs; Next.js adds SSR, routing, and API capabilities that CRA lacks entirely."
+
+**Related:** [NEXT-001 — What is Next.js](./01-fundamentals.md#next-001) | [NEXT-002 — Why Next.js](./01-fundamentals.md#next-002) | [NEXT-143 — Competitors and alternatives](./01-fundamentals.md#next-143)
+
+**Source:** [Next.js Interview Questions English YTE-NJS Q18](../../sources/nextjs/youtube/nextjs-interview-english/question-map.md)
+
+---
+
+## NEXT-143
+
+**Q: What are the main competitors and alternatives to Next.js?**
+
+Next.js competes with other React frameworks, meta-frameworks for other libraries, and static-site generators.
+
+**React-based alternatives:**
+
+| Alternative | Type | Key differentiator vs Next.js |
+|---|---|---|
+| **Remix** | Full-stack React framework | Emphasizes web standards (forms, fetch API); nested layouts via loaders/actions |
+| **Gatsby** | Static-site generator | Optimized for content-heavy static sites; GraphQL data layer |
+| **Create React App / Vite** | CSR boilerplate | No SSR, no routing built-in; simpler for pure SPAs |
+| **Astro** | Multi-framework SSG/SSR | Island architecture; any UI framework (React, Vue, Svelte); minimal JS shipped |
+
+**Non-React meta-frameworks:**
+
+| Alternative | Framework | Notes |
+|---|---|---|
+| **Nuxt.js** | Vue.js | Next.js equivalent for Vue; very similar API surface |
+| **SvelteKit** | Svelte | File-based routing, SSR/SSG; smaller bundle due to Svelte compiler |
+| **Angular Universal** | Angular | SSR for Angular apps |
+| **SolidStart** | SolidJS | SSR framework for SolidJS, similar to Remix in philosophy |
+
+**When you might choose an alternative:**
+
+- **Remix** — when you want to embrace web platform APIs (forms as progressive enhancements, native fetch)
+- **Gatsby** — when you have a large static content site and want rich plugin ecosystem
+- **Astro** — when shipping minimal JS is the priority (blogs, marketing, documentation)
+- **SvelteKit** — when you prefer Svelte's reactivity model over React
+- **Nuxt.js** — when the team prefers Vue.js
+
+**Next.js strengths vs all alternatives:**
+
+- Largest ecosystem, most production deployments
+- Backed by Vercel with first-class deployment integration
+- Most feature-complete (App Router, RSC, Server Actions, Turbopack, image/font/script optimization)
+- Most common in enterprise React adoption
+
+**Related:** [NEXT-001 — What is Next.js](./01-fundamentals.md#next-001) | [NEXT-002 — Why Next.js](./01-fundamentals.md#next-002) | [NEXT-139 — Next.js vs CRA](./01-fundamentals.md#next-139)
+
+**Source:** [Next.js Interview Questions English YTE-NJS Q31](../../sources/nextjs/youtube/nextjs-interview-english/question-map.md)
+
+---
+
+## NEXT-144
+
+**Q: In what language is Next.js written?**
+
+Next.js is written primarily in **TypeScript** and **JavaScript**, with performance-critical internal tooling (the Turbopack bundler and the SWC compiler) written in **Rust**.
+
+| Layer | Language | Purpose |
+|---|---|---|
+| Framework core | TypeScript / JavaScript | Routing, rendering pipeline, data fetching, React integration |
+| **SWC compiler** | **Rust** | Replaces Babel; transpiles JSX and TypeScript at native speed |
+| **Turbopack bundler** | **Rust** | Replaces Webpack; incremental bundler for dev and production builds |
+| CLI (`create-next-app`) | JavaScript / Node.js | Project scaffolding |
+
+**SWC vs Babel:**
+
+Next.js replaced Babel with SWC as the default compiler in Next.js 12 (2021). SWC is ~17× faster than Babel for compilation because it runs in native Rust rather than JavaScript.
+
+**Turbopack (Next.js 13+):**
+
+Turbopack is a Rust-based bundler that Next.js uses to replace Webpack. It performs incremental compilation — only re-bundling the modules that changed — making `next dev` significantly faster on large codebases. As of Next.js 15, Turbopack is stable for development (`next dev --turbopack` or enabled by default in some configurations).
+
+**What this means for developers:**
+
+- You write your application in **JavaScript or TypeScript** (React JSX)
+- The Rust tooling is an implementation detail — it improves build performance but requires no Rust knowledge
+- Next.js fully supports TypeScript first-class (auto-detects `tsconfig.json`, provides type-safe APIs)
+
+**Related:** [NEXT-038 — next.config.js](./10-config-tooling.md#next-038) | [NEXT-001 — What is Next.js](./01-fundamentals.md#next-001)
+
+**Source:** [Next.js Interview Questions English YTE-NJS Q34](../../sources/nextjs/youtube/nextjs-interview-english/question-map.md)

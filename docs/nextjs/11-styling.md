@@ -127,3 +127,74 @@ Import `globals.css` in `app/layout.tsx` (or `pages/_app.tsx`), and you can use 
 ---
 
 *← [10-config-tooling](./10-config-tooling.md) | [12-scripts-seo →](./12-scripts-seo.md)*
+
+---
+
+## NEXT-136
+
+**Q: What is styled-jsx in Next.js?**
+
+**styled-jsx** is a CSS-in-JS library built into Next.js that provides **scoped, component-level styles** using `<style jsx>` tags written inside JSX. Styles are automatically encapsulated — they apply only to the component they are declared in, preventing class name collisions.
+
+```jsx
+export default function Button({ label, variant = 'primary' }) {
+  return (
+    <>
+      <button className={`btn btn-${variant}`}>{label}</button>
+
+      <style jsx>{`
+        .btn {
+          padding: 8px 16px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+        }
+        .btn-primary {
+          background: #0070f3;
+          color: white;
+        }
+        .btn-secondary {
+          background: #e0e0e0;
+          color: #333;
+        }
+        .btn:hover {
+          opacity: 0.85;
+        }
+      `}</style>
+    </>
+  );
+}
+```
+
+**How it works under the hood:**
+
+1. Next.js transforms `<style jsx>` at build time using the `@vercel/next-babel-plugin-styled-jsx` or the SWC transform
+2. Each component gets a unique auto-generated class scoped attribute (e.g., `jsx-1234`)
+3. Selectors are rewritten to only match elements within that component: `.btn.jsx-1234`
+4. No class collision can occur even if two components define `.btn` identically
+
+**Global styles with styled-jsx:**
+
+```jsx
+// Apply globally (use sparingly)
+<style jsx global>{`
+  body { margin: 0; font-family: sans-serif; }
+  *, *::before, *::after { box-sizing: border-box; }
+`}</style>
+```
+
+**styled-jsx vs other styling approaches:**
+
+| Approach | Scoped | Colocation | Runtime overhead | Setup |
+|---|---|---|---|---|
+| styled-jsx | ✅ Auto-scoped | ✅ In JSX | Minimal | ✅ Built into Next.js |
+| CSS Modules | ✅ Via hash names | ❌ Separate `.module.css` | None | ✅ Built into Next.js |
+| Tailwind | ❌ Utility classes global | ✅ In className | None | Requires install |
+| styled-components | ✅ Per-component | ✅ In JS | Runtime injection | Requires install + `'use client'` |
+
+**Note:** For new Next.js projects, **CSS Modules** or **Tailwind** are generally preferred over styled-jsx as they have better performance, IDE support, and ecosystem tooling. styled-jsx remains useful for legacy codebases and quick prototypes.
+
+**Related:** [NEXT-045 — CSS Modules](./11-styling.md#next-045) | [NEXT-046 — Global CSS](./11-styling.md#next-046) | [NEXT-047 — Tailwind](./11-styling.md#next-047)
+
+**Source:** [Next.js Interview Questions English YTE-NJS Q7](../../sources/nextjs/youtube/nextjs-interview-english/question-map.md)

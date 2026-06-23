@@ -2533,3 +2533,193 @@ Inspect API calls made from `useEffect` or event handlers — check payloads, st
 **Related:** [REACT-035 — What does re-rendering mean](./03-advanced.md#react-035) | [REACT-037 — Error Boundaries](./03-advanced.md#react-037) | [REACT-143 — React DevTools](./10-libraries.md#react-143)
 
 **Source:** [GreatFrontEnd top-reactjs-interview-questions](../../sources/react/github/greatfrontend-top-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-286
+
+**Q: How do you build a progress bar component in React?**
+
+A progress bar component takes a `percentage` prop (0–100), renders a container, and sets the inner fill width as a percentage — clamping the value to prevent overflow.
+
+```jsx
+// ProgressBar.jsx
+function ProgressBar({ percentage }) {
+  const clamped = Math.min(Math.max(percentage, 0), 100);
+
+  return (
+    <div
+      style={{
+        background: '#e0e0e0',
+        borderRadius: 4,
+        height: 20,
+        width: '100%',
+        overflow: 'hidden',
+      }}
+      role="progressbar"
+      aria-valuenow={clamped}
+      aria-valuemin={0}
+      aria-valuemax={100}
+    >
+      <div
+        style={{
+          background: '#4caf50',
+          height: '100%',
+          width: `${clamped}%`,
+          transition: 'width 0.3s ease',
+        }}
+      />
+    </div>
+  );
+}
+
+// Usage with live updates
+export default function App() {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setValue((v) => (v >= 100 ? 100 : v + 10));
+    }, 500);
+    return () => clearInterval(id);
+  }, []);
+
+  return <ProgressBar percentage={value} />;
+}
+```
+
+**Key implementation details:**
+
+- `Math.min(Math.max(value, 0), 100)` clamps the value — prevents negative widths or overflow beyond 100%
+- Inner `div` width is set via inline style (`width: \`${clamped}%\``) — no JS measurement required
+- `overflow: hidden` on the container clips any rounding edge cases
+- `role="progressbar"` + `aria-valuenow/min/max` for accessibility
+- `transition: width 0.3s ease` gives smooth animation on value change
+
+**Controlled variant** (accepting step buttons):
+
+```jsx
+<>
+  <ProgressBar percentage={value} />
+  <button onClick={() => setValue((v) => Math.min(v + 10, 100))}>+10</button>
+  <button onClick={() => setValue((v) => Math.max(v - 10, 0))}>−10</button>
+</>
+```
+
+**Related:** [REACT-008 — Conditional rendering](./01-fundamentals.md#react-008) | [REACT-024 — useState](./02-hooks.md#react-024) | [REACT-288 — Form validation](./03-advanced.md#react-288)
+
+**Source:** [CodeDam 10 React Problems CDM-001 Q1](../../sources/react/youtube/codedam-10-react-problems/question-map.md)
+
+---
+
+## REACT-288
+
+**Q: How do you implement form validation in React?**
+
+Client-side form validation in React involves three concerns: tracking field values, accumulating validation errors, and showing errors at the right time (on blur, on change, or on submit).
+
+**Pattern 1 — Validate on submit (simplest):**
+
+```jsx
+import { useState } from 'react';
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export default function SignUpForm() {
+  const [fields, setFields] = useState({ firstName: '', email: '', password: '', confirm: '' });
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  const validate = (f) => {
+    const errs = {};
+    if (!f.firstName.trim()) errs.firstName = 'First name is required';
+    if (!EMAIL_REGEX.test(f.email)) errs.email = 'Enter a valid email';
+    if (f.password.length < 8) errs.password = 'Password must be at least 8 characters';
+    if (f.password !== f.confirm) errs.confirm = 'Passwords do not match';
+    return errs;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errs = validate(fields);
+    setErrors(errs);
+    if (Object.keys(errs).length === 0) {
+      setSubmitted(true);
+      // proceed with API call
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFields((prev) => ({ ...prev, [name]: value }));
+    // Clear error on change (optional UX improvement)
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }));
+  };
+
+  if (submitted) return <p>✅ Account created!</p>;
+
+  return (
+    <form onSubmit={handleSubmit} noValidate>
+      {[
+        { name: 'firstName', label: 'First Name', type: 'text' },
+        { name: 'email', label: 'Email', type: 'email' },
+        { name: 'password', label: 'Password', type: 'password' },
+        { name: 'confirm', label: 'Confirm Password', type: 'password' },
+      ].map(({ name, label, type }) => (
+        <div key={name}>
+          <label htmlFor={name}>{label}</label>
+          <input
+            id={name}
+            name={name}
+            type={type}
+            value={fields[name]}
+            onChange={handleChange}
+            aria-describedby={errors[name] ? `${name}-error` : undefined}
+            aria-invalid={!!errors[name]}
+          />
+          {errors[name] && (
+            <span id={`${name}-error`} role="alert" style={{ color: 'red' }}>
+              {errors[name]}
+            </span>
+          )}
+        </div>
+      ))}
+      <button type="submit">Sign Up</button>
+    </form>
+  );
+}
+```
+
+**Pattern 2 — With Immer for error state (scales to many fields):**
+
+```jsx
+import { produce } from 'immer';
+
+const [errors, setErrors] = useState({});
+
+const clearError = (field) => {
+  setErrors(produce((draft) => { delete draft[field]; }));
+};
+
+const setFieldErrors = (newErrors) => {
+  setErrors(produce((draft) => {
+    Object.assign(draft, newErrors);
+  }));
+};
+```
+
+**Validation checklist:**
+
+| Rule | Implementation |
+|---|---|
+| Required field | `!value.trim()` |
+| Email format | `/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)` |
+| Minimum length | `value.length < N` |
+| Password confirm | `password !== confirm` |
+| Number range | `value < min \|\| value > max` |
+
+**`noValidate` on `<form>`** disables browser built-in bubbles so React controls all error display.
+
+**Related:** [REACT-024 — useState](./02-hooks.md#react-024) | [REACT-285 — Immer](./10-libraries.md#react-285) | [REACT-286 — Progress bar component](./03-advanced.md#react-286)
+
+**Source:** [CodeDam 10 React Problems CDM-001 Q10](../../sources/react/youtube/codedam-10-react-problems/question-map.md)

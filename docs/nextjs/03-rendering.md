@@ -191,3 +191,45 @@ Client-Side Rendering (CSR), by contrast, sends minimal HTML and defers all cont
 **Related:** [NEXT-015 — SSR vs SSG vs CSR vs ISR](./03-rendering.md#next-015) | [NEXT-016 — Static vs dynamic rendering](./03-rendering.md#next-016)
 
 **Source:** [mrhrifat/nextjs-interview-questions MRH-NJS C-27](../../sources/nextjs/github/mrhrifat/question-map.md)
+
+---
+
+## NEXT-135
+
+**Q: What is the difference between SSR (Pages Router) and React Server Components (App Router)?**
+
+Both execute on the server, but they differ fundamentally in when they run, what they send to the client, and how hydration works.
+
+| Dimension | SSR — Pages Router (`getServerSideProps`) | React Server Components — App Router |
+|---|---|---|
+| **When it runs** | Per-request, server computes HTML | Per-request (dynamic) or at build (static), streams component tree |
+| **Output to browser** | Full HTML page + full React JS bundle | HTML + selective JS (only Client Components are bundled) |
+| **Client JS bundle** | Entire page including server logic | Only `'use client'` components; RSC payload (JSON) not re-executed |
+| **Hydration** | Full page hydration — browser re-runs the whole component tree | Partial hydration — only Client Components hydrate |
+| **Data fetching** | `getServerSideProps` — separate function, passed as props | `async/await` directly in the component; `fetch()` extended by Next.js |
+| **Streaming** | ❌ Must wait for all data before sending HTML | ✅ Streams sections via `<Suspense>` — progressive rendering |
+| **Time to Interactive (TTI)** | Later — full JS bundle must parse and hydrate | Earlier — less client JS, streaming shows content sooner |
+| **Component model** | React components + prop drilling from `getServerSideProps` | Composable RSC tree; server data accessible anywhere in tree |
+| **Caching** | No built-in caching; ISR via `revalidate` on static pages | `fetch` cache with `revalidate`, `cache: 'no-store'`, or `unstable_cache` |
+
+**Timing diagram:**
+
+```
+Pages Router SSR:
+  Request → [Server: run getSSP + render full HTML] → Send HTML → [Browser: parse + download full JS bundle] → Hydrate → Interactive
+
+App Router RSC:
+  Request → [Server: stream RSC tree] → Send HTML chunks → [Browser: parse HTML] → Hydrate only Client Components → Interactive
+             ↳ Client JS bundle is much smaller (server components stripped out)
+```
+
+**When to use which:**
+
+- **App Router RSC** — new projects; reduces bundle size, enables streaming, better caching primitives
+- **Pages Router SSR** — existing Pages Router apps; when migrating incrementally; when you need `getServerSideProps` ecosystem (e.g., specific auth patterns)
+
+**Key insight:** SSR (Pages Router) always sends the full React tree to the client for hydration. RSC (App Router) never sends Server Component code to the client — only their rendered output (HTML + RSC payload). This is the primary bundle-size and TTI advantage.
+
+**Related:** [NEXT-015 — SSR vs SSG vs CSR vs ISR](./03-rendering.md#next-015) | [NEXT-011 — Server Components](../nextjs/02-server-client.md#next-011) | [NEXT-017 — Hydration](./03-rendering.md#next-017) | [NEXT-003 — App Router vs Pages Router](../nextjs/01-fundamentals.md#next-003)
+
+**Source:** [Hindi Next.js Interview Questions YTH-NJS Q15](../../sources/nextjs/youtube/hindi-nextjs-15-questions/question-map.md)

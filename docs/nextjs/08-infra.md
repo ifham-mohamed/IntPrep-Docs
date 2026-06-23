@@ -239,3 +239,78 @@ Middleware (`middleware.ts`) defaults to the Edge runtime and should stay there 
 **Related:** [NEXT-032 — Middleware](./08-infra.md#next-032) | [NEXT-035 — Deployment](./08-infra.md#next-035)
 
 **Source:** [mrhrifat/nextjs-interview-questions MRH-NJS B-17](../../sources/nextjs/github/mrhrifat/question-map.md)
+
+---
+
+## NEXT-142
+
+**Q: Can Next.js be hosted on nginx (traditional web servers)?**
+
+Next.js requires a **Node.js runtime** to serve SSR pages, API routes, and Server Actions. nginx cannot serve a Next.js application on its own — it must be used as a **reverse proxy** in front of the Node.js process.
+
+**Typical self-hosted setup with nginx:**
+
+```
+Internet → nginx (port 80/443) → Node.js / Next.js server (port 3000)
+```
+
+**nginx reverse proxy config:**
+
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        proxy_pass         http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection 'upgrade';
+        proxy_set_header   Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+**What nginx handles in this setup:**
+
+- SSL/TLS termination (HTTPS)
+- Static file caching (you can configure nginx to cache `/_next/static/` directly)
+- Rate limiting and DDoS protection
+- Load balancing across multiple Node.js instances
+- Compression (gzip / brotli)
+
+**What nginx cannot replace:**
+
+- Running `next start` — the Node.js server must be running separately (PM2, systemd, or Docker recommended)
+- SSR page generation — nginx has no understanding of React
+- API route handling — all dynamic logic requires Node.js
+
+**Static-only alternative:** If you run `next export` (static export — only works if no SSR/API routes are used), the output is plain HTML/CSS/JS files that nginx can serve directly without Node.js.
+
+```bash
+# next.config.js: output: 'export'
+npm run build  # generates /out directory
+# nginx serves /out as static files — no Node.js needed
+```
+
+**Recommended self-hosted process managers:**
+
+```bash
+# PM2 — keeps the Node.js process alive, restarts on crash
+pm2 start npm --name "nextjs" -- start
+
+# systemd service (Linux)
+[Unit]
+Description=Next.js app
+[Service]
+ExecStart=/usr/bin/npm start
+WorkingDirectory=/var/www/myapp
+Restart=always
+[Install]
+WantedBy=multi-user.target
+```
+
+**Related:** [NEXT-035 — Deployment options](./08-infra.md#next-035) | [NEXT-134 — Edge vs Node.js runtime](./08-infra.md#next-134) | [NEXT-141 — CDN setup](../nextjs/10-config-tooling.md#next-141)
+
+**Source:** [Next.js Interview Questions English YTE-NJS Q29](../../sources/nextjs/youtube/nextjs-interview-english/question-map.md)

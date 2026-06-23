@@ -696,3 +696,62 @@ export async function getStaticProps() {
 ---
 
 *← [08-infra](./08-infra.md) | [10-config-tooling →](./10-config-tooling.md)*
+
+---
+
+## NEXT-138
+
+**Q: What properties does the `context` object have in `getInitialProps`?**
+
+`getInitialProps` is the legacy Pages Router data-fetching method (pre-`getServerSideProps`). It receives a `context` object with different properties depending on whether it is running on the server (SSR request) or the client (client-side navigation).
+
+```js
+// pages/post/[id].js
+PostPage.getInitialProps = async (context) => {
+  const { pathname, asPath, query, req, res, err } = context;
+  // ...
+};
+```
+
+**Context properties:**
+
+| Property | Type | Available | Description |
+|---|---|---|---|
+| `pathname` | `string` | Server + Client | The URL path pattern, e.g. `/post/[id]` |
+| `asPath` | `string` | Server + Client | The actual URL as shown in the browser, e.g. `/post/42?ref=home` |
+| `query` | `object` | Server + Client | The URL query string parsed as an object, e.g. `{ id: '42', ref: 'home' }` |
+| `req` | `IncomingMessage` | Server only | Node.js request object (includes headers, cookies). `undefined` on client. |
+| `res` | `ServerResponse` | Server only | Node.js response object. `undefined` on client. |
+| `err` | `Error \| undefined` | Server + Client | Error object if any error was encountered during rendering |
+
+**Practical usage:**
+
+```js
+// Read cookies from request (server-side only)
+PostPage.getInitialProps = async ({ req, query }) => {
+  const token = req?.headers?.cookie?.split(';')
+    .find((c) => c.trim().startsWith('token='))
+    ?.split('=')[1];
+
+  const data = await fetch(`/api/post/${query.id}`, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  }).then((r) => r.json());
+
+  return { data };
+};
+```
+
+**`getInitialProps` vs `getServerSideProps`:**
+
+| | `getInitialProps` | `getServerSideProps` |
+|---|---|---|
+| Runs on | Server (first load) + Client (navigation) | Server only |
+| Added in | Next.js v1 | Next.js v9.3 |
+| `req`/`res` available on client? | ❌ No | N/A (server only) |
+| Recommended? | ❌ Deprecated pattern | ✅ Preferred for dynamic pages |
+
+> **Note:** `getInitialProps` is still supported but not recommended for new code. Use `getServerSideProps` or the App Router's `async` Server Components instead.
+
+**Related:** [NEXT-089 — getInitialProps](./09-pages-router.md#next-089) | [NEXT-090 — getServerSideProps](./09-pages-router.md#next-090) | [NEXT-093 — getStaticPaths](./09-pages-router.md#next-093)
+
+**Source:** [Next.js Interview Questions English YTE-NJS Q17](../../sources/nextjs/youtube/nextjs-interview-english/question-map.md)

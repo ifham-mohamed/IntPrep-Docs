@@ -415,3 +415,93 @@ Key points:
 **Related:** [REACT-265 — React vs Vue.js](./10-libraries.md#react-265) | [REACT-266 — React vs Angular](./10-libraries.md#react-266)
 
 **Source:** [SudheerJ SDJ-146](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
+
+---
+
+## REACT-285
+
+**Q: What is Immer and how do you use it for state updates in React?**
+
+**Immer** is a library that lets you write mutating-style code for state updates while producing a correct immutable result under the hood. You pass it a `produce(baseState, recipe)` function where `recipe` receives a `draft` you can mutate directly.
+
+```jsx
+import { produce } from 'immer';
+import { useState } from 'react';
+
+const initialItems = [
+  { id: 1, label: 'Apple', checked: false },
+  { id: 2, label: 'Banana', checked: false },
+];
+
+export default function ShoppingList() {
+  const [items, setItems] = useState(initialItems);
+
+  // Toggle one item — no spread gymnastics needed
+  const toggleItem = (id) => {
+    setItems(produce(items, (draft) => {
+      const item = draft.find((i) => i.id === id);
+      if (item) item.checked = !item.checked;
+    }));
+  };
+
+  // Select all / deselect all
+  const toggleAll = (checked) => {
+    setItems(produce(items, (draft) => {
+      draft.forEach((item) => { item.checked = checked; });
+    }));
+  };
+
+  const allChecked = items.every((i) => i.checked);
+
+  return (
+    <ul>
+      <li>
+        <input type="checkbox" checked={allChecked} onChange={(e) => toggleAll(e.target.checked)} />
+        <strong> Select All</strong>
+      </li>
+      {items.map((item) => (
+        <li key={item.id}>
+          <input type="checkbox" checked={item.checked} onChange={() => toggleItem(item.id)} />
+          {item.label}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+**Why Immer over manual spread:**
+
+| Scenario | Manual spread | Immer |
+|---|---|---|
+| Nested object update | `{ ...state, user: { ...state.user, name: 'x' } }` | `draft.user.name = 'x'` |
+| Array item toggle | `items.map(i => i.id === id ? {...i, checked: !i.checked} : i)` | `item.checked = !item.checked` |
+| Readability at depth | ❌ Very verbose | ✅ Reads like mutation |
+| Immutability guarantee | ✅ Manual discipline | ✅ Enforced by Immer |
+
+**Immer with `useReducer`** (canonical pattern for complex state):
+
+```jsx
+import { produce } from 'immer';
+
+const reducer = produce((draft, action) => {
+  switch (action.type) {
+    case 'TOGGLE':
+      const item = draft.find((i) => i.id === action.id);
+      if (item) item.checked = !item.checked;
+      break;
+    case 'SET_ALL':
+      draft.forEach((i) => { i.checked = action.checked; });
+      break;
+  }
+});
+
+// Pass produce-wrapped reducer directly to useReducer
+const [items, dispatch] = useReducer(reducer, initialItems);
+```
+
+**Install:** `npm install immer`
+
+**Related:** [REACT-022 — Why not mutate state directly](./01-fundamentals.md#react-022) | [REACT-116 — useReducer](./02-hooks.md#react-116) | [REACT-144 — Styled Components](./10-libraries.md#react-144)
+
+**Source:** [CodeDam 10 React Problems CDM-001 Q2/Q3](../../sources/react/youtube/codedam-10-react-problems/question-map.md)

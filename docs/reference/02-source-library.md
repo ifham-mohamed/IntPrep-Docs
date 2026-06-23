@@ -196,12 +196,115 @@ When adding questions from a new source, follow this process:
 
 ---
 
+### CDM-001 — CodeDam: 10 React.js Interview-Level Problems (YouTube)
+
+| Field | Value |
+|---|---|
+| **Source ID** | CDM-001 |
+| **Title** | 10 React.js Interview Level Problems — CodeDam |
+| **Channel** | CodeDam |
+| **URL** | https://www.youtube.com/watch?v=qUx6ajDs5UM |
+| **Technology** | React |
+| **Source type** | YouTube |
+| **Problems covered** | 11 |
+| **Mapped to existing IDs** | 7 (REACT-002, 009, 024, 034, 144) |
+| **New canonical IDs created** | 4 (REACT-285 – REACT-288) |
+| **All questions canonicalized** | Yes |
+| **Archive file** | [sources/react/youtube/codedam-10-react-problems/question-map.md](../../sources/react/youtube/codedam-10-react-problems/question-map.md) |
+
+**Coverage map:**
+
+| Problem | Timestamp | Canonical ID |
+|---|---|---|
+| Progress bar component | 00:00:47 | REACT-286 |
+| Select all checkboxes + Immer | 00:01:43–00:02:13 | REACT-285 |
+| Styled components button | 00:03:18 | REACT-144 (mapped) |
+| Hover counter | 00:04:30 | REACT-024 (mapped) |
+| Fix component bugs | 00:05:06 | REACT-002 (mapped) |
+| Tab bar with active state | 00:05:50 | REACT-008 (mapped) |
+| Local storage counter | 00:06:50 | REACT-287 |
+| Console log button | 00:08:31 | REACT-024 (mapped) |
+| Sign-up form validation | 00:09:04 | REACT-288 |
+| Fix class component syntax | 00:15:42 | REACT-009 (mapped) |
+| useTheme custom hook | 00:16:15 | REACT-034 (mapped) |
+
+---
+
+### YTH-NJS — Hindi: 15 Next.js Interview Q&A (YouTube)
+
+| Field | Value |
+|---|---|
+| **Source ID** | YTH-NJS |
+| **Title** | 15 Next.js Interview Questions and Answers (Hindi) |
+| **URL** | https://www.youtube.com/watch?v=Qyw1Q8BqGmM |
+| **Technology** | Next.js |
+| **Source type** | YouTube |
+| **Language** | Hindi |
+| **Questions covered** | 15 |
+| **Mapped to existing IDs** | 14 |
+| **New canonical IDs created** | 1 (NEXT-135) |
+| **All questions canonicalized** | Yes |
+| **Archive file** | [sources/nextjs/youtube/hindi-nextjs-15-questions/question-map.md](../../sources/nextjs/youtube/hindi-nextjs-15-questions/question-map.md) |
+
+**Coverage map:**
+
+| Question | Timestamp | Canonical ID |
+|---|---|---|
+| What is Next.js? | 00:00:26 | NEXT-001 |
+| What is SSR? | 00:01:00 | NEXT-015 |
+| Benefits of Next.js | 00:02:31 | NEXT-001 |
+| App Router vs Pages Router | 00:06:29 | NEXT-003 |
+| Disadvantages | 00:10:00 | NEXT-077 |
+| What is SSG? | 00:12:15 | NEXT-020 |
+| Dynamic routing | 00:15:13 | NEXT-006 |
+| getStaticProps / getServerSideProps / getStaticPaths | 00:15:36 | NEXT-090 |
+| Image optimization | 00:17:32 | NEXT-030 |
+| 404 page | 00:19:00 | NEXT-010 |
+| ISR | 00:19:36 | NEXT-020 |
+| Performance optimization | 00:21:07 | NEXT-076 |
+| Hydration and hydration issues | 00:22:59 | NEXT-017 |
+| CSR vs SSR | 00:26:21 | NEXT-015 |
+| SSR vs React Server Components | 00:25:24 | NEXT-135 |
+
+---
+
+### YTE-NJS — Next.js Interview Questions (English, YouTube)
+
+| Field | Value |
+|---|---|
+| **Source ID** | YTE-NJS |
+| **Title** | Next.js Interview Questions and Answers |
+| **URL** | https://www.youtube.com/watch?v=BYTh9UAVHdY |
+| **Technology** | Next.js |
+| **Source type** | YouTube |
+| **Format** | Three tiers: Freshers (Q1–15), Experienced (Q16–29), Most Frequently Asked (Q30–39) |
+| **Questions covered** | 39 |
+| **Mapped to existing IDs** | 27 |
+| **New canonical IDs created** | 9 (NEXT-136–144) |
+| **All questions canonicalized** | Yes |
+| **Archive file** | [sources/nextjs/youtube/nextjs-interview-english/question-map.md](../../sources/nextjs/youtube/nextjs-interview-english/question-map.md) |
+
+**New canonicals created:**
+
+| Canonical ID | Question | Timestamp |
+|---|---|---|
+| NEXT-136 | What is styled-jsx? | 00:03:53 |
+| NEXT-137 | Main scripts in Next.js (dev, build, start, lint) | 00:06:59 |
+| NEXT-138 | Context object properties in getInitialProps | 00:08:09 |
+| NEXT-139 | Next.js vs Create React App | 00:08:43 |
+| NEXT-140 | How to configure build ID | 00:11:03 |
+| NEXT-141 | CDN setup and crossOrigin config | 00:14:29 |
+| NEXT-142 | Hosting Next.js on nginx | 00:15:36 |
+| NEXT-143 | Competitors and alternatives to Next.js | 00:16:10 |
+| NEXT-144 | Language Next.js is written in | 00:17:33 |
+
+---
+
 ## Planned Sources
 
 | Source | Technology | Type | Status | Est. New Canonicals |
 |---|---|---|---|---|
 | GreatFrontEnd — 50 React Coding Questions | React | Website | Planned | ~20 |
-| YouTube — React Interview Series | React | YouTube | Planned | ~30 |
 | React Official Docs — Key Concepts | React | Website | Planned | ~20 |
 | Roadmap.sh — React Developer Path | React | Website | Planned | ~15 |
 | Next.js Official Docs | Next.js | Website | Planned | ~50 |

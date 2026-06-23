@@ -85,10 +85,13 @@ IntPrep-Docs/
 - `GFE-001` — GreatFrontEnd blog article (110 questions, `sources/react/website/greatfrontend/`)
 - `GFE-002` — GreatFrontEnd GitHub repo (50 questions, `sources/react/github/greatfrontend-top-reactjs-interview-questions/`)
 - `SDJ-001` — SudheerJ GitHub repo (408 questions, `sources/react/github/sudheerj-reactjs-interview-questions/`)
+- `CDM-001` — CodeDam YouTube video (11 problems, `sources/react/youtube/codedam-10-react-problems/`)
 
 **Active sources — Next.js:**
 - `GFE-NJS` — GreatFrontEnd blog article (35 questions, `sources/nextjs/website/greatfrontend/`)
 - `MRH-NJS` — mrhrifat GitHub repo (150 questions, `sources/nextjs/github/mrhrifat/`)
+- `YTH-NJS` — Hindi YouTube video (15 questions, `sources/nextjs/youtube/hindi-nextjs-15-questions/`)
+- `YTE-NJS` — English YouTube video (39 questions, `sources/nextjs/youtube/nextjs-interview-english/`)
 
 ---
 
@@ -185,7 +188,11 @@ My canonical ID system (current as of June 2026):
 - REACT-268 to REACT-282: Legacy class components
 - REACT-283: Libraries (Polymer, SDJ)
 - REACT-284: Advanced (Debugging, GFE-002)
-- Next available: REACT-285
+- REACT-285: Libraries (Immer, CDM-001)
+- REACT-286: Advanced (Progress bar, CDM-001)
+- REACT-287: Hooks (localStorage persistence, CDM-001)
+- REACT-288: Advanced (Form validation, CDM-001)
+- Next available: REACT-289
 
 For this source, please:
 1. List all questions in the source (paraphrased — do not copy verbatim).
@@ -437,23 +444,27 @@ Please format the complete question-map.md file.
 | Legacy Class Components | REACT-268–282 | docs/react/11-legacy-class.md |
 | Libraries (Polymer — SDJ) | REACT-283 | docs/react/10-libraries.md |
 | Advanced (Debugging — GFE-002) | REACT-284 | docs/react/03-advanced.md |
-| **Next available** | **REACT-285** | New section or extend existing |
+| Libraries (Immer — CDM-001) | REACT-285 | docs/react/10-libraries.md |
+| Advanced (Progress bar — CDM-001) | REACT-286 | docs/react/03-advanced.md |
+| Hooks (localStorage — CDM-001) | REACT-287 | docs/react/02-hooks.md |
+| Advanced (Form validation — CDM-001) | REACT-288 | docs/react/03-advanced.md |
+| **Next available** | **REACT-289** | New section or extend existing |
 
 ### Next.js
 
 | Section | IDs | File |
 |---|---|---|
-| Fundamentals | NEXT-001–010, 036, 079 | docs/nextjs/01-fundamentals.md |
+| Fundamentals | NEXT-001–010, 036, 079, 139, 143, 144 | docs/nextjs/01-fundamentals.md |
 | Server/Client Components | NEXT-011–014 | docs/nextjs/02-server-client.md |
-| Rendering | NEXT-015–018, 048 | docs/nextjs/03-rendering.md |
+| Rendering | NEXT-015–018, 048, 135 | docs/nextjs/03-rendering.md |
 | Data Fetching & Caching | NEXT-019–022 | docs/nextjs/04-data-fetching.md |
 | Navigation | NEXT-023–025, 037, 061 | docs/nextjs/05-navigation.md |
 | API Routes & Server Actions | NEXT-026–028, 112–114, 122, 124–127 | docs/nextjs/06-api-actions.md |
 | SEO & Assets | NEXT-029–031 | docs/nextjs/07-seo-assets.md |
-| Infrastructure | NEXT-032–035, 134 | docs/nextjs/08-infra.md |
-| Pages Router | NEXT-050, 075, 082–101 | docs/nextjs/09-pages-router.md |
-| Config & Tooling | NEXT-038–039, 041–044, 049, 051–058, 060, 063 | docs/nextjs/10-config-tooling.md |
-| Styling | NEXT-045–047 | docs/nextjs/11-styling.md |
+| Infrastructure | NEXT-032–035, 134, 142 | docs/nextjs/08-infra.md |
+| Pages Router | NEXT-050, 075, 082–101, 138 | docs/nextjs/09-pages-router.md |
+| Config & Tooling | NEXT-038–039, 041–044, 049, 051–058, 060, 063, 137, 140, 141 | docs/nextjs/10-config-tooling.md |
+| Styling | NEXT-045–047, 136 | docs/nextjs/11-styling.md |
 | Scripts, SEO & Analytics | NEXT-062, 065, 068–069, 074 | docs/nextjs/12-scripts-seo.md |
 | Security | NEXT-070–072, 080–081, 104, 111, 123, 130 | docs/nextjs/13-security.md |
 | App Router Advanced | NEXT-040, 067, 102–103, 105–120, 131, 133 | docs/nextjs/14-app-router-advanced.md |
@@ -461,7 +472,7 @@ Please format the complete question-map.md file.
 | Integrations | NEXT-064, 128–129 | docs/nextjs/16-integrations.md |
 | Performance & Scale | NEXT-076–078 | docs/nextjs/16-performance.md |
 | Testing | NEXT-132 | docs/nextjs/17-testing.md |
-| **Next available** | **NEXT-135** | New section or extend existing |
+| **Next available** | **NEXT-145** | New section or extend existing |
 
 ---
 
@@ -476,7 +487,9 @@ New sources always follow: `sources/{technology}/{source-type}/{source-name}/`
 | react | github | `sudheerj-reactjs-interview-questions` | SDJ-001 |
 | nextjs | website | `greatfrontend` | GFE-NJS |
 | nextjs | github | `mrhrifat` | MRH-NJS |
-| react | youtube | `fireship-react-series` | (planned) |
+| react | youtube | `codedam-10-react-problems` | CDM-001 |
+| nextjs | youtube | `hindi-nextjs-15-questions` | YTH-NJS |
+| nextjs | youtube | `nextjs-interview-english` | YTE-NJS |
 | nextjs | website | `nextjs-official-docs` | (planned) |
 
 The source-name is the GitHub repo name (for GitHub sources) or a kebab-case slug of the site/title.

@@ -1,7 +1,7 @@
 # Next.js Knowledge Base
 
-> **Status:** Active — 134 canonical entries, NEXT-001 to NEXT-134.
-> **Sources:** GFE-NJS (35 entries), MRH-NJS (150 questions mapped, 99 new entries added)
+> **Status:** Active — 144 canonical entries, NEXT-001 to NEXT-144.
+> **Sources:** GFE-NJS (35 entries), MRH-NJS (150 questions mapped, 99 new entries), YTH-NJS (15 questions, 1 new entry), YTE-NJS (39 questions, 9 new entries)
 
 ---
 
@@ -9,17 +9,17 @@
 
 | File | IDs | Topics |
 |---|---|---|
-| [01-fundamentals.md](./01-fundamentals.md) | NEXT-001–010, 036, 079 | What is Next.js, App Router vs Pages Router, file-based routing, dynamic routes, loading/error/not-found, create project, full-stack |
+| [01-fundamentals.md](./01-fundamentals.md) | NEXT-001–010, 036, 079, 139, 143, 144 | What is Next.js, App Router vs Pages Router, file-based routing, dynamic routes, loading/error/not-found, create project, full-stack, Next.js vs CRA, alternatives, language |
 | [02-server-client.md](./02-server-client.md) | NEXT-011–014 | Server Components, Client Components, `"use client"` guidance, composition boundary rules |
-| [03-rendering.md](./03-rendering.md) | NEXT-015–018, 048 | SSR, SSG, CSR, ISR, static vs dynamic rendering, hydration, hydration errors, pre-rendering |
+| [03-rendering.md](./03-rendering.md) | NEXT-015–018, 048, 135 | SSR, SSG, CSR, ISR, static vs dynamic rendering, hydration, hydration errors, pre-rendering, SSR vs RSC comparison |
 | [04-data-fetching.md](./04-data-fetching.md) | NEXT-019–022 | `async/await` in Server Components, ISR, caching layers, `"use cache"` / `cacheLife` / `cacheTag` |
 | [05-navigation.md](./05-navigation.md) | NEXT-023–025, 037, 061 | `next/link`, `useRouter`, `redirect()`, push vs replace, singleton router |
 | [06-api-actions.md](./06-api-actions.md) | NEXT-026–028, 112–114, 122, 124–127 | Route Handlers, Server Actions, Server Action benefits/drawbacks, alternatives, API best practices |
 | [07-seo-assets.md](./07-seo-assets.md) | NEXT-029–031 | `generateMetadata`, `next/image`, `next/font` |
-| [08-infra.md](./08-infra.md) | NEXT-032–035, 134 | Middleware, environment variables, authentication, deployment, Edge vs Node runtime |
-| [09-pages-router.md](./09-pages-router.md) | NEXT-050, 075, 082–101 | Pages Router specifics, `_app`, `_document`, getStaticProps, getServerSideProps, getStaticPaths |
-| [10-config-tooling.md](./10-config-tooling.md) | NEXT-038–039, 041–044, 049, 051–058, 060, 063 | TypeScript, public folder, port, Fast Refresh, next.config.js, redirects, headers, Webpack, polyfills |
-| [11-styling.md](./11-styling.md) | NEXT-045–047 | CSS Modules, global CSS, Tailwind CSS |
+| [08-infra.md](./08-infra.md) | NEXT-032–035, 134, 142 | Middleware, environment variables, authentication, deployment, Edge vs Node runtime, nginx hosting |
+| [09-pages-router.md](./09-pages-router.md) | NEXT-050, 075, 082–101, 138 | Pages Router specifics, `_app`, `_document`, getStaticProps, getServerSideProps, getStaticPaths, context object |
+| [10-config-tooling.md](./10-config-tooling.md) | NEXT-038–039, 041–044, 049, 051–058, 060, 063, 137, 140, 141 | TypeScript, public folder, port, Fast Refresh, next.config.js, redirects, headers, Webpack, polyfills, scripts, build ID, CDN |
+| [11-styling.md](./11-styling.md) | NEXT-045–047, 136 | CSS Modules, global CSS, Tailwind CSS, styled-jsx |
 | [12-scripts-seo.md](./12-scripts-seo.md) | NEXT-062, 065, 068–069, 074 | `next/script` strategies, next-seo, Google Analytics, sitemaps, AMP |
 | [13-security.md](./13-security.md) | NEXT-070–072, 080–081, 104, 111, 123, 130 | CORS, cookies, security practices, JWT, auth tokens, authorization, input validation |
 | [14-app-router-advanced.md](./14-app-router-advanced.md) | NEXT-040, 067, 102–103, 105–110, 115–120, 131, 133 | next/dynamic, ssr:false, form handling, Auth.js, route groups, parallel/intercepting routes, streaming, optimistic UI |
@@ -168,8 +168,18 @@
 | NEXT-132 | How do you test Next.js App Router components? | 🟡 | MRH-NJS |
 | NEXT-133 | How do you implement optimistic UI with the App Router? | 🔴 | MRH-NJS |
 | NEXT-134 | How do you choose between Edge and Node.js runtimes? | 🔴 | MRH-NJS |
+| NEXT-135 | What is the difference between SSR (Pages Router) and React Server Components? | 🔴 | YTH-NJS |
+| NEXT-136 | What is styled-jsx in Next.js? | 🟢 | YTE-NJS |
+| NEXT-137 | What are the main scripts in a Next.js package.json? | 🟢 | YTE-NJS |
+| NEXT-138 | What properties does the context object have in getInitialProps? | 🟡 | YTE-NJS |
+| NEXT-139 | What is the difference between Next.js and Create React App? | 🟢 | YTE-NJS |
+| NEXT-140 | How do you configure the build ID in Next.js? | 🟡 | YTE-NJS |
+| NEXT-141 | How do you configure a CDN in Next.js? | 🟡 | YTE-NJS |
+| NEXT-142 | Can Next.js be hosted on nginx or traditional web servers? | 🟡 | YTE-NJS |
+| NEXT-143 | What are the competitors and alternatives to Next.js? | 🟢 | YTE-NJS |
+| NEXT-144 | In what language is Next.js written? | 🟢 | YTE-NJS |
 
-**134 entries — NEXT-001 to NEXT-134 — Next available: NEXT-135**
+**144 entries — NEXT-001 to NEXT-144 — Next available: NEXT-145**
 
 ---
 

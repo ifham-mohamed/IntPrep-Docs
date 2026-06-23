@@ -1,7 +1,7 @@
 # Master Index
 
 > Central navigation for the entire React Interview Preparation repository.
-> **284 React canonical entries (REACT-001–REACT-284) + 134 Next.js canonical entries (NEXT-001–NEXT-134)**, across 11 React + 18 Next.js topic files.
+> **288 React canonical entries (REACT-001–REACT-288) + 144 Next.js canonical entries (NEXT-001–NEXT-144)**, across 11 React + 18 Next.js topic files.
 
 ---
 
@@ -20,8 +20,9 @@
 | [React Native](#react-native) | REACT-136–139 | `docs/react/09-react-native.md` | 4 |
 | [Libraries](#libraries) | REACT-140–144, 262–267 | `docs/react/10-libraries.md` | 11 |
 | [Legacy Class Components](#legacy-class-components) | REACT-268–282 | `docs/react/11-legacy-class.md` | 15 |
-| [Libraries (GFE/SDJ extended)](#libraries-gfesdj-extended) | REACT-283 | `docs/react/10-libraries.md` | 1 |
-| [Advanced (GFE-002)](#advanced-gfe-002) | REACT-284 | `docs/react/03-advanced.md` | 1 |
+| [Libraries (GFE/SDJ extended)](#libraries-gfesdj-extended) | REACT-283, 285 | `docs/react/10-libraries.md` | 2 |
+| [Advanced (GFE-002 + YouTube)](#advanced-gfe-002--youtube) | REACT-284, 286, 288 | `docs/react/03-advanced.md` | 3 |
+| [Hooks (YouTube)](#hooks-youtube) | REACT-287 | `docs/react/02-hooks.md` | 1 |
 
 ---
 
@@ -389,6 +390,10 @@
 | REACT-282 | [Dynamic key in setState](../react/11-legacy-class.md#react-282) | 🟢 | 11-legacy-class.md |
 | REACT-283 | [Polymer in React](../react/10-libraries.md#react-283) | 🟡 | 10-libraries.md |
 | REACT-284 | [How to debug React applications](../react/03-advanced.md#react-284) | 🟡 | 03-advanced.md |
+| REACT-285 | [How do you use Immer for state updates in React?](../react/10-libraries.md#react-285) | 🟡 | 10-libraries.md |
+| REACT-286 | [How do you build a progress bar component?](../react/03-advanced.md#react-286) | 🟢 | 03-advanced.md |
+| REACT-287 | [How do you persist React state with localStorage?](../react/02-hooks.md#react-287) | 🟡 | 02-hooks.md |
+| REACT-288 | [How do you implement form validation in React?](../react/03-advanced.md#react-288) | 🟡 | 03-advanced.md |
 
 ---
 
@@ -423,8 +428,8 @@ Source archives: [`sources/react/website/greatfrontend/`](../../sources/react/we
 
 ## Next.js Knowledge Base — Quick Navigation
 
-> **134 entries — NEXT-001 to NEXT-134** | Next available: NEXT-135
-> Sources: GFE-NJS (35 questions), MRH-NJS (150 questions)
+> **144 entries — NEXT-001 to NEXT-144** | Next available: NEXT-145
+> Sources: GFE-NJS (35 questions), MRH-NJS (150 questions), YTH-NJS (15 questions), YTE-NJS (39 questions)
 
 ### Fundamentals & File Structure
 
@@ -442,6 +447,9 @@ Source archives: [`sources/react/website/greatfrontend/`](../../sources/react/we
 | NEXT-010 | [What is not-found.tsx and how do you trigger it?](../nextjs/01-fundamentals.md#next-010) | 🟢 | 01-fundamentals.md |
 | NEXT-036 | [How do you create a new Next.js project?](../nextjs/01-fundamentals.md#next-036) | 🟢 | 01-fundamentals.md |
 | NEXT-079 | [How is Next.js a full-stack framework?](../nextjs/01-fundamentals.md#next-079) | 🟢 | 01-fundamentals.md |
+| NEXT-139 | [What is the difference between Next.js and Create React App?](../nextjs/01-fundamentals.md#next-139) | 🟢 | 01-fundamentals.md |
+| NEXT-143 | [What are the competitors and alternatives to Next.js?](../nextjs/01-fundamentals.md#next-143) | 🟢 | 01-fundamentals.md |
+| NEXT-144 | [In what language is Next.js written?](../nextjs/01-fundamentals.md#next-144) | 🟢 | 01-fundamentals.md |
 
 ### Server & Client Components
 
@@ -461,6 +469,7 @@ Source archives: [`sources/react/website/greatfrontend/`](../../sources/react/we
 | NEXT-017 | [What is hydration in Next.js?](../nextjs/03-rendering.md#next-017) | 🟢 | 03-rendering.md |
 | NEXT-018 | [What causes hydration errors and how do you fix them?](../nextjs/03-rendering.md#next-018) | 🟡 | 03-rendering.md |
 | NEXT-048 | [What is pre-rendering in Next.js?](../nextjs/03-rendering.md#next-048) | 🟡 | 03-rendering.md |
+| NEXT-135 | [What is the difference between SSR (Pages Router) and React Server Components?](../nextjs/03-rendering.md#next-135) | 🔴 | 03-rendering.md |
 
 ### Data Fetching & Caching
 
@@ -514,6 +523,7 @@ Source archives: [`sources/react/website/greatfrontend/`](../../sources/react/we
 | NEXT-034 | [How do you handle authentication in a Next.js app?](../nextjs/08-infra.md#next-034) | 🟡 | 08-infra.md |
 | NEXT-035 | [How do you deploy a Next.js app?](../nextjs/08-infra.md#next-035) | 🟢 | 08-infra.md |
 | NEXT-134 | [How do you choose between Edge and Node.js runtimes?](../nextjs/08-infra.md#next-134) | 🔴 | 08-infra.md |
+| NEXT-142 | [Can Next.js be hosted on nginx or traditional web servers?](../nextjs/08-infra.md#next-142) | 🟡 | 08-infra.md |
 
 ### Pages Router
 
@@ -523,6 +533,7 @@ Source archives: [`sources/react/website/greatfrontend/`](../../sources/react/we
 | NEXT-075 | [What is the difference between pages and components directories?](../nextjs/09-pages-router.md#next-075) | 🟢 | 09-pages-router.md |
 | NEXT-082 | [How do you create a route in the Pages Router?](../nextjs/09-pages-router.md#next-082) | 🟢 | 09-pages-router.md |
 | NEXT-083–101 | [Pages Router deep-dives (_app, _document, getStaticProps, etc.)](../nextjs/09-pages-router.md) | 🟡 | 09-pages-router.md |
+| NEXT-138 | [What properties does the context object have in getInitialProps?](../nextjs/09-pages-router.md#next-138) | 🟡 | 09-pages-router.md |
 
 ### Config & Tooling
 
@@ -532,6 +543,9 @@ Source archives: [`sources/react/website/greatfrontend/`](../../sources/react/we
 | NEXT-041–044 | [Port, Fast Refresh, next.config.js, change port](../nextjs/10-config-tooling.md) | 🟢/🟡 | 10-config-tooling.md |
 | NEXT-049 | [How do you handle redirects?](../nextjs/10-config-tooling.md#next-049) | 🟢 | 10-config-tooling.md |
 | NEXT-051–063 | [Headers, next export, Webpack, Babel, polyfills, strict mode, custom server](../nextjs/10-config-tooling.md) | 🟡/🔴 | 10-config-tooling.md |
+| NEXT-137 | [What are the main scripts in a Next.js package.json?](../nextjs/10-config-tooling.md#next-137) | 🟢 | 10-config-tooling.md |
+| NEXT-140 | [How do you configure the build ID in Next.js?](../nextjs/10-config-tooling.md#next-140) | 🟡 | 10-config-tooling.md |
+| NEXT-141 | [How do you configure a CDN in Next.js?](../nextjs/10-config-tooling.md#next-141) | 🟡 | 10-config-tooling.md |
 
 ### Styling
 
@@ -540,6 +554,7 @@ Source archives: [`sources/react/website/greatfrontend/`](../../sources/react/we
 | NEXT-045 | [CSS Modules](../nextjs/11-styling.md#next-045) | 🟢 | 11-styling.md |
 | NEXT-046 | [Global CSS](../nextjs/11-styling.md#next-046) | 🟢 | 11-styling.md |
 | NEXT-047 | [Tailwind CSS in Next.js](../nextjs/11-styling.md#next-047) | 🟢 | 11-styling.md |
+| NEXT-136 | [What is styled-jsx in Next.js?](../nextjs/11-styling.md#next-136) | 🟢 | 11-styling.md |
 
 ### Scripts, SEO & Analytics
 
@@ -627,5 +642,7 @@ Source archives: [`sources/react/website/greatfrontend/`](../../sources/react/we
 |---|---|---|---|
 | GFE-NJS | [GreatFrontEnd — Next.js Interview Questions for Freshers](https://www.greatfrontend.com/blog/next-js-interview-questions-for-freshers) | 35 | NEXT-001–035 |
 | MRH-NJS | [mrhrifat — nextjs-interview-questions (GitHub)](https://github.com/mrhrifat/nextjs-interview-questions) | 150 | NEXT-001–035 (overlap) + NEXT-036–134 (new) |
+| YTH-NJS | [Hindi: 15 Next.js Interview Q&A (YouTube)](https://www.youtube.com/watch?v=Qyw1Q8BqGmM) | 15 | NEXT-001–020 (overlap) + NEXT-135 (new) |
+| YTE-NJS | [Next.js Interview Questions — English (YouTube)](https://www.youtube.com/watch?v=BYTh9UAVHdY) | 39 | various (overlap) + NEXT-136–144 (new) |
 
 Source archives: [`sources/nextjs/website/greatfrontend/`](../../sources/nextjs/website/greatfrontend/question-map.md) | [`sources/nextjs/github/mrhrifat/`](../../sources/nextjs/github/mrhrifat/question-map.md)
