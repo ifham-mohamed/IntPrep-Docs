@@ -377,3 +377,41 @@ Formik manages: field values, touched state, validation errors (via Yup or custo
 
 **Source:** [SudheerJ SDJ-223, SDJ-194](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
 
+
+---
+
+## REACT-283
+
+### How to use Polymer in React?
+
+Polymer was a web components library developed by Google (now largely superseded by Lit). Integrating Polymer elements into a React application requires wrapping them in a React component because React does not natively understand web component event semantics.
+
+```jsx
+import React, { useRef, useEffect } from 'react';
+// Assume the Polymer element is imported via its package
+// import '@polymer/paper-button/paper-button.js';
+
+function PolymerButton({ label, onClick }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    // Polymer elements fire custom DOM events — React synthetic
+    // events won't catch them, so attach natively
+    el.addEventListener('tap', onClick);
+    return () => el.removeEventListener('tap', onClick);
+  }, [onClick]);
+
+  return <paper-button ref={ref}>{label}</paper-button>;
+}
+```
+
+Key points:
+- Polymer elements are custom HTML elements — React renders them as unknown DOM elements, which works in modern browsers.
+- Custom events (`tap`, `iron-select`, etc.) must be attached imperatively with `addEventListener` inside `useEffect`, not via JSX props.
+- Properties (not attributes) must also be set via refs when dealing with complex objects.
+- **Recommendation:** Polymer is deprecated in favour of [Lit](https://lit.dev/). For new projects, prefer Lit or native web components + React wrapper patterns. React 19 improves web component interop natively.
+
+**Related:** [REACT-265 — React vs Vue.js](./10-libraries.md#react-265) | [REACT-266 — React vs Angular](./10-libraries.md#react-266)
+
+**Source:** [SudheerJ SDJ-146](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)

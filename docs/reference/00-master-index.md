@@ -1,7 +1,7 @@
 # Master Index
 
 > Central navigation for the entire React Interview Preparation repository.
-> **282 canonical entries, REACT-001 to REACT-282**, across 11 topic files.
+> **284 canonical entries, REACT-001 to REACT-284**, across 11 topic files.
 
 ---
 
@@ -20,6 +20,8 @@
 | [React Native](#react-native) | REACT-136–139 | `docs/react/09-react-native.md` | 4 |
 | [Libraries](#libraries) | REACT-140–144, 262–267 | `docs/react/10-libraries.md` | 11 |
 | [Legacy Class Components](#legacy-class-components) | REACT-268–282 | `docs/react/11-legacy-class.md` | 15 |
+| [Libraries (GFE/SDJ extended)](#libraries-gfesdj-extended) | REACT-283 | `docs/react/10-libraries.md` | 1 |
+| [Advanced (GFE-002)](#advanced-gfe-002) | REACT-284 | `docs/react/03-advanced.md` | 1 |
 
 ---
 
@@ -385,6 +387,8 @@
 | REACT-280 | [Class component method ordering](../react/11-legacy-class.md#react-280) | 🟢 | 11-legacy-class.md |
 | REACT-281 | [Old Context API (pre-16.3)](../react/11-legacy-class.md#react-281) | 🟡 | 11-legacy-class.md |
 | REACT-282 | [Dynamic key in setState](../react/11-legacy-class.md#react-282) | 🟢 | 11-legacy-class.md |
+| REACT-283 | [Polymer in React](../react/10-libraries.md#react-283) | 🟡 | 10-libraries.md |
+| REACT-284 | [How to debug React applications](../react/03-advanced.md#react-284) | 🟡 | 03-advanced.md |
 
 ---
 
@@ -406,7 +410,8 @@ REACT-011, 039, 043, 048, 054–056, 104–109, 125, 126, 128, 134, 202, 207, 21
 | Source ID | Title | Total Qs | Canonical IDs |
 |---|---|---|---|
 | GFE-001 | [GreatFrontEnd — 100 React Interview Questions](https://www.greatfrontend.com/blog/100-react-interview-questions-straight-from-ex-interviewers) | 110 | REACT-001–110 |
-| SDJ-001 | [SudheerJ — reactjs-interview-questions (GitHub)](https://github.com/sudheerj/reactjs-interview-questions) | 408 | REACT-001–023 (overlap) + REACT-111–282 (new) |
+| SDJ-001 | [SudheerJ — reactjs-interview-questions (GitHub)](https://github.com/sudheerj/reactjs-interview-questions) | 408 | REACT-001–023 (overlap) + REACT-111–283 (new) |
+| GFE-002 | [GreatFrontEnd — top-reactjs-interview-questions (GitHub)](https://github.com/greatfrontend/top-reactjs-interview-questions) | 50 | REACT-001–065 (overlap) + REACT-284 (new) |
 
 Source archives: [`sources/react/website/greatfrontend/`](../../sources/react/website/greatfrontend/react-100-questions.md) | [`sources/react/github/sudheerj-reactjs-interview-questions/`](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
 

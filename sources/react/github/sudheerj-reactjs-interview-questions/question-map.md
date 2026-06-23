@@ -29,11 +29,11 @@
 | SDJ # | Question | Canonical ID | Status |
 |---|---|---|---|
 | SDJ-001 | What is React? | [REACT-001](../../../../docs/react/01-fundamentals.md#react-001) | Mapped |
-| SDJ-002 | What is the history behind React evolution? | — | SDJ-exclusive |
+| SDJ-002 | What is the history behind React evolution? | [REACT-145](../../../../docs/react/01-fundamentals.md#react-145) | Mapped |
 | SDJ-003 | What are the major features of React? | [REACT-001](../../../../docs/react/01-fundamentals.md#react-001) | Mapped (merged) |
 | SDJ-004 | What is JSX? | [REACT-002](../../../../docs/react/01-fundamentals.md#react-002) | Mapped |
 | SDJ-005 | What is the difference between an Element and a Component? | [REACT-004](../../../../docs/react/01-fundamentals.md#react-004) | Mapped |
-| SDJ-006 | How to create components in React? | — | SDJ-exclusive |
+| SDJ-006 | How to create components in React? | [REACT-146](../../../../docs/react/01-fundamentals.md#react-146) | Mapped |
 | SDJ-007 | When to use a Class Component over a Function Component? | [REACT-010](../../../../docs/react/01-fundamentals.md#react-010) | Mapped |
 | SDJ-008 | What are Pure Components? | [REACT-016](../../../../docs/react/01-fundamentals.md#react-016) | Mapped |
 | SDJ-009 | What is state in React? | [REACT-008](../../../../docs/react/01-fundamentals.md#react-008) | Mapped |
@@ -41,7 +41,7 @@
 | SDJ-011 | What is the difference between state and props? | [REACT-008](../../../../docs/react/01-fundamentals.md#react-008) | Mapped |
 | SDJ-012 | What is the difference between HTML and React event handling? | [REACT-052](../../../../docs/react/03-advanced.md#react-052) | Mapped |
 | SDJ-013 | What are synthetic events in React? | [REACT-052](../../../../docs/react/03-advanced.md#react-052) | Mapped |
-| SDJ-014 | What are inline conditional expressions? | — | SDJ-exclusive |
+| SDJ-014 | What are inline conditional expressions? | [REACT-147](../../../../docs/react/01-fundamentals.md#react-147) | Mapped |
 | SDJ-015 | What is "key" prop and what is the benefit of using it? | [REACT-006](../../../../docs/react/01-fundamentals.md#react-006) | Mapped |
 | SDJ-016 | What is Virtual DOM? | [REACT-003](../../../../docs/react/01-fundamentals.md#react-003) | Mapped |
 | SDJ-017 | How Virtual DOM works? | [REACT-003](../../../../docs/react/01-fundamentals.md#react-003) | Mapped |
@@ -53,10 +53,10 @@
 | SDJ-023 | Difference between createElement and cloneElement? | [REACT-017](../../../../docs/react/01-fundamentals.md#react-017) | Mapped |
 | SDJ-024 | What is Lifting State Up in React? | [REACT-015](../../../../docs/react/01-fundamentals.md#react-015) | Mapped |
 | SDJ-025 | What are Higher-Order Components? | [REACT-059](../../../../docs/react/03-advanced.md#react-059) | Mapped |
-| SDJ-026 | What is children prop? | — | SDJ-exclusive |
-| SDJ-027 | How to write comments in React? | — | SDJ-exclusive |
+| SDJ-026 | What is children prop? | [REACT-148](../../../../docs/react/01-fundamentals.md#react-148) | Mapped |
+| SDJ-027 | How to write comments in React? | [REACT-149](../../../../docs/react/01-fundamentals.md#react-149) | Mapped |
 | SDJ-028 | What is reconciliation? | [REACT-012](../../../../docs/react/01-fundamentals.md#react-012) | Mapped |
-| SDJ-029 | Does the lazy function support named exports? | — | SDJ-exclusive |
+| SDJ-029 | Does the lazy function support named exports? | [REACT-150](../../../../docs/react/01-fundamentals.md#react-150) | Mapped |
 | SDJ-030 | Why React uses className over class attribute? | [REACT-002](../../../../docs/react/01-fundamentals.md#react-002) | Mapped (JSX rules) |
 | SDJ-031 | What are fragments? | [REACT-005](../../../../docs/react/01-fundamentals.md#react-005) | Mapped |
 | SDJ-032 | Why fragments are better than container divs? | [REACT-005](../../../../docs/react/01-fundamentals.md#react-005) | Mapped |
@@ -65,47 +65,47 @@
 | SDJ-035 | What are stateful components? | [REACT-020](../../../../docs/react/01-fundamentals.md#react-020) | Mapped |
 | SDJ-036 | How to apply validation on props in React? | [REACT-018](../../../../docs/react/01-fundamentals.md#react-018) | Mapped |
 | SDJ-037 | What are the advantages of React? | [REACT-001](../../../../docs/react/01-fundamentals.md#react-001) | Mapped |
-| SDJ-038 | What are the limitations of React? | — | SDJ-exclusive |
+| SDJ-038 | What are the limitations of React? | [REACT-151](../../../../docs/react/01-fundamentals.md#react-151) | Mapped |
 | SDJ-039 | Recommended ways for static type checking? | [REACT-021](../../../../docs/react/01-fundamentals.md#react-021) | Mapped |
-| SDJ-040 | What is the use of react-dom package? | — | SDJ-exclusive |
+| SDJ-040 | What is the use of react-dom package? | [REACT-152](../../../../docs/react/01-fundamentals.md#react-152) | Mapped |
 | SDJ-041 | What is ReactDOMServer? | [REACT-057](../../../../docs/react/03-advanced.md#react-057) | Mapped (SSR) |
-| SDJ-042 | How to use innerHTML in React? | — | SDJ-exclusive |
-| SDJ-043 | How to use styles in React? | — | SDJ-exclusive |
+| SDJ-042 | How to use innerHTML in React? | [REACT-153](../../../../docs/react/01-fundamentals.md#react-153) | Mapped |
+| SDJ-043 | How to use styles in React? | [REACT-154](../../../../docs/react/01-fundamentals.md#react-154) | Mapped |
 | SDJ-044 | How events are different in React? | [REACT-052](../../../../docs/react/03-advanced.md#react-052) | Mapped |
 | SDJ-045 | What is the impact of indexes as keys? | [REACT-007](../../../../docs/react/01-fundamentals.md#react-007) | Mapped |
-| SDJ-046 | How do you conditionally render components? | — | SDJ-exclusive |
-| SDJ-047 | Why be careful when spreading props on DOM elements? | — | SDJ-exclusive |
+| SDJ-046 | How do you conditionally render components? | [REACT-155](../../../../docs/react/01-fundamentals.md#react-155) | Mapped |
+| SDJ-047 | Why be careful when spreading props on DOM elements? | [REACT-156](../../../../docs/react/01-fundamentals.md#react-156) | Mapped |
 | SDJ-048 | How do you memoize a component? | [REACT-016](../../../../docs/react/01-fundamentals.md#react-016) | Mapped |
 | SDJ-049 | How you implement Server Side Rendering? | [REACT-057](../../../../docs/react/03-advanced.md#react-057) | Mapped |
-| SDJ-050 | How to enable production mode in React? | — | SDJ-exclusive |
+| SDJ-050 | How to enable production mode in React? | [REACT-157](../../../../docs/react/01-fundamentals.md#react-157) | Mapped |
 | SDJ-051 | Do Hooks replace render props and HOCs? | [REACT-061](../../../../docs/react/03-advanced.md#react-061) | Mapped |
-| SDJ-052 | What is a switching component? | — | SDJ-exclusive |
-| SDJ-053 | What are React Mixins? | — | SDJ-exclusive (legacy) |
-| SDJ-054 | What are the Pointer Events supported in React? | — | SDJ-exclusive |
+| SDJ-052 | What is a switching component? | [REACT-158](../../../../docs/react/01-fundamentals.md#react-158) | Mapped |
+| SDJ-053 | What are React Mixins? | [REACT-159](../../../../docs/react/01-fundamentals.md#react-159) | Mapped |
+| SDJ-054 | What are the Pointer Events supported in React? | [REACT-160](../../../../docs/react/01-fundamentals.md#react-160) | Mapped |
 | SDJ-055 | Why should component names start with capital letter? | [REACT-002](../../../../docs/react/01-fundamentals.md#react-002) | Mapped (JSX) |
-| SDJ-056 | Are custom DOM attributes supported in React v16? | — | SDJ-exclusive |
-| SDJ-057 | How to loop inside JSX? | — | SDJ-exclusive |
-| SDJ-058 | How do you access props in attribute quotes? | — | SDJ-exclusive |
+| SDJ-056 | Are custom DOM attributes supported in React v16? | [REACT-161](../../../../docs/react/01-fundamentals.md#react-161) | Mapped |
+| SDJ-057 | How to loop inside JSX? | [REACT-162](../../../../docs/react/01-fundamentals.md#react-162) | Mapped |
+| SDJ-058 | How do you access props in attribute quotes? | [REACT-163](../../../../docs/react/01-fundamentals.md#react-163) | Mapped |
 | SDJ-059 | What is React proptype array with shape? | [REACT-018](../../../../docs/react/01-fundamentals.md#react-018) | Mapped |
-| SDJ-060 | How to conditionally apply class attributes? | — | SDJ-exclusive |
-| SDJ-061 | Difference between React and ReactDOM? | — | SDJ-exclusive |
-| SDJ-062 | Why ReactDOM is separated from React? | — | SDJ-exclusive |
-| SDJ-063 | How to use React label element? | — | SDJ-exclusive |
-| SDJ-064 | How to combine multiple inline style objects? | — | SDJ-exclusive |
+| SDJ-060 | How to conditionally apply class attributes? | [REACT-164](../../../../docs/react/01-fundamentals.md#react-164) | Mapped |
+| SDJ-061 | Difference between React and ReactDOM? | [REACT-165](../../../../docs/react/01-fundamentals.md#react-165) | Mapped |
+| SDJ-062 | Why ReactDOM is separated from React? | [REACT-165](../../../../docs/react/01-fundamentals.md#react-165) | Mapped (merged) |
+| SDJ-063 | How to use React label element? | [REACT-166](../../../../docs/react/01-fundamentals.md#react-166) | Mapped |
+| SDJ-064 | How to combine multiple inline style objects? | [REACT-167](../../../../docs/react/01-fundamentals.md#react-167) | Mapped |
 | SDJ-065 | How to re-render the view when browser is resized? | [REACT-063](../../../../docs/react/03-advanced.md#react-063) | Mapped |
-| SDJ-066 | How to pretty print JSON with React? | — | SDJ-exclusive |
+| SDJ-066 | How to pretty print JSON with React? | [REACT-168](../../../../docs/react/01-fundamentals.md#react-168) | Mapped |
 | SDJ-067 | Why can't you update props in React? | [REACT-008](../../../../docs/react/01-fundamentals.md#react-008) | Mapped |
 | SDJ-068 | How to focus an input element on page load? | [REACT-027](../../../../docs/react/02-hooks.md#react-027) | Mapped (useRef) |
-| SDJ-069 | How to find React version at runtime? | — | SDJ-exclusive |
-| SDJ-070 | How to add Google Analytics for React Router? | — | SDJ-exclusive |
-| SDJ-071 | How to apply vendor prefixes to inline styles? | — | SDJ-exclusive |
-| SDJ-072 | How to import and export components using ES6? | — | SDJ-exclusive |
-| SDJ-073 | What are the exceptions on React component naming? | — | SDJ-exclusive |
-| SDJ-074 | Is it possible to use async/await in plain React? | — | SDJ-exclusive |
-| SDJ-075 | What are the common folder structures for React? | — | SDJ-exclusive |
-| SDJ-076 | What are the popular packages for animation? | — | SDJ-exclusive |
-| SDJ-077 | What is the benefit of styles modules? | — | SDJ-exclusive |
-| SDJ-078 | What are the popular React-specific linters? | — | SDJ-exclusive |
+| SDJ-069 | How to find React version at runtime? | [REACT-169](../../../../docs/react/01-fundamentals.md#react-169) | Mapped |
+| SDJ-070 | How to add Google Analytics for React Router? | [REACT-256](../../../../docs/react/04-routing.md#react-256) | Mapped |
+| SDJ-071 | How to apply vendor prefixes to inline styles? | [REACT-170](../../../../docs/react/01-fundamentals.md#react-170) | Mapped |
+| SDJ-072 | How to import and export components using ES6? | [REACT-171](../../../../docs/react/01-fundamentals.md#react-171) | Mapped |
+| SDJ-073 | What are the exceptions on React component naming? | [REACT-172](../../../../docs/react/01-fundamentals.md#react-172) | Mapped |
+| SDJ-074 | Is it possible to use async/await in plain React? | [REACT-173](../../../../docs/react/01-fundamentals.md#react-173) | Mapped |
+| SDJ-075 | What are the common folder structures for React? | [REACT-174](../../../../docs/react/01-fundamentals.md#react-174) | Mapped |
+| SDJ-076 | What are the popular packages for animation? | [REACT-175](../../../../docs/react/01-fundamentals.md#react-175) | Mapped |
+| SDJ-077 | What is the benefit of styles modules? | [REACT-176](../../../../docs/react/01-fundamentals.md#react-176) | Mapped |
+| SDJ-078 | What are the popular React-specific linters? | [REACT-177](../../../../docs/react/01-fundamentals.md#react-177) | Mapped |
 
 ---
 
@@ -119,7 +119,7 @@
 | SDJ-082 | Purpose of push() and replace() methods of history? | [REACT-072](../../../../docs/react/04-routing.md#react-072) | Mapped |
 | SDJ-083 | How to programmatically navigate using React Router? | [REACT-073](../../../../docs/react/04-routing.md#react-073) | Mapped |
 | SDJ-084 | How to get query parameters in React Router? | [REACT-077](../../../../docs/react/04-routing.md#react-077) | Mapped |
-| SDJ-085 | Why "Router may have only one child element" warning? | — | SDJ-exclusive |
+| SDJ-085 | Why "Router may have only one child element" warning? | [REACT-257](../../../../docs/react/04-routing.md#react-257) | Mapped |
 | SDJ-086 | How to pass params to history.push method? | [REACT-073](../../../../docs/react/04-routing.md#react-073) | Mapped |
 | SDJ-087 | How to implement default or NotFound page? | [REACT-076](../../../../docs/react/04-routing.md#react-076) | Mapped |
 | SDJ-088 | How to get history on React Router? | [REACT-070](../../../../docs/react/04-routing.md#react-070) | Mapped |
@@ -146,7 +146,7 @@
 |---|---|---|---|
 | SDJ-096 | What is Shallow Renderer in React testing? | [REACT-095](../../../../docs/react/06-testing.md#react-095) | Mapped |
 | SDJ-097 | What is TestRenderer package in React? | [REACT-100](../../../../docs/react/06-testing.md#react-100) | Mapped |
-| SDJ-098 | What is the purpose of ReactTestUtils package? | — | SDJ-exclusive |
+| SDJ-098 | What is the purpose of ReactTestUtils package? | [REACT-258](../../../../docs/react/06-testing.md#react-258) | Mapped |
 | SDJ-099 | What is Jest? | [REACT-088](../../../../docs/react/06-testing.md#react-088) | Mapped |
 | SDJ-100 | What are the advantages of Jest over Jasmine? | [REACT-088](../../../../docs/react/06-testing.md#react-088) | Mapped |
 | SDJ-101 | Give a simple example of Jest test case | [REACT-088](../../../../docs/react/06-testing.md#react-088) | Mapped |
@@ -165,7 +165,7 @@
 | SDJ-107 | Can I dispatch an action in reducer? | [REACT-115](../../../../docs/react/08-redux.md#react-115) | New |
 | SDJ-108 | How to access Redux store outside a component? | [REACT-116](../../../../docs/react/08-redux.md#react-116) | New |
 | SDJ-109 | What are the drawbacks of MVW pattern? | [REACT-113](../../../../docs/react/08-redux.md#react-113) | Mapped |
-| SDJ-110 | Are there any similarities between Redux and RxJS? | — | SDJ-exclusive |
+| SDJ-110 | Are there any similarities between Redux and RxJS? | [REACT-259](../../../../docs/react/08-redux.md#react-259) | Mapped |
 | SDJ-111 | How to reset state in Redux? | [REACT-117](../../../../docs/react/08-redux.md#react-117) | New |
 | SDJ-112 | Difference between React context and React Redux? | [REACT-118](../../../../docs/react/08-redux.md#react-118) | New |
 | SDJ-113 | Why are Redux state functions called reducers? | [REACT-119](../../../../docs/react/08-redux.md#react-119) | New |
@@ -212,13 +212,13 @@
 | SDJ-140 | What is reselect and how it works? | [REACT-140](../../../../docs/react/10-libraries.md#react-140) | New |
 | SDJ-141 | What is Flow? | [REACT-141](../../../../docs/react/10-libraries.md#react-141) | New |
 | SDJ-142 | Difference between Flow and PropTypes? | [REACT-142](../../../../docs/react/10-libraries.md#react-142) | New |
-| SDJ-143 | How to use Font Awesome icons in React? | — | SDJ-exclusive |
+| SDJ-143 | How to use Font Awesome icons in React? | [REACT-262](../../../../docs/react/10-libraries.md#react-262) | Mapped |
 | SDJ-144 | What is React Dev Tools? | [REACT-143](../../../../docs/react/10-libraries.md#react-143) | New |
-| SDJ-145 | Why is DevTools not loading in Chrome for local files? | — | SDJ-exclusive |
-| SDJ-146 | How to use Polymer in React? | — | SDJ-exclusive |
-| SDJ-147 | Advantages of React over Vue.js? | — | SDJ-exclusive |
-| SDJ-148 | Difference between React and Angular? | — | SDJ-exclusive |
-| SDJ-149 | Why React tab is not showing up in DevTools? | — | SDJ-exclusive |
+| SDJ-145 | Why is DevTools not loading in Chrome for local files? | [REACT-263](../../../../docs/react/10-libraries.md#react-263) | Mapped |
+| SDJ-146 | How to use Polymer in React? | [REACT-283](../../../../docs/react/10-libraries.md#react-283) | New |
+| SDJ-147 | Advantages of React over Vue.js? | [REACT-265](../../../../docs/react/10-libraries.md#react-265) | Mapped |
+| SDJ-148 | Difference between React and Angular? | [REACT-266](../../../../docs/react/10-libraries.md#react-266) | Mapped |
+| SDJ-149 | Why React tab is not showing up in DevTools? | [REACT-264](../../../../docs/react/10-libraries.md#react-264) | Mapped |
 | SDJ-150 | What are Styled Components? | [REACT-144](../../../../docs/react/10-libraries.md#react-144) | New |
 | SDJ-151 | Give an example of Styled Components? | [REACT-144](../../../../docs/react/10-libraries.md#react-144) | Mapped |
 | SDJ-152 | What is Relay? | [REACT-134](../../../../docs/react/08-redux.md#react-134) | Mapped |

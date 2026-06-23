@@ -15,6 +15,52 @@ There is no "source-only" bucket. The question map (`question-map.md`) is a mapp
 
 ---
 
+## Repository Structure (Current)
+
+```
+IntPrep-Docs/
+├── docs/
+│   ├── react/
+│   │   ├── master-index.md            (284 questions)
+│   │   ├── 01-fundamentals.md         REACT-001–023, 145–195
+│   │   ├── 02-hooks.md                REACT-024–034, 196–225
+│   │   ├── 03-advanced.md             REACT-035–065, 226–255, 284
+│   │   ├── 04-routing.md              REACT-066–079, 256–257
+│   │   ├── 05-i18n.md                 REACT-080–086
+│   │   ├── 06-testing.md              REACT-087–100, 258
+│   │   ├── 07-react19.md              REACT-101–110
+│   │   ├── 08-redux.md                REACT-111–135, 259–261
+│   │   ├── 09-react-native.md         REACT-136–139
+│   │   ├── 10-libraries.md            REACT-140–144, 262–267, 283
+│   │   └── 11-legacy-class.md         REACT-268–282
+│   └── reference/
+│       ├── 00-master-index.md
+│       ├── 01-question-registry.md
+│       ├── 02-source-library.md
+│       └── 03-visual-assets.md
+├── sources/
+│   └── react/
+│       ├── github/
+│       │   ├── greatfrontend-top-reactjs-interview-questions/
+│       │   │   └── question-map.md    (50 questions, GFE-002)
+│       │   └── sudheerj-reactjs-interview-questions/
+│       │       └── question-map.md    (408 questions, SDJ-001)
+│       └── website/
+│           └── greatfrontend/
+│               └── react-100-questions.md  (110 questions, GFE-001)
+└── playbooks/
+    ├── core-learning-path.md
+    ├── advanced-learning-path.md
+    └── perplexity-source-addition-prompts.md  ← this file
+```
+
+**Active sources:**
+- `GFE-001` — GreatFrontEnd blog article (110 questions, `sources/react/website/greatfrontend/`)
+- `GFE-002` — GreatFrontEnd GitHub repo (50 questions, `sources/react/github/greatfrontend-top-reactjs-interview-questions/`)
+- `SDJ-001` — SudheerJ GitHub repo (408 questions, `sources/react/github/sudheerj-reactjs-interview-questions/`)
+
+---
+
 ## Overview of the Process
 
 Adding a new source takes 5 phases:
@@ -22,7 +68,7 @@ Adding a new source takes 5 phases:
 1. **Discovery** — identify the source's questions and assess overlap with existing canonicals
 2. **Mapping** — map each source question to a canonical ID or assign a new ID
 3. **New canonicals** — write original canonical entries for every unmapped question
-4. **File updates** — update master index, source library, README
+4. **File updates** — update master index, source library, README, question registry
 5. **Cross-linking** — add source attribution to existing canonical entries
 
 ---
@@ -36,18 +82,25 @@ I'm building an interview preparation knowledge base for React.js.
 
 I have a source I'm considering adding: [SOURCE URL OR DESCRIPTION].
 
-My existing canonical question set covers REACT-001 through REACT-282 across these topics:
-- Fundamentals (JSX, Virtual DOM, props/state, reconciliation, Fiber) — REACT-001 to REACT-195
-- Hooks (useEffect, useRef, useCallback, useMemo, useReducer, useContext, custom hooks, advanced hooks) — REACT-024 to REACT-225
-- Advanced (re-rendering, error boundaries, Suspense, Portals, SSR, SSG, HOCs, composition, concurrent features, patterns) — REACT-035 to REACT-255
-- React Router v6 (dynamic routes, nested routes, navigation, guards, query params) — REACT-066 to REACT-257
-- i18n (react-intl, FormatJS) — REACT-080 to REACT-086
-- Testing (Jest, React Testing Library, MSW, renderHook, snapshots) — REACT-087 to REACT-258
-- React 19 (Actions, useActionState, useOptimistic, use(), Server Components, React Compiler) — REACT-101 to REACT-110
-- Redux (core principles, Thunk, Saga, selectors, DevTools, middleware, RTK) — REACT-111 to REACT-261
-- React Native (basics, testing, logging, debugging) — REACT-136 to REACT-139
-- Libraries (Reselect, Flow, Styled Components, React DevTools, Formik, Font Awesome, React vs Vue/Angular) — REACT-140 to REACT-267
-- Legacy Class Components (lifecycle, binding, getDerivedStateFromProps, string refs, etc.) — REACT-268 to REACT-282
+My existing canonical question set covers REACT-001 through REACT-284 across these topics:
+- Fundamentals (JSX, Virtual DOM, props/state, reconciliation, Fiber, inline conditions, comments,
+  switching components, mixins, pointer events, custom DOM attrs, vendor prefixes, folder structures,
+  CSS modules, linters, ES6 import/export) — REACT-001–023, 145–195
+- Hooks (useEffect, useRef, useCallback, useMemo, useReducer, useContext, custom hooks,
+  advanced hooks internals, hook rules, hook patterns) — REACT-024–034, 196–225
+- Advanced (re-rendering, error boundaries, Suspense, Portals, SSR, SSG, HOCs, composition,
+  concurrent features, patterns, MobX, windowing, debugging) — REACT-035–065, 226–255, 284
+- React Router v6 (dynamic routes, nested routes, navigation, guards, query params,
+  Google Analytics, legacy warnings) — REACT-066–079, 256–257
+- i18n (react-intl, FormatJS) — REACT-080–086
+- Testing (Jest, React Testing Library, MSW, renderHook, snapshots, ReactTestUtils) — REACT-087–100, 258
+- React 19 (Actions, useActionState, useOptimistic, use(), Server Components, React Compiler) — REACT-101–110
+- Redux (core principles, Thunk, Saga, selectors, DevTools, middleware, RTK, RxJS comparison) — REACT-111–135, 259–261
+- React Native (basics, testing, logging, debugging) — REACT-136–139
+- Libraries (Reselect, Flow, Styled Components, React DevTools, Formik, Font Awesome,
+  React vs Vue/Angular, Polymer) — REACT-140–144, 262–267, 283
+- Legacy Class Components (lifecycle, binding, getDerivedStateFromProps, string refs,
+  legacy context, forceUpdate, replaceState) — REACT-268–282
 
 Please analyze [SOURCE URL OR DESCRIPTION] and tell me:
 1. How many total questions does it contain?
@@ -70,16 +123,17 @@ I'm adding a new source to my React interview knowledge base. The source is:
 - Name: [SOURCE NAME]
 - URL: [SOURCE URL]
 - Type: [github repo / website article / YouTube video]
+- Source ID to assign: [e.g., YT-001 / RD-001 / GH-001]
 
 I need to create a question-map.md file that maps each source question to a canonical ID.
 
 CRITICAL RULE: Every question in the source must either:
 (a) Map to an existing canonical ID (if the topic is already covered)
-(b) Be assigned a new canonical ID starting from REACT-283 (if it's a new topic)
+(b) Be assigned a new canonical ID starting from REACT-285 (if it's a new topic)
 
 There is no "skip" or "ignore" option — every question gets a canonical home.
 
-My canonical ID system:
+My canonical ID system (current as of June 2026):
 - REACT-001 to REACT-023: Fundamentals (core)
 - REACT-024 to REACT-034: Hooks (core)
 - REACT-035 to REACT-065: Advanced patterns
@@ -98,13 +152,15 @@ My canonical ID system:
 - REACT-259 to REACT-261: Redux (extended, SDJ)
 - REACT-262 to REACT-267: Libraries (extended, SDJ)
 - REACT-268 to REACT-282: Legacy class components
-- Next available: REACT-283
+- REACT-283: Libraries (Polymer, SDJ)
+- REACT-284: Advanced (Debugging, GFE-002)
+- Next available: REACT-285
 
 For this source, please:
 1. List all questions in the source (paraphrased — do not copy verbatim).
 2. For each, identify the best matching canonical ID from my system above.
    - If a matching canonical exists: assign that ID and mark status as "Mapped"
-   - If no matching canonical exists: assign a new ID starting from REACT-283 and mark status as "New"
+   - If no matching canonical exists: assign a new ID starting from REACT-285 and mark status as "New"
 3. For "New" questions, group them by which category file they should go into.
 4. Tell me the total count: how many Mapped vs New.
 
@@ -124,6 +180,7 @@ I'm writing canonical interview preparation entries for a React knowledge base.
 
 Topic cluster: [TOPIC NAME, e.g. "React Performance Optimization"]
 Target file: [e.g. docs/react/03-advanced.md]
+Source: [Source ID and name, e.g. "GFE-002 — GreatFrontEnd top-reactjs-interview-questions"]
 Questions to cover:
 - [Question 1]
 - [Question 2]
@@ -141,7 +198,8 @@ For each question, write an original canonical entry following this exact format
 
 ### [Question as a heading]
 
-[Original answer in 150-300 words. Do NOT copy from any source. Write from first principles. Cover: what it is, why it matters, when to use it, key trade-offs.]
+[Original answer in 150-300 words. Do NOT copy from any source. Write from first principles.
+Cover: what it is, why it matters, when to use it, key trade-offs.]
 
 ```[language]
 // Code example showing the concept
@@ -150,7 +208,7 @@ For each question, write an original canonical entry following this exact format
 
 **Related:** [REACT-XXX — Related concept title](./relevant-file.md#react-xxx) | [REACT-YYY — Another related concept](./relevant-file.md#react-yyy)
 
-**Source:** [Source Name SDJ-NNN or GFE-NNN](../../sources/react/...)
+**Source:** [Source Name — Source-ID-NNN](../../sources/react/{type}/{source-name}/question-map.md)
 
 ---
 
@@ -166,42 +224,54 @@ Generate entries for ALL [N] questions above.
 
 ---
 
-## Phase 4 — Updating Index Files
+## Phase 4 — Updating Index and Reference Files
 
-**Use this when:** You've written the new canonical entries and need to update the master index and README.
+**Use this when:** You've written the new canonical entries and need to update all the index files.
 
 ```
 I've added new canonical React interview questions to my knowledge base. I need to update the index files.
 
 New entries added:
-[Paste your list of new IDs, titles, difficulties, and source names here. Example:
-- REACT-283 | What is React Query? | Intermediate | NewSource
-- REACT-284 | React Query vs SWR | Intermediate | NewSource
-- REACT-285 | Infinite queries with React Query | Advanced | NewSource
+[Paste your list, e.g.:
+- REACT-285 | What is React Query? | Intermediate | GFE-003
+- REACT-286 | React Query vs SWR | Intermediate | GFE-003
 ]
 
 Also updated existing canonicals (source credit added):
 [List any existing IDs that received a new Source attribution]
 
-I need:
+New source details:
+- Source ID: [e.g. GFE-003]
+- Source name: [e.g. GreatFrontEnd — React Query Deep Dive]
+- URL: [URL]
+- Type: [github / website / youtube]
+- Folder path: sources/react/{type}/{source-name}/
+- Total questions: [N]
+- Mapped: [X] | New: [Y]
 
-1. New rows for docs/react/master-index.md — the relevant section table:
-   Format: | [REACT-NNN](./NN-filename.md#react-nnn) | [Title] | 🟡 | [Source codes] |
+I need you to generate the content for these file updates:
 
-2. Updated header for docs/react/master-index.md:
-   "X entries, REACT-001 to REACT-NNN"
+1. **docs/react/master-index.md** — new rows for the relevant section table:
+   Format: | [REACT-NNN](./NN-filename.md#react-nnn) | [Title] | 🟡 | [Source ID] |
+   Also update the header: "X entries, REACT-001 to REACT-NNN"
 
-3. If a new section file was created (e.g., 12-react-query.md):
-   - New row for the Quick Navigation table
-   - New row for README.md's React Knowledge Base table
+2. **docs/reference/00-master-index.md** — new rows in the full table + Quick Navigation update + header count
 
-4. Update sources/react/[tech]/[type]/[name]/question-map.md:
-   - Change any rows that were "New" to "Mapped" with the assigned canonical ID
+3. **docs/reference/01-question-registry.md** — new rows:
+   Format: | REACT-NNN | [Title] | [Category] | 🟡 | [Source ID] | [Related IDs] |
+   Also update the header count.
 
-5. Update docs/reference/02-source-library.md:
-   - Updated question count for the source
+4. **docs/reference/02-source-library.md** — new source entry block:
+   Include: Source ID, title, author/publisher, URL, type, question count, canonical IDs, archive path,
+   and a coverage map table. Update "Next available" in the Adding a New Source section.
 
-Keep all output in copy-pasteable markdown blocks.
+5. **README.md** — new row in the Sources table, updated question count in header, updated
+   Knowledge Base table IDs, updated Repository Structure tree, updated footer line.
+
+6. **sources/react/{type}/{source-name}/question-map.md** — full file content using the standard template
+   (Overlap Summary + section tables with Mapped/New status for each question).
+
+Keep all output in copy-pasteable markdown blocks, one per file.
 ```
 
 ---
@@ -218,17 +288,17 @@ I need to add cross-references to these new entries in my existing canonical fil
 
 For each new entry, identify which EXISTING canonicals should link to it via their "Related:" section.
 
-My existing topic areas:
-- Fundamentals: REACT-001–023, REACT-145–195 (01-fundamentals.md)
-- Hooks: REACT-024–034, REACT-196–225 (02-hooks.md)
-- Advanced: REACT-035–065, REACT-226–255 (03-advanced.md)
-- Routing: REACT-066–079, REACT-256–257 (04-routing.md)
+My existing topic files (current as of June 2026):
+- Fundamentals: REACT-001–023, 145–195 (01-fundamentals.md)
+- Hooks: REACT-024–034, 196–225 (02-hooks.md)
+- Advanced: REACT-035–065, 226–255, 284 (03-advanced.md)
+- Routing: REACT-066–079, 256–257 (04-routing.md)
 - i18n: REACT-080–086 (05-i18n.md)
-- Testing: REACT-087–100, REACT-258 (06-testing.md)
+- Testing: REACT-087–100, 258 (06-testing.md)
 - React 19: REACT-101–110 (07-react19.md)
-- Redux: REACT-111–135, REACT-259–261 (08-redux.md)
+- Redux: REACT-111–135, 259–261 (08-redux.md)
 - React Native: REACT-136–139 (09-react-native.md)
-- Libraries: REACT-140–144, REACT-262–267 (10-libraries.md)
+- Libraries: REACT-140–144, 262–267, 283 (10-libraries.md)
 - Legacy Class: REACT-268–282 (11-legacy-class.md)
 
 For each relationship you identify, output:
@@ -241,28 +311,34 @@ Format as a markdown list grouped by file. Only include relationships where the 
 
 ---
 
-## Bonus — Generating Source Archive (question-map.md)
+## Bonus — Generating the question-map.md File
 
-**Use this when:** You want to generate the full `question-map.md` for a new source, combining Phase 2 output.
+**Use this when:** You want to generate the full `question-map.md` for a new source.
 
 ```
-I'm creating a source archive file (question-map.md) for a new source in my React interview knowledge base.
+I'm creating a question-map.md (source archive file) for a new source in my React interview knowledge base.
 
 Source details:
+- Source ID: [e.g. GFE-003]
 - Name: [SOURCE NAME]
 - Author/Publisher: [AUTHOR]
 - URL: [URL]
 - Type: [github / website / youtube]
 - Technology: React
+- Folder: sources/react/{type}/{source-name}/
 
-The file should follow this format:
+The file should follow this template exactly:
 
 # Source Archive — [Source Name]
 
 > **Source:** [URL]
-> **Author:** [AUTHOR]
-> **Questions extracted:** [N]
+> **Author/Publisher:** [AUTHOR]
+> **Technology:** React
 > **Source type:** [type]
+> **Questions extracted:** [N]
+> **Source ID:** [SOURCE-ID]
+
+---
 
 ## Overlap Summary
 
@@ -270,24 +346,36 @@ The file should follow this format:
 |---|---|
 | Mapped to existing canonical | X |
 | New canonical created | Y |
-| **Total** | N |
+| Source-only | 0 |
+| **Total** | **N** |
 
-## Section [Name] ([N] questions)
+> [One sentence describing what was mapped/created.]
 
-| # | Question (paraphrased) | Canonical ID | Status |
+---
+
+## Section: [Section Name] ([N] questions)
+
+| [Source abbreviation] # | Question | Canonical ID | Status |
 |---|---|---|---|
-| 1 | [question] | [REACT-NNN](path/to/file.md#react-nnn) | Mapped |
-| 2 | [question] | [REACT-NNN](path/to/file.md#react-nnn) | New |
+| 1 | [question paraphrased] | [REACT-NNN](../../../../docs/react/NN-filename.md#react-nnn) | Mapped |
+| 2 | [question paraphrased] | [REACT-NNN](../../../../docs/react/NN-filename.md#react-nnn) | New |
 
 ...repeat for each section...
 
 ---
 
-The mappings are:
-[Paste your full question-to-canonical mapping from Phase 2 here]
+*Source folder: `sources/react/{type}/{source-name}/`*
 
-Please format the full question-map.md file using the template above.
-Note: ALL questions must appear — whether Mapped or New. No question is skipped.
+Important rules:
+- ALL questions must appear — no question is skipped.
+- Status is either "Mapped", "Mapped (merged)" (two source Qs map to same canonical), or "New".
+- Links use relative path `../../../../docs/react/` from inside the source folder.
+- Source-only count must always be 0.
+
+The mappings from Phase 2 are:
+[Paste your full question-to-canonical mapping table here]
+
+Please format the complete question-map.md file.
 ```
 
 ---
@@ -296,25 +384,44 @@ Note: ALL questions must appear — whether Mapped or New. No question is skippe
 
 | Section | IDs | File |
 |---|---|---|
-| Fundamentals (core) | REACT-001 – 023 | docs/react/01-fundamentals.md |
-| Hooks (core) | REACT-024 – 034 | docs/react/02-hooks.md |
-| Advanced (core) | REACT-035 – 065 | docs/react/03-advanced.md |
-| Routing (core) | REACT-066 – 079 | docs/react/04-routing.md |
-| i18n | REACT-080 – 086 | docs/react/05-i18n.md |
-| Testing (core) | REACT-087 – 100 | docs/react/06-testing.md |
-| React 19 | REACT-101 – 110 | docs/react/07-react19.md |
-| Redux (core) | REACT-111 – 135 | docs/react/08-redux.md |
-| React Native | REACT-136 – 139 | docs/react/09-react-native.md |
-| Libraries (core) | REACT-140 – 144 | docs/react/10-libraries.md |
-| Fundamentals (SDJ extended) | REACT-145 – 195 | docs/react/01-fundamentals.md |
-| Hooks (SDJ extended) | REACT-196 – 225 | docs/react/02-hooks.md |
-| Advanced (SDJ extended) | REACT-226 – 255 | docs/react/03-advanced.md |
-| Routing (SDJ extended) | REACT-256 – 257 | docs/react/04-routing.md |
+| Fundamentals (core) | REACT-001–023 | docs/react/01-fundamentals.md |
+| Hooks (core) | REACT-024–034 | docs/react/02-hooks.md |
+| Advanced (core) | REACT-035–065 | docs/react/03-advanced.md |
+| Routing (core) | REACT-066–079 | docs/react/04-routing.md |
+| i18n | REACT-080–086 | docs/react/05-i18n.md |
+| Testing (core) | REACT-087–100 | docs/react/06-testing.md |
+| React 19 | REACT-101–110 | docs/react/07-react19.md |
+| Redux (core) | REACT-111–135 | docs/react/08-redux.md |
+| React Native | REACT-136–139 | docs/react/09-react-native.md |
+| Libraries (core) | REACT-140–144 | docs/react/10-libraries.md |
+| Fundamentals (SDJ extended) | REACT-145–195 | docs/react/01-fundamentals.md |
+| Hooks (SDJ extended) | REACT-196–225 | docs/react/02-hooks.md |
+| Advanced (SDJ extended) | REACT-226–255 | docs/react/03-advanced.md |
+| Routing (SDJ extended) | REACT-256–257 | docs/react/04-routing.md |
 | Testing (SDJ extended) | REACT-258 | docs/react/06-testing.md |
-| Redux (SDJ extended) | REACT-259 – 261 | docs/react/08-redux.md |
-| Libraries (SDJ extended) | REACT-262 – 267 | docs/react/10-libraries.md |
-| Legacy Class Components | REACT-268 – 282 | docs/react/11-legacy-class.md |
-| **Next available** | **REACT-283** | New section or extend existing |
+| Redux (SDJ extended) | REACT-259–261 | docs/react/08-redux.md |
+| Libraries (SDJ extended) | REACT-262–267 | docs/react/10-libraries.md |
+| Legacy Class Components | REACT-268–282 | docs/react/11-legacy-class.md |
+| Libraries (Polymer — SDJ) | REACT-283 | docs/react/10-libraries.md |
+| Advanced (Debugging — GFE-002) | REACT-284 | docs/react/03-advanced.md |
+| **Next available** | **REACT-285** | New section or extend existing |
+
+---
+
+## Source Folder Naming Convention
+
+New sources always follow: `sources/{technology}/{source-type}/{source-name}/`
+
+| Technology | Source type | Example source-name |
+|---|---|---|
+| react | website | `greatfrontend` |
+| react | github | `greatfrontend-top-reactjs-interview-questions` |
+| react | github | `sudheerj-reactjs-interview-questions` |
+| react | youtube | `fireship-react-series` |
+| nextjs | website | `nextjs-official-docs` |
+| react | website | `roadmapsh-react` |
+
+The source-name is the GitHub repo name (for GitHub sources) or a kebab-case slug of the site/title.
 
 ---
 

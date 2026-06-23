@@ -1,6 +1,6 @@
 # Question Registry
 
-> Complete metadata registry for all **282 canonical questions**, REACT-001 to REACT-282.
+> Complete metadata registry for all **284 canonical questions**, REACT-001 to REACT-284.
 
 ---
 
@@ -298,6 +298,8 @@ ID | Title | Category | Difficulty | Sources | Related IDs
 | REACT-280 | Class component method ordering? | Legacy Class | 🟢 | SDJ | 268 |
 | REACT-281 | Old Context API (pre-16.3)? | Legacy Class | 🟡 | SDJ | 033 |
 | REACT-282 | Dynamic key in setState? | Legacy Class | 🟢 | SDJ | 028, 248 |
+| REACT-283 | How to use Polymer in React? | Libraries | 🟡 | SDJ | 265, 266 |
+| REACT-284 | How to debug React applications? | Advanced | 🟡 | GFE-002 | 035, 037, 143 |
 
 ---
 

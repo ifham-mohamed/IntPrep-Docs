@@ -2486,3 +2486,50 @@ The best approach: write all **new** components as function components with hook
 
 **Source:** [SudheerJ SDJ-216, SDJ-218](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md)
 
+
+---
+
+## REACT-284
+
+### How do you debug React applications?
+
+React debugging combines browser DevTools, React-specific tooling, and code-level techniques to locate and fix issues in components, state, effects, and rendering.
+
+**1. React Developer Tools (browser extension)**
+- Inspect the component tree, view props/state at any node.
+- Use the Profiler tab to record renders and spot expensive re-renders.
+- "Highlight updates when components render" shows which components are re-rendering.
+
+**2. Console logging with useEffect**
+```jsx
+function MyComponent({ data }) {
+  useEffect(() => {
+    console.log('[MyComponent] data changed:', data);
+  }, [data]);
+
+  // Log during render (careful — runs on every render)
+  console.log('[MyComponent] render, state:', internalState);
+}
+```
+
+**3. React Error Boundaries**
+Wrap sections of the tree to catch render-time errors and display fallback UI with error details.
+
+**4. Strict Mode double-invoke**
+Wrap the app in `<React.StrictMode>` to surface effects that run unexpectedly or state mutations — React intentionally double-invokes renders in development.
+
+**5. Breakpoints in browser DevTools**
+Set breakpoints in component functions or event handlers directly from the Sources tab. Source maps make this readable when using Create React App / Vite.
+
+**6. Why Did You Render library**
+```bash
+npm install @welldone-software/why-did-you-render
+```
+Patches React to log when a component re-renders with identical props — pinpoints unnecessary renders.
+
+**7. Network tab**
+Inspect API calls made from `useEffect` or event handlers — check payloads, status codes, timing.
+
+**Related:** [REACT-035 — What does re-rendering mean](./03-advanced.md#react-035) | [REACT-037 — Error Boundaries](./03-advanced.md#react-037) | [REACT-143 — React DevTools](./10-libraries.md#react-143)
+
+**Source:** [GreatFrontEnd top-reactjs-interview-questions](../../sources/react/github/greatfrontend-top-reactjs-interview-questions/question-map.md)

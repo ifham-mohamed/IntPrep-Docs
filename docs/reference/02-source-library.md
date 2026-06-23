@@ -48,7 +48,7 @@ Sources are stored under `sources/{technology}/{source-type}/{source-name}/`.
 | **Technology** | React |
 | **Source type** | GitHub repository |
 | **Total questions** | 408 |
-| **New canonical IDs created** | REACT-111 – REACT-282 (172 new) |
+| **New canonical IDs created** | REACT-111 – REACT-283 (173 new) |
 | **Mapped to existing IDs** | ~85 questions (cross-referenced to GFE canonicals) |
 | **All questions canonicalized** | Yes — every SDJ question maps to a canonical entry |
 | **Archive file** | [sources/react/github/sudheerj-reactjs-interview-questions/question-map.md](../../sources/react/github/sudheerj-reactjs-interview-questions/question-map.md) |
@@ -63,10 +63,39 @@ Sources are stored under `sources/{technology}/{source-type}/{source-name}/`.
 | React Testing | 6 | REACT-088, 095, 100 (mapped) + REACT-258 (new) |
 | React Redux | 34 | REACT-111–135 (new) + REACT-259–261 (new extended) |
 | React Native | 4 | REACT-136–139 (new) |
-| Libraries & Integration | 13 | REACT-140–144 (new) + REACT-262–267 (new extended) |
+| Libraries & Integration | 13 | REACT-140–144 (new) + REACT-262–267, 283 (new extended) |
 | Hooks (miscellaneous/extended) | — | REACT-196–225 (new) |
 | Advanced (miscellaneous/extended) | — | REACT-226–255 (new) |
 | Old Q&A | 89 | REACT-268–282 (new — legacy class components) |
+
+---
+
+### GFE-002 — GreatFrontEnd: Top React Interview Questions (GitHub)
+
+| Field | Value |
+|---|---|
+| **Source ID** | GFE-002 |
+| **Title** | top-reactjs-interview-questions |
+| **Publisher** | GreatFrontEnd |
+| **GitHub** | https://github.com/greatfrontend/top-reactjs-interview-questions |
+| **Technology** | React |
+| **Source type** | GitHub repository |
+| **Total questions** | 50 |
+| **New canonical IDs created** | REACT-284 (1 new) |
+| **Mapped to existing IDs** | 49 questions (cross-referenced to GFE-001 / SDJ canonicals) |
+| **All questions canonicalized** | Yes — every GFE-002 question maps to a canonical entry |
+| **Archive file** | [sources/react/github/greatfrontend-top-reactjs-interview-questions/question-map.md](../../sources/react/github/greatfrontend-top-reactjs-interview-questions/question-map.md) |
+
+**Coverage map:**
+
+| GFE-002 Section | Questions | Canonical IDs |
+|---|---|---|
+| Basics | Q1–Q8 | REACT-001, 002, 004, 006, 007, 008, 014, 046 |
+| Hooks | Q9–Q18 | REACT-023–032 |
+| Intermediate | Q19–Q25 | REACT-005, 022, 035, 036, 037, 087, 189 |
+| Advanced | Q26–Q32 | REACT-038–043, 080, 284 (new) |
+| Patterns | Q33–Q44 | REACT-044–048, 057–065 |
+| Internals | Q45–Q50 | REACT-003, 011, 012, 038, 049 |
 
 ---
 
@@ -79,7 +108,7 @@ When adding questions from a new source, follow this process:
 1. **Assign a Source ID** — format: `ABBREV-NNN` (e.g., `YT-001` for YouTube, `RD-001` for Roadmap.sh).
 2. **Create source directory** — `sources/{technology}/{source-type}/{source-name}/`.
 3. **Create a question-map.md** — map EVERY source question to either an existing canonical ID or a new one.
-4. **For new canonicals** — assign next available ID (currently REACT-283), write original answer in the correct doc file.
+4. **For new canonicals** — assign next available ID (currently REACT-285), write original answer in the correct doc file.
 5. **Update this Source Library** — add the new source entry and coverage map.
 6. **Update [docs/react/master-index.md](../react/master-index.md)** — add new ID rows.
 7. **Update [docs/reference/00-master-index.md](./00-master-index.md)** — add new rows.

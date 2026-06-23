@@ -1,6 +1,6 @@
 # React Knowledge Base — Master Index
 
-> All canonical React questions across all sources. **282 entries, REACT-001 to REACT-282.**
+> All canonical React questions across all sources. **284 entries, REACT-001 to REACT-284.**
 
 ---
 
@@ -358,6 +358,7 @@
 | [REACT-265](./10-libraries.md#react-265) | React vs Vue.js | 🟡 | SDJ |
 | [REACT-266](./10-libraries.md#react-266) | React vs Angular | 🟡 | SDJ |
 | [REACT-267](./10-libraries.md#react-267) | Formik | 🟡 | SDJ |
+| [REACT-283](./10-libraries.md#react-283) | Polymer in React | 🟡 | SDJ |
 
 ---
 
@@ -380,6 +381,14 @@
 | [REACT-280](./11-legacy-class.md#react-280) | Class component method ordering | 🟢 | SDJ |
 | [REACT-281](./11-legacy-class.md#react-281) | Old Context API (pre-16.3) | 🟡 | SDJ |
 | [REACT-282](./11-legacy-class.md#react-282) | Dynamic key in setState | 🟢 | SDJ |
+
+---
+
+## Advanced (Debug / GFE-002)
+
+| ID | Title | Difficulty | Sources |
+|---|---|---|---|
+| [REACT-284](./03-advanced.md#react-284) | How to debug React applications | 🟡 | GFE-002 |
 
 ---
 
