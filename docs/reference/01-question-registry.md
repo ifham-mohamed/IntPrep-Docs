@@ -1,6 +1,6 @@
 # Question Registry
 
-> Complete metadata registry for all **284 canonical questions**, REACT-001 to REACT-284.
+> Complete metadata registry for all **418 canonical questions**: 284 React (REACT-001–REACT-284) + 134 Next.js (NEXT-001–NEXT-134).
 
 ---
 
@@ -303,4 +303,144 @@ ID | Title | Category | Difficulty | Sources | Related IDs
 
 ---
 
-*← [Master Index](./00-master-index.md) | [Source Library →](./02-source-library.md)*
+*← [Master Index](./00-master-index.md) |
+---
+
+## Next.js Question Registry
+
+| ID | Title | Category | Difficulty | Source | Related Docs |
+|---|---|---|---|---|---|
+| NEXT-001 | What is Next.js and what does it add on top of React? | Fundamentals | 🟢 | GFE-NJS | 01 |
+| NEXT-002 | How is Next.js different from a plain React (Vite) app? | Fundamentals | 🟢 | GFE-NJS | 01 |
+| NEXT-003 | What is the App Router and how does it differ from the Pages Router? | Fundamentals | 🟢 | GFE-NJS, MRH-NJS | 01 |
+| NEXT-004 | What is file-based routing in Next.js? | Fundamentals | 🟢 | GFE-NJS | 01 |
+| NEXT-005 | What is the difference between page.tsx, layout.tsx, and template.tsx? | Fundamentals | 🟡 | GFE-NJS | 01 |
+| NEXT-006 | What are dynamic routes and how do you define them? | Fundamentals | 🟢 | GFE-NJS, MRH-NJS | 01 |
+| NEXT-007 | What is generateStaticParams()? | Fundamentals | 🟡 | GFE-NJS | 01 |
+| NEXT-008 | What is loading.tsx and how does it relate to streaming? | Fundamentals | 🟡 | GFE-NJS | 01 |
+| NEXT-009 | What is error.tsx and why must it be a Client Component? | Fundamentals | 🟡 | GFE-NJS | 01 |
+| NEXT-010 | What is not-found.tsx and how do you trigger it? | Fundamentals | 🟢 | GFE-NJS | 01 |
+| NEXT-011 | What are Server Components and what can't they do? | Server/Client | 🟢 | GFE-NJS, MRH-NJS | 02 |
+| NEXT-012 | What are Client Components and when do you use "use client"? | Server/Client | 🟢 | GFE-NJS, MRH-NJS | 02 |
+| NEXT-013 | When should you use "use client" and what are the downsides? | Server/Client | 🟡 | GFE-NJS | 02 |
+| NEXT-014 | Can a Server Component import a Client Component, and vice versa? | Server/Client | 🟡 | GFE-NJS | 02 |
+| NEXT-015 | What is the difference between SSR, SSG, CSR, and ISR? | Rendering | 🟡 | GFE-NJS | 03 |
+| NEXT-016 | What is the difference between static rendering and dynamic rendering? | Rendering | 🟡 | GFE-NJS | 03 |
+| NEXT-017 | What is hydration in Next.js? | Rendering | 🟢 | GFE-NJS | 03 |
+| NEXT-018 | What causes hydration errors and how do you fix them? | Rendering | 🟡 | GFE-NJS | 03 |
+| NEXT-019 | How do you fetch data in the App Router? | Data Fetching | 🟢 | GFE-NJS, MRH-NJS | 04 |
+| NEXT-020 | What is Incremental Static Regeneration (ISR)? | Data Fetching | 🟡 | GFE-NJS | 04 |
+| NEXT-021 | How does caching work in Next.js at a high level? | Data Fetching | 🔴 | GFE-NJS | 04 |
+| NEXT-022 | What are the new Cache APIs ("use cache", cacheLife, cacheTag)? | Data Fetching | 🔴 | GFE-NJS | 04 |
+| NEXT-023 | What is next/link used for? | Navigation | 🟢 | GFE-NJS | 05 |
+| NEXT-024 | What is useRouter() in the App Router? | Navigation | 🟡 | GFE-NJS | 05 |
+| NEXT-025 | What is the difference between redirect() and client-side navigation? | Navigation | 🟡 | GFE-NJS | 05 |
+| NEXT-026 | What are Route Handlers in the App Router? | API/Actions | 🟢 | GFE-NJS | 06 |
+| NEXT-027 | What are Server Functions and Server Actions? | API/Actions | 🟡 | GFE-NJS | 06 |
+| NEXT-028 | What is the difference between a Route Handler and a Server Action? | API/Actions | 🟡 | GFE-NJS | 06 |
+| NEXT-029 | How do you add metadata for SEO in the App Router? | SEO/Assets | 🟢 | GFE-NJS | 07 |
+| NEXT-030 | What is next/image and why does it matter for performance? | SEO/Assets | 🟡 | GFE-NJS | 07 |
+| NEXT-031 | What is next/font and why use it? | SEO/Assets | 🟡 | GFE-NJS | 07 |
+| NEXT-032 | What is Middleware in Next.js? | Infrastructure | 🟡 | GFE-NJS, MRH-NJS | 08 |
+| NEXT-033 | How do environment variables work in Next.js? | Infrastructure | 🟢 | GFE-NJS | 08 |
+| NEXT-034 | How do you handle authentication in a Next.js app? | Infrastructure | 🟡 | GFE-NJS, MRH-NJS | 08 |
+| NEXT-035 | How do you deploy a Next.js app? | Infrastructure | 🟢 | GFE-NJS | 08 |
+| NEXT-036 | How do you create a new Next.js project? | Fundamentals | 🟢 | MRH-NJS | 01 |
+| NEXT-037 | What is the difference between push and replace in useRouter? | Navigation | 🟢 | MRH-NJS | 05 |
+| NEXT-038 | How do you enable TypeScript in a Next.js project? | Config/Tooling | 🟢 | MRH-NJS | 10 |
+| NEXT-039 | What is the public folder in Next.js? | Config/Tooling | 🟢 | MRH-NJS | 10 |
+| NEXT-040 | What is next/dynamic and when do you use it? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-041 | What is the default port for a Next.js app? | Config/Tooling | 🟢 | MRH-NJS | 10 |
+| NEXT-042 | How do you change the default port? | Config/Tooling | 🟢 | MRH-NJS | 10 |
+| NEXT-043 | What is Fast Refresh in Next.js? | Config/Tooling | 🟢 | MRH-NJS | 10 |
+| NEXT-044 | What is next.config.js? | Config/Tooling | 🟢 | MRH-NJS | 10 |
+| NEXT-045 | How do you add component-level CSS in Next.js? | Styling | 🟢 | MRH-NJS | 11 |
+| NEXT-046 | How do you add global CSS in Next.js? | Styling | 🟢 | MRH-NJS | 11 |
+| NEXT-047 | How do you use Tailwind CSS in Next.js? | Styling | 🟢 | MRH-NJS | 11 |
+| NEXT-048 | What is pre-rendering in Next.js? | Rendering | 🟡 | MRH-NJS | 03 |
+| NEXT-049 | How do you handle redirects in Next.js? | Config/Tooling | 🟢 | MRH-NJS | 10 |
+| NEXT-050 | What is the Head component (next/head)? | Pages Router | 🟢 | MRH-NJS | 09 |
+| NEXT-051 | How do you add custom headers in Next.js? | Config/Tooling | 🟡 | MRH-NJS | 10 |
+| NEXT-052 | What is the use of the next export command? | Config/Tooling | 🟡 | MRH-NJS | 10 |
+| NEXT-053 | How do you configure Webpack in Next.js? | Config/Tooling | 🟡 | MRH-NJS | 10 |
+| NEXT-054 | How do you configure a custom Babel setup? | Config/Tooling | 🟡 | MRH-NJS | 10 |
+| NEXT-055 | What is the purpose of next-env.d.ts? | Config/Tooling | 🟢 | MRH-NJS | 10 |
+| NEXT-056 | What is the purpose of next-compose-plugins? | Config/Tooling | 🟡 | MRH-NJS | 10 |
+| NEXT-057 | How do you add polyfills in Next.js? | Config/Tooling | 🟡 | MRH-NJS | 10 |
+| NEXT-058 | What is static optimization in Next.js? | Config/Tooling | 🟡 | MRH-NJS | 10 |
+| NEXT-059 | How do you handle i18n in Next.js? | i18n | 🟡 | MRH-NJS | 15 |
+| NEXT-060 | What is React Strict Mode in Next.js? | Config/Tooling | 🟢 | MRH-NJS | 10 |
+| NEXT-061 | What is a singleton router in Next.js? | Navigation | 🟡 | MRH-NJS | 05 |
+| NEXT-062 | What is next/script used for? | Scripts/SEO | 🟡 | MRH-NJS | 12 |
+| NEXT-063 | What is a custom server in Next.js? | Config/Tooling | 🔴 | MRH-NJS | 10 |
+| NEXT-064 | How do you set up GraphQL in Next.js? | Integrations | 🟡 | MRH-NJS | 16-integrations |
+| NEXT-065 | What is the use of next-seo? | Scripts/SEO | 🟡 | MRH-NJS | 12 |
+| NEXT-066 | How do you configure next-i18next? | i18n | 🟡 | MRH-NJS | 15 |
+| NEXT-067 | What does ssr:false mean in next/dynamic? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-068 | How do you add Google Analytics? | Scripts/SEO | 🟡 | MRH-NJS | 12 |
+| NEXT-069 | How do you add a sitemap? | Scripts/SEO | 🟡 | MRH-NJS | 12 |
+| NEXT-070 | How do you handle CORS in Route Handlers? | Security | 🟡 | MRH-NJS | 13 |
+| NEXT-071 | How do you manage cookies in Next.js? | Security | 🟡 | MRH-NJS | 13 |
+| NEXT-072 | How do you secure a Next.js App Router application? | Security | 🟡 | MRH-NJS | 13 |
+| NEXT-073 | What is the useTranslation hook? | i18n | 🟢 | MRH-NJS | 15 |
+| NEXT-074 | What is AMP in Next.js? | Scripts/SEO | 🟡 | MRH-NJS | 12 |
+| NEXT-075 | Difference between pages and components directories? | Pages Router | 🟢 | MRH-NJS | 09 |
+| NEXT-076 | Common performance optimization techniques | Performance | 🟡 | MRH-NJS | 16-performance |
+| NEXT-077 | What are the limitations of Next.js? | Performance | 🟡 | MRH-NJS | 16-performance |
+| NEXT-078 | Is Next.js suitable for large-scale applications? | Performance | 🟡 | MRH-NJS | 16-performance |
+| NEXT-079 | How is Next.js a full-stack framework? | Fundamentals | 🟢 | MRH-NJS | 01 |
+| NEXT-080 | How do you prevent direct API route access? | Security | 🟡 | MRH-NJS | 13 |
+| NEXT-081 | How do you use JWT tokens in Next.js? | Security | 🟡 | MRH-NJS | 13 |
+| NEXT-082 | How do you create a route in the Pages Router? | Pages Router | 🟢 | MRH-NJS | 09 |
+| NEXT-083 | What is a catch-all segment? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-084 | What is the _app.js file? | Pages Router | 🟢 | MRH-NJS | 09 |
+| NEXT-085 | What is the _document.js file? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-086 | Difference between _app.js and _document.js? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-087 | What is the _error.js file? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-088 | How do you create a 404 page in the Pages Router? | Pages Router | 🟢 | MRH-NJS | 09 |
+| NEXT-089 | How do you fetch data in a Pages Router page? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-090 | What is getStaticProps? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-091 | What is getServerSideProps? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-092 | Difference between getStaticProps and getServerSideProps? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-093 | What is getStaticPaths? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-094 | What is fallback in getStaticPaths? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-095 | How do you handle API routes in the Pages Router? | Pages Router | 🟢 | MRH-NJS | 09 |
+| NEXT-096 | What are the limitations of the Pages Router? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-097 | How do you handle form submissions in the Pages Router? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-098 | Performance optimizations in the Pages Router? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-099 | How do you handle i18n in the Pages Router? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-100 | How does caching work in the Pages Router? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-101 | When to choose Pages Router vs App Router? | Pages Router | 🟡 | MRH-NJS | 09 |
+| NEXT-102 | How do you handle form submissions in the App Router? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-103 | How do you add Auth.js to the Next.js App Router? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-104 | How do you handle authentication tokens? | Security | 🟡 | MRH-NJS | 13 |
+| NEXT-105 | How do you add a credentials provider with Auth.js? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-106 | Difference between using and not using "use server" | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-107 | How do you handle file uploads in Next.js? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-108 | Common use cases for the Next.js App Router | App Router Adv | 🟢 | MRH-NJS | 14 |
+| NEXT-109 | Can you use both App Router and Pages Router? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-110 | What are the limitations of the App Router? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-111 | How do you handle authorization in middleware? | Security | 🔴 | MRH-NJS | 13 |
+| NEXT-112 | What are the benefits of Server Actions? | API/Actions | 🟡 | MRH-NJS | 06 |
+| NEXT-113 | What are the drawbacks of Server Actions? | API/Actions | 🟡 | MRH-NJS | 06 |
+| NEXT-114 | What are the alternatives to Server Actions? | API/Actions | 🟡 | MRH-NJS | 06 |
+| NEXT-115 | How do you handle global state management in the App Router? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-116 | What are route groups? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-117 | What are parallel routes? | App Router Adv | 🔴 | MRH-NJS | 14 |
+| NEXT-118 | What are intercepting routes? | App Router Adv | 🔴 | MRH-NJS | 14 |
+| NEXT-119 | How do you implement nested layouts? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-120 | How do you handle streaming and Suspense? | App Router Adv | 🟡 | MRH-NJS | 14 |
+| NEXT-121 | How do you handle i18n in the App Router? | i18n | 🟡 | MRH-NJS | 15 |
+| NEXT-122 | Best practices for Next.js API routes | API/Actions | 🟡 | MRH-NJS | 06 |
+| NEXT-123 | How do you validate and sanitize input data? | Security | 🟡 | MRH-NJS | 13 |
+| NEXT-124 | How do you use proper HTTP methods in Route Handlers? | API/Actions | 🟢 | MRH-NJS | 06 |
+| NEXT-125 | How do you handle errors in Next.js API routes? | API/Actions | 🟡 | MRH-NJS | 06 |
+| NEXT-126 | How do you use middleware within Next.js API routes? | API/Actions | 🟡 | MRH-NJS | 06 |
+| NEXT-127 | How do you keep Next.js API routes modular? | API/Actions | 🟡 | MRH-NJS | 06 |
+| NEXT-128 | How do you use RTK Query with the App Router? | Integrations | 🔴 | MRH-NJS | 16-integrations |
+| NEXT-129 | How do you use Redux Toolkit with the App Router? | Integrations | 🔴 | MRH-NJS | 16-integrations |
+| NEXT-130 | How do you read and set cookies in the App Router? | Security | 🟡 | MRH-NJS | 13 |
+| NEXT-131 | How do you stream responses from a Route Handler? | App Router Adv | 🔴 | MRH-NJS | 14 |
+| NEXT-132 | How do you test Next.js App Router components? | Testing | 🟡 | MRH-NJS | 17 |
+| NEXT-133 | How do you implement optimistic UI? | App Router Adv | 🔴 | MRH-NJS | 14 |
+| NEXT-134 | How do you choose between Edge and Node.js runtimes? | Infrastructure | 🔴 | MRH-NJS | 08 |

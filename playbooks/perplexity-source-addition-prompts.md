@@ -33,31 +33,62 @@ IntPrep-Docs/
 │   │   ├── 09-react-native.md         REACT-136–139
 │   │   ├── 10-libraries.md            REACT-140–144, 262–267, 283
 │   │   └── 11-legacy-class.md         REACT-268–282
+│   ├── nextjs/
+│   │   ├── README.md                  (134 questions, NEXT-001–NEXT-134)
+│   │   ├── 01-fundamentals.md         NEXT-001–010, 036, 079
+│   │   ├── 02-server-client.md        NEXT-011–014
+│   │   ├── 03-rendering.md            NEXT-015–018, 048
+│   │   ├── 04-data-fetching.md        NEXT-019–022
+│   │   ├── 05-navigation.md           NEXT-023–025, 037, 061
+│   │   ├── 06-api-actions.md          NEXT-026–028, 112–114, 122, 124–127
+│   │   ├── 07-seo-assets.md           NEXT-029–031
+│   │   ├── 08-infra.md                NEXT-032–035, 134
+│   │   ├── 09-pages-router.md         NEXT-050, 075, 082–101
+│   │   ├── 10-config-tooling.md       NEXT-038–039, 041–044, 049, 051–058, 060, 063
+│   │   ├── 11-styling.md              NEXT-045–047
+│   │   ├── 12-scripts-seo.md          NEXT-062, 065, 068–069, 074
+│   │   ├── 13-security.md             NEXT-070–072, 080–081, 104, 111, 123, 130
+│   │   ├── 14-app-router-advanced.md  NEXT-040, 067, 102–103, 105–120, 131, 133
+│   │   ├── 15-i18n.md                 NEXT-059, 066, 073, 121
+│   │   ├── 16-integrations.md         NEXT-064, 128–129
+│   │   ├── 16-performance.md          NEXT-076–078
+│   │   └── 17-testing.md              NEXT-132
 │   └── reference/
-│       ├── 00-master-index.md
-│       ├── 01-question-registry.md
+│       ├── 00-master-index.md         (React + Next.js combined navigation)
+│       ├── 01-question-registry.md    (418 total: 284 React + 134 Next.js)
 │       ├── 02-source-library.md
 │       └── 03-visual-assets.md
 ├── sources/
-│   └── react/
+│   ├── react/
+│   │   ├── github/
+│   │   │   ├── greatfrontend-top-reactjs-interview-questions/
+│   │   │   │   └── question-map.md    (50 questions, GFE-002)
+│   │   │   └── sudheerj-reactjs-interview-questions/
+│   │   │       └── question-map.md    (408 questions, SDJ-001)
+│   │   └── website/
+│   │       └── greatfrontend/
+│   │           └── react-100-questions.md  (110 questions, GFE-001)
+│   └── nextjs/
 │       ├── github/
-│       │   ├── greatfrontend-top-reactjs-interview-questions/
-│       │   │   └── question-map.md    (50 questions, GFE-002)
-│       │   └── sudheerj-reactjs-interview-questions/
-│       │       └── question-map.md    (408 questions, SDJ-001)
+│       │   └── mrhrifat/
+│       │       └── question-map.md    (150 questions, MRH-NJS)
 │       └── website/
 │           └── greatfrontend/
-│               └── react-100-questions.md  (110 questions, GFE-001)
+│               └── question-map.md    (35 questions, GFE-NJS)
 └── playbooks/
     ├── core-learning-path.md
     ├── advanced-learning-path.md
     └── perplexity-source-addition-prompts.md  ← this file
 ```
 
-**Active sources:**
+**Active sources — React:**
 - `GFE-001` — GreatFrontEnd blog article (110 questions, `sources/react/website/greatfrontend/`)
 - `GFE-002` — GreatFrontEnd GitHub repo (50 questions, `sources/react/github/greatfrontend-top-reactjs-interview-questions/`)
 - `SDJ-001` — SudheerJ GitHub repo (408 questions, `sources/react/github/sudheerj-reactjs-interview-questions/`)
+
+**Active sources — Next.js:**
+- `GFE-NJS` — GreatFrontEnd blog article (35 questions, `sources/nextjs/website/greatfrontend/`)
+- `MRH-NJS` — mrhrifat GitHub repo (150 questions, `sources/nextjs/github/mrhrifat/`)
 
 ---
 
@@ -382,6 +413,8 @@ Please format the complete question-map.md file.
 
 ## Quick Reference — Current ID Ranges
 
+### React
+
 | Section | IDs | File |
 |---|---|---|
 | Fundamentals (core) | REACT-001–023 | docs/react/01-fundamentals.md |
@@ -406,20 +439,45 @@ Please format the complete question-map.md file.
 | Advanced (Debugging — GFE-002) | REACT-284 | docs/react/03-advanced.md |
 | **Next available** | **REACT-285** | New section or extend existing |
 
+### Next.js
+
+| Section | IDs | File |
+|---|---|---|
+| Fundamentals | NEXT-001–010, 036, 079 | docs/nextjs/01-fundamentals.md |
+| Server/Client Components | NEXT-011–014 | docs/nextjs/02-server-client.md |
+| Rendering | NEXT-015–018, 048 | docs/nextjs/03-rendering.md |
+| Data Fetching & Caching | NEXT-019–022 | docs/nextjs/04-data-fetching.md |
+| Navigation | NEXT-023–025, 037, 061 | docs/nextjs/05-navigation.md |
+| API Routes & Server Actions | NEXT-026–028, 112–114, 122, 124–127 | docs/nextjs/06-api-actions.md |
+| SEO & Assets | NEXT-029–031 | docs/nextjs/07-seo-assets.md |
+| Infrastructure | NEXT-032–035, 134 | docs/nextjs/08-infra.md |
+| Pages Router | NEXT-050, 075, 082–101 | docs/nextjs/09-pages-router.md |
+| Config & Tooling | NEXT-038–039, 041–044, 049, 051–058, 060, 063 | docs/nextjs/10-config-tooling.md |
+| Styling | NEXT-045–047 | docs/nextjs/11-styling.md |
+| Scripts, SEO & Analytics | NEXT-062, 065, 068–069, 074 | docs/nextjs/12-scripts-seo.md |
+| Security | NEXT-070–072, 080–081, 104, 111, 123, 130 | docs/nextjs/13-security.md |
+| App Router Advanced | NEXT-040, 067, 102–103, 105–120, 131, 133 | docs/nextjs/14-app-router-advanced.md |
+| i18n | NEXT-059, 066, 073, 121 | docs/nextjs/15-i18n.md |
+| Integrations | NEXT-064, 128–129 | docs/nextjs/16-integrations.md |
+| Performance & Scale | NEXT-076–078 | docs/nextjs/16-performance.md |
+| Testing | NEXT-132 | docs/nextjs/17-testing.md |
+| **Next available** | **NEXT-135** | New section or extend existing |
+
 ---
 
 ## Source Folder Naming Convention
 
 New sources always follow: `sources/{technology}/{source-type}/{source-name}/`
 
-| Technology | Source type | Example source-name |
-|---|---|---|
-| react | website | `greatfrontend` |
-| react | github | `greatfrontend-top-reactjs-interview-questions` |
-| react | github | `sudheerj-reactjs-interview-questions` |
-| react | youtube | `fireship-react-series` |
-| nextjs | website | `nextjs-official-docs` |
-| react | website | `roadmapsh-react` |
+| Technology | Source type | Example source-name | Source ID |
+|---|---|---|---|
+| react | website | `greatfrontend` | GFE-001 |
+| react | github | `greatfrontend-top-reactjs-interview-questions` | GFE-002 |
+| react | github | `sudheerj-reactjs-interview-questions` | SDJ-001 |
+| nextjs | website | `greatfrontend` | GFE-NJS |
+| nextjs | github | `mrhrifat` | MRH-NJS |
+| react | youtube | `fireship-react-series` | (planned) |
+| nextjs | website | `nextjs-official-docs` | (planned) |
 
 The source-name is the GitHub repo name (for GitHub sources) or a kebab-case slug of the site/title.
 

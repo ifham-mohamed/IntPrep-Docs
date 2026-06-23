@@ -1,7 +1,7 @@
 # Master Index
 
 > Central navigation for the entire React Interview Preparation repository.
-> **284 canonical entries, REACT-001 to REACT-284**, across 11 topic files.
+> **284 React canonical entries (REACT-001–REACT-284) + 134 Next.js canonical entries (NEXT-001–NEXT-134)**, across 11 React + 18 Next.js topic files.
 
 ---
 
@@ -418,3 +418,214 @@ Source archives: [`sources/react/website/greatfrontend/`](../../sources/react/we
 ---
 
 *See also: [React Master Index](../react/master-index.md) | [Question Registry](./01-question-registry.md) | [Source Library](./02-source-library.md)*
+
+---
+
+## Next.js Knowledge Base — Quick Navigation
+
+> **134 entries — NEXT-001 to NEXT-134** | Next available: NEXT-135
+> Sources: GFE-NJS (35 questions), MRH-NJS (150 questions)
+
+### Fundamentals & File Structure
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-001 | [What is Next.js and what does it add on top of React?](../nextjs/01-fundamentals.md#next-001) | 🟢 | 01-fundamentals.md |
+| NEXT-002 | [How is Next.js different from a plain React (Vite) app?](../nextjs/01-fundamentals.md#next-002) | 🟢 | 01-fundamentals.md |
+| NEXT-003 | [What is the App Router and how does it differ from the Pages Router?](../nextjs/01-fundamentals.md#next-003) | 🟢 | 01-fundamentals.md |
+| NEXT-004 | [What is file-based routing in Next.js?](../nextjs/01-fundamentals.md#next-004) | 🟢 | 01-fundamentals.md |
+| NEXT-005 | [What is the difference between page.tsx, layout.tsx, and template.tsx?](../nextjs/01-fundamentals.md#next-005) | 🟡 | 01-fundamentals.md |
+| NEXT-006 | [What are dynamic routes and how do you define them?](../nextjs/01-fundamentals.md#next-006) | 🟢 | 01-fundamentals.md |
+| NEXT-007 | [What is generateStaticParams()?](../nextjs/01-fundamentals.md#next-007) | 🟡 | 01-fundamentals.md |
+| NEXT-008 | [What is loading.tsx and how does it relate to streaming?](../nextjs/01-fundamentals.md#next-008) | 🟡 | 01-fundamentals.md |
+| NEXT-009 | [What is error.tsx and why must it be a Client Component?](../nextjs/01-fundamentals.md#next-009) | 🟡 | 01-fundamentals.md |
+| NEXT-010 | [What is not-found.tsx and how do you trigger it?](../nextjs/01-fundamentals.md#next-010) | 🟢 | 01-fundamentals.md |
+| NEXT-036 | [How do you create a new Next.js project?](../nextjs/01-fundamentals.md#next-036) | 🟢 | 01-fundamentals.md |
+| NEXT-079 | [How is Next.js a full-stack framework?](../nextjs/01-fundamentals.md#next-079) | 🟢 | 01-fundamentals.md |
+
+### Server & Client Components
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-011 | [What are Server Components and what can't they do?](../nextjs/02-server-client.md#next-011) | 🟢 | 02-server-client.md |
+| NEXT-012 | [What are Client Components and when do you use "use client"?](../nextjs/02-server-client.md#next-012) | 🟢 | 02-server-client.md |
+| NEXT-013 | [When should you use "use client"?](../nextjs/02-server-client.md#next-013) | 🟡 | 02-server-client.md |
+| NEXT-014 | [Can a Server Component import a Client Component, and vice versa?](../nextjs/02-server-client.md#next-014) | 🟡 | 02-server-client.md |
+
+### Rendering
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-015 | [What is the difference between SSR, SSG, CSR, and ISR?](../nextjs/03-rendering.md#next-015) | 🟡 | 03-rendering.md |
+| NEXT-016 | [What is the difference between static rendering and dynamic rendering?](../nextjs/03-rendering.md#next-016) | 🟡 | 03-rendering.md |
+| NEXT-017 | [What is hydration in Next.js?](../nextjs/03-rendering.md#next-017) | 🟢 | 03-rendering.md |
+| NEXT-018 | [What causes hydration errors and how do you fix them?](../nextjs/03-rendering.md#next-018) | 🟡 | 03-rendering.md |
+| NEXT-048 | [What is pre-rendering in Next.js?](../nextjs/03-rendering.md#next-048) | 🟡 | 03-rendering.md |
+
+### Data Fetching & Caching
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-019 | [How do you fetch data in the App Router?](../nextjs/04-data-fetching.md#next-019) | 🟢 | 04-data-fetching.md |
+| NEXT-020 | [What is Incremental Static Regeneration (ISR)?](../nextjs/04-data-fetching.md#next-020) | 🟡 | 04-data-fetching.md |
+| NEXT-021 | [How does caching work in Next.js?](../nextjs/04-data-fetching.md#next-021) | 🔴 | 04-data-fetching.md |
+| NEXT-022 | [What are the new Cache APIs ("use cache", cacheLife, cacheTag)?](../nextjs/04-data-fetching.md#next-022) | 🔴 | 04-data-fetching.md |
+
+### Navigation
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-023 | [What is next/link?](../nextjs/05-navigation.md#next-023) | 🟢 | 05-navigation.md |
+| NEXT-024 | [What is useRouter() in the App Router?](../nextjs/05-navigation.md#next-024) | 🟡 | 05-navigation.md |
+| NEXT-025 | [What is the difference between redirect() and client-side navigation?](../nextjs/05-navigation.md#next-025) | 🟡 | 05-navigation.md |
+| NEXT-037 | [What is the difference between push and replace in useRouter?](../nextjs/05-navigation.md#next-037) | 🟢 | 05-navigation.md |
+| NEXT-061 | [What is a singleton router in Next.js?](../nextjs/05-navigation.md#next-061) | 🟡 | 05-navigation.md |
+
+### API Routes & Server Actions
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-026 | [What are Route Handlers?](../nextjs/06-api-actions.md#next-026) | 🟢 | 06-api-actions.md |
+| NEXT-027 | [What are Server Functions and Server Actions?](../nextjs/06-api-actions.md#next-027) | 🟡 | 06-api-actions.md |
+| NEXT-028 | [What is the difference between a Route Handler and a Server Action?](../nextjs/06-api-actions.md#next-028) | 🟡 | 06-api-actions.md |
+| NEXT-112 | [What are the benefits of Server Actions?](../nextjs/06-api-actions.md#next-112) | 🟡 | 06-api-actions.md |
+| NEXT-113 | [What are the drawbacks of Server Actions?](../nextjs/06-api-actions.md#next-113) | 🟡 | 06-api-actions.md |
+| NEXT-114 | [What are the alternatives to Server Actions?](../nextjs/06-api-actions.md#next-114) | 🟡 | 06-api-actions.md |
+| NEXT-122 | [Best practices for Next.js API routes](../nextjs/06-api-actions.md#next-122) | 🟡 | 06-api-actions.md |
+| NEXT-124 | [How do you use proper HTTP methods in Route Handlers?](../nextjs/06-api-actions.md#next-124) | 🟢 | 06-api-actions.md |
+| NEXT-125 | [How do you handle errors in Next.js API routes?](../nextjs/06-api-actions.md#next-125) | 🟡 | 06-api-actions.md |
+| NEXT-126 | [How do you use middleware within Next.js API routes?](../nextjs/06-api-actions.md#next-126) | 🟡 | 06-api-actions.md |
+| NEXT-127 | [How do you keep Next.js API routes modular?](../nextjs/06-api-actions.md#next-127) | 🟡 | 06-api-actions.md |
+
+### SEO & Assets
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-029 | [How do you add metadata for SEO in the App Router?](../nextjs/07-seo-assets.md#next-029) | 🟢 | 07-seo-assets.md |
+| NEXT-030 | [What is next/image?](../nextjs/07-seo-assets.md#next-030) | 🟡 | 07-seo-assets.md |
+| NEXT-031 | [What is next/font?](../nextjs/07-seo-assets.md#next-031) | 🟡 | 07-seo-assets.md |
+
+### Infrastructure
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-032 | [What is Middleware in Next.js?](../nextjs/08-infra.md#next-032) | 🟡 | 08-infra.md |
+| NEXT-033 | [How do environment variables work in Next.js?](../nextjs/08-infra.md#next-033) | 🟢 | 08-infra.md |
+| NEXT-034 | [How do you handle authentication in a Next.js app?](../nextjs/08-infra.md#next-034) | 🟡 | 08-infra.md |
+| NEXT-035 | [How do you deploy a Next.js app?](../nextjs/08-infra.md#next-035) | 🟢 | 08-infra.md |
+| NEXT-134 | [How do you choose between Edge and Node.js runtimes?](../nextjs/08-infra.md#next-134) | 🔴 | 08-infra.md |
+
+### Pages Router
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-050 | [What is the Head component (next/head)?](../nextjs/09-pages-router.md#next-050) | 🟢 | 09-pages-router.md |
+| NEXT-075 | [What is the difference between pages and components directories?](../nextjs/09-pages-router.md#next-075) | 🟢 | 09-pages-router.md |
+| NEXT-082 | [How do you create a route in the Pages Router?](../nextjs/09-pages-router.md#next-082) | 🟢 | 09-pages-router.md |
+| NEXT-083–101 | [Pages Router deep-dives (_app, _document, getStaticProps, etc.)](../nextjs/09-pages-router.md) | 🟡 | 09-pages-router.md |
+
+### Config & Tooling
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-038–039 | [TypeScript, public folder](../nextjs/10-config-tooling.md) | 🟢 | 10-config-tooling.md |
+| NEXT-041–044 | [Port, Fast Refresh, next.config.js, change port](../nextjs/10-config-tooling.md) | 🟢/🟡 | 10-config-tooling.md |
+| NEXT-049 | [How do you handle redirects?](../nextjs/10-config-tooling.md#next-049) | 🟢 | 10-config-tooling.md |
+| NEXT-051–063 | [Headers, next export, Webpack, Babel, polyfills, strict mode, custom server](../nextjs/10-config-tooling.md) | 🟡/🔴 | 10-config-tooling.md |
+
+### Styling
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-045 | [CSS Modules](../nextjs/11-styling.md#next-045) | 🟢 | 11-styling.md |
+| NEXT-046 | [Global CSS](../nextjs/11-styling.md#next-046) | 🟢 | 11-styling.md |
+| NEXT-047 | [Tailwind CSS in Next.js](../nextjs/11-styling.md#next-047) | 🟢 | 11-styling.md |
+
+### Scripts, SEO & Analytics
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-062 | [What is next/script?](../nextjs/12-scripts-seo.md#next-062) | 🟡 | 12-scripts-seo.md |
+| NEXT-065 | [What is next-seo?](../nextjs/12-scripts-seo.md#next-065) | 🟡 | 12-scripts-seo.md |
+| NEXT-068 | [How do you add Google Analytics?](../nextjs/12-scripts-seo.md#next-068) | 🟡 | 12-scripts-seo.md |
+| NEXT-069 | [How do you add a sitemap?](../nextjs/12-scripts-seo.md#next-069) | 🟡 | 12-scripts-seo.md |
+| NEXT-074 | [What is AMP in Next.js?](../nextjs/12-scripts-seo.md#next-074) | 🟡 | 12-scripts-seo.md |
+
+### Security
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-070 | [How do you handle CORS in Route Handlers?](../nextjs/13-security.md#next-070) | 🟡 | 13-security.md |
+| NEXT-071 | [How do you manage cookies?](../nextjs/13-security.md#next-071) | 🟡 | 13-security.md |
+| NEXT-072 | [How do you secure a Next.js App Router application?](../nextjs/13-security.md#next-072) | 🟡 | 13-security.md |
+| NEXT-080 | [How do you prevent direct API route access?](../nextjs/13-security.md#next-080) | 🟡 | 13-security.md |
+| NEXT-081 | [How do you use JWT tokens in Next.js?](../nextjs/13-security.md#next-081) | 🟡 | 13-security.md |
+| NEXT-104 | [How do you handle authentication tokens?](../nextjs/13-security.md#next-104) | 🟡 | 13-security.md |
+| NEXT-111 | [How do you handle authorization in middleware?](../nextjs/13-security.md#next-111) | 🔴 | 13-security.md |
+| NEXT-123 | [How do you validate and sanitize input?](../nextjs/13-security.md#next-123) | 🟡 | 13-security.md |
+| NEXT-130 | [How do you read and set cookies in the App Router?](../nextjs/13-security.md#next-130) | 🟡 | 13-security.md |
+
+### App Router Advanced
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-040 | [What is next/dynamic?](../nextjs/14-app-router-advanced.md#next-040) | 🟡 | 14-app-router-advanced.md |
+| NEXT-067 | [What does ssr:false mean in next/dynamic?](../nextjs/14-app-router-advanced.md#next-067) | 🟡 | 14-app-router-advanced.md |
+| NEXT-102 | [How do you handle form submissions in the App Router?](../nextjs/14-app-router-advanced.md#next-102) | 🟡 | 14-app-router-advanced.md |
+| NEXT-103 | [How do you add Auth.js to Next.js?](../nextjs/14-app-router-advanced.md#next-103) | 🟡 | 14-app-router-advanced.md |
+| NEXT-105 | [How do you add a credentials provider with Auth.js?](../nextjs/14-app-router-advanced.md#next-105) | 🟡 | 14-app-router-advanced.md |
+| NEXT-106 | [Difference between using and not using "use server"](../nextjs/14-app-router-advanced.md#next-106) | 🟡 | 14-app-router-advanced.md |
+| NEXT-107 | [How do you handle file uploads in Next.js?](../nextjs/14-app-router-advanced.md#next-107) | 🟡 | 14-app-router-advanced.md |
+| NEXT-108 | [Common use cases for the App Router](../nextjs/14-app-router-advanced.md#next-108) | 🟢 | 14-app-router-advanced.md |
+| NEXT-109 | [Can you use both App Router and Pages Router?](../nextjs/14-app-router-advanced.md#next-109) | 🟡 | 14-app-router-advanced.md |
+| NEXT-110 | [What are the limitations of the App Router?](../nextjs/14-app-router-advanced.md#next-110) | 🟡 | 14-app-router-advanced.md |
+| NEXT-115 | [How do you handle global state management in the App Router?](../nextjs/14-app-router-advanced.md#next-115) | 🟡 | 14-app-router-advanced.md |
+| NEXT-116 | [What are route groups?](../nextjs/14-app-router-advanced.md#next-116) | 🟡 | 14-app-router-advanced.md |
+| NEXT-117 | [What are parallel routes?](../nextjs/14-app-router-advanced.md#next-117) | 🔴 | 14-app-router-advanced.md |
+| NEXT-118 | [What are intercepting routes?](../nextjs/14-app-router-advanced.md#next-118) | 🔴 | 14-app-router-advanced.md |
+| NEXT-119 | [How do you implement nested layouts?](../nextjs/14-app-router-advanced.md#next-119) | 🟡 | 14-app-router-advanced.md |
+| NEXT-120 | [How do you handle streaming and Suspense?](../nextjs/14-app-router-advanced.md#next-120) | 🟡 | 14-app-router-advanced.md |
+| NEXT-131 | [How do you stream responses from a Route Handler?](../nextjs/14-app-router-advanced.md#next-131) | 🔴 | 14-app-router-advanced.md |
+| NEXT-133 | [How do you implement optimistic UI?](../nextjs/14-app-router-advanced.md#next-133) | 🔴 | 14-app-router-advanced.md |
+
+### i18n
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-059 | [How do you handle i18n in Next.js?](../nextjs/15-i18n.md#next-059) | 🟡 | 15-i18n.md |
+| NEXT-066 | [How do you configure next-i18next?](../nextjs/15-i18n.md#next-066) | 🟡 | 15-i18n.md |
+| NEXT-073 | [What is the useTranslation hook?](../nextjs/15-i18n.md#next-073) | 🟢 | 15-i18n.md |
+| NEXT-121 | [How do you handle i18n in the App Router?](../nextjs/15-i18n.md#next-121) | 🟡 | 15-i18n.md |
+
+### Integrations
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-064 | [How do you set up GraphQL in Next.js?](../nextjs/16-integrations.md#next-064) | 🟡 | 16-integrations.md |
+| NEXT-128 | [How do you use RTK Query with the App Router?](../nextjs/16-integrations.md#next-128) | 🔴 | 16-integrations.md |
+| NEXT-129 | [How do you use Redux Toolkit with the App Router?](../nextjs/16-integrations.md#next-129) | 🔴 | 16-integrations.md |
+
+### Performance & Scale
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-076 | [Common performance optimization techniques](../nextjs/16-performance.md#next-076) | 🟡 | 16-performance.md |
+| NEXT-077 | [What are the limitations of Next.js?](../nextjs/16-performance.md#next-077) | 🟡 | 16-performance.md |
+| NEXT-078 | [Is Next.js suitable for large-scale applications?](../nextjs/16-performance.md#next-078) | 🟡 | 16-performance.md |
+
+### Testing
+
+| ID | Question | Difficulty | File |
+|---|---|---|---|
+| NEXT-132 | [How do you test Next.js App Router components?](../nextjs/17-testing.md#next-132) | 🟡 | 17-testing.md |
+
+---
+
+## Next.js Source Index
+
+| Source ID | Title | Total Qs | Canonical IDs |
+|---|---|---|---|
+| GFE-NJS | [GreatFrontEnd — Next.js Interview Questions for Freshers](https://www.greatfrontend.com/blog/next-js-interview-questions-for-freshers) | 35 | NEXT-001–035 |
+| MRH-NJS | [mrhrifat — nextjs-interview-questions (GitHub)](https://github.com/mrhrifat/nextjs-interview-questions) | 150 | NEXT-001–035 (overlap) + NEXT-036–134 (new) |
+
+Source archives: [`sources/nextjs/website/greatfrontend/`](../../sources/nextjs/website/greatfrontend/question-map.md) | [`sources/nextjs/github/mrhrifat/`](../../sources/nextjs/github/mrhrifat/question-map.md)
