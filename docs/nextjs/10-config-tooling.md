@@ -509,3 +509,34 @@ app.prepare().then(() => {
 ---
 
 *← [09-pages-router](./09-pages-router.md) | [11-styling →](./11-styling.md)*
+
+---
+
+## NEXT-042
+
+### How do you change the default port of a Next.js app?
+
+The default development port is 3000. Change it with the `-p` flag or the `PORT` environment variable:
+
+```bash
+# Via CLI flag
+next dev -p 4000
+
+# Via npm script in package.json
+"scripts": {
+  "dev": "next dev -p 4000"
+}
+
+# Via environment variable (works for both dev and start)
+PORT=4000 next dev
+PORT=4000 next start
+
+# Or set it in .env.local (note: Next.js reads PORT automatically)
+PORT=4000
+```
+
+In production, the port is controlled by the environment variable `PORT` passed to `next start`. Most deployment platforms (Vercel, Railway, Fly.io) set `PORT` automatically and ignore what you configure locally — they assign the port externally and route traffic to it.
+
+**Related:** [NEXT-041 — Default port](./10-config-tooling.md#next-041) | [NEXT-035 — Deployment](../nextjs/08-infra.md#next-035)
+
+**Source:** [mrhrifat/nextjs-interview-questions MRH-NJS C-18](../../sources/nextjs/github/mrhrifat/question-map.md)

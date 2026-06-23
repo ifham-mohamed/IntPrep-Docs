@@ -168,3 +168,26 @@ export default function ThemeButton() {
 **Related:** NEXT-017 — Hydration | NEXT-012 — Client Components | NEXT-011 — Server Components
 
 **Source:** GFE-NJS-018
+
+---
+
+## NEXT-048
+
+### What is pre-rendering in Next.js?
+
+Pre-rendering means generating HTML for a page in advance, rather than relying entirely on client-side JavaScript. Every Next.js page is pre-rendered by default, which improves initial load performance and SEO because the browser receives real HTML instead of a blank page that waits for JS to hydrate.
+
+Two forms of pre-rendering exist:
+
+| Form | When HTML is generated | Data freshness |
+|---|---|---|
+| Static Generation (SSG) | At build time | Fixed until next build / ISR revalidation |
+| Server-Side Rendering (SSR) | On every request | Always current |
+
+In the App Router, the distinction maps to **static rendering** (default — no dynamic data) vs **dynamic rendering** (triggered by `cookies()`, `headers()`, `searchParams`, or `{ cache: 'no-store' }` fetches). Pre-rendered output can be cached at the CDN level, giving near-instant responses.
+
+Client-Side Rendering (CSR), by contrast, sends minimal HTML and defers all content generation to the browser — no pre-rendering occurs.
+
+**Related:** [NEXT-015 — SSR vs SSG vs CSR vs ISR](./03-rendering.md#next-015) | [NEXT-016 — Static vs dynamic rendering](./03-rendering.md#next-016)
+
+**Source:** [mrhrifat/nextjs-interview-questions MRH-NJS C-27](../../sources/nextjs/github/mrhrifat/question-map.md)

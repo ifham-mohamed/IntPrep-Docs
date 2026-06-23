@@ -144,3 +144,67 @@ export function LogoutButton() {
 **Related:** NEXT-023 — next/link | NEXT-024 — useRouter | NEXT-034 — Authentication
 
 **Source:** GFE-NJS-025
+
+---
+
+## NEXT-037
+
+### What is the difference between `push` and `replace` in `useRouter`?
+
+Both `router.push()` and `router.replace()` navigate to a new URL, but they differ in how they affect the browser history stack:
+
+```tsx
+'use client';
+import { useRouter } from 'next/navigation';
+
+export default function Nav() {
+  const router = useRouter();
+
+  // Adds an entry to the history stack — back button returns here
+  const goToProfile = () => router.push('/profile');
+
+  // Replaces the current entry — back button skips this page
+  const redirectAfterLogin = () => router.replace('/dashboard');
+
+  return (
+    <>
+      <button onClick={goToProfile}>Profile</button>
+      <button onClick={redirectAfterLogin}>Dashboard</button>
+    </>
+  );
+}
+```
+
+**Use `push`** for normal navigation where the user should be able to go back (e.g., navigating from a list to a detail page).
+
+**Use `replace`** when you don't want the current page in history — typically after a form submission, login redirect, or a step in a wizard where going "back" would be confusing or trigger re-submission.
+
+**Related:** [NEXT-024 — useRouter in App Router](./05-navigation.md#next-024) | [NEXT-025 — redirect() vs client navigation](./05-navigation.md#next-025)
+
+**Source:** [mrhrifat/nextjs-interview-questions MRH-NJS C-10](../../sources/nextjs/github/mrhrifat/question-map.md)
+
+---
+
+## NEXT-061
+
+### What is a singleton router in Next.js?
+
+In the Pages Router, Next.js exposes a singleton `router` object via `next/router`. Because it's a singleton, you can import and call it anywhere in client-side code without using the `useRouter` hook:
+
+```ts
+// Pages Router only
+import Router from 'next/router';
+
+// Use outside of a component (e.g. in an auth helper)
+export function redirectToLogin() {
+  Router.push('/login');
+}
+```
+
+The singleton pattern means all components and utilities share the same router instance, so navigation state is globally consistent. However, mutations to `router.query` or programmatic navigation outside the React lifecycle can cause subtle bugs (stale closures, double navigation).
+
+In the **App Router**, there is no singleton router. Navigation uses `useRouter()` from `next/navigation` (component-level only) or `redirect()` / `permanentRedirect()` server-side. The singleton pattern is a Pages-Router-only concept.
+
+**Related:** [NEXT-024 — useRouter](./05-navigation.md#next-024) | [NEXT-003 — App Router vs Pages Router](./01-fundamentals.md#next-003)
+
+**Source:** [mrhrifat/nextjs-interview-questions MRH-NJS C-46](../../sources/nextjs/github/mrhrifat/question-map.md)

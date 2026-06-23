@@ -396,3 +396,57 @@ export default function NotFound() {
 **Related:** NEXT-004 — File-based routing | NEXT-009 — error.tsx
 
 **Source:** GFE-NJS-010
+
+---
+
+## NEXT-036
+
+### How do you create a new Next.js project?
+
+The recommended way is `create-next-app`, the official scaffolding CLI:
+
+```bash
+npx create-next-app@latest my-app
+# Prompts: TypeScript? ESLint? Tailwind? src/ dir? App Router?
+cd my-app
+npm run dev   # starts dev server on http://localhost:3000
+```
+
+`create-next-app` sets up the full project structure: `app/` (or `pages/`) directory, `next.config.js`, `tsconfig.json`, ESLint config, and a basic `layout.tsx` + `page.tsx`. Choosing the App Router (default since Next.js 13) gives you Server Components, layouts, and streaming out of the box. You can also start from scratch by installing `next react react-dom` manually and adding scripts to `package.json`, but the CLI is strongly preferred for correctness.
+
+**Related:** [NEXT-003 — App Router vs Pages Router](./01-fundamentals.md#next-003) | [NEXT-044 — next.config.js](./10-config-tooling.md#next-044)
+
+**Source:** [mrhrifat/nextjs-interview-questions MRH-NJS C-02](../../sources/nextjs/github/mrhrifat/question-map.md)
+
+---
+
+## NEXT-079
+
+### How is Next.js a full-stack framework?
+
+Next.js bridges the traditional frontend/backend split by letting you write both in the same project:
+
+- **Route Handlers** (`app/api/route.ts`) replace standalone Express/Fastify API servers for most use cases.
+- **Server Actions** (`"use server"`) let you call server-side logic (DB queries, auth checks) directly from form actions or event handlers — no manual fetch required.
+- **Server Components** run on the server and can query databases, read the file system, or call internal services without any client-side exposure.
+- **Middleware** runs at the edge before requests reach your app, enabling auth guards, redirects, and A/B testing.
+
+```ts
+// app/api/users/route.ts — a full API endpoint
+export async function GET() {
+  const users = await db.user.findMany();
+  return Response.json(users);
+}
+
+// app/actions.ts — a Server Action
+'use server';
+export async function createUser(formData: FormData) {
+  await db.user.create({ data: { name: formData.get('name') } });
+}
+```
+
+This means a single Next.js project can replace a React frontend + a separate REST/GraphQL API layer for many use cases.
+
+**Related:** [NEXT-026 — Route Handlers](./06-api-actions.md#next-026) | [NEXT-027 — Server Actions](./06-api-actions.md#next-027)
+
+**Source:** [mrhrifat/nextjs-interview-questions MRH-NJS C-75](../../sources/nextjs/github/mrhrifat/question-map.md)

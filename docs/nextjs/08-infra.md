@@ -197,3 +197,45 @@ next build   # generates /out directory of static files
 **Related:** NEXT-032 — Proxy | NEXT-033 — Environment variables
 
 **Source:** GFE-NJS-035
+
+---
+
+## NEXT-134
+
+### How do you choose between Edge and Node.js runtimes for Route Handlers?
+
+Next.js Route Handlers (and Middleware) can run on either the **Node.js runtime** (default) or the **Edge runtime**:
+
+```ts
+// app/api/fast/route.ts — Edge runtime
+export const runtime = 'edge';
+
+export async function GET() {
+  return Response.json({ message: 'Served from edge' });
+}
+```
+
+| | Node.js Runtime | Edge Runtime |
+|---|---|---|
+| **Cold start** | Slower (~100–500ms) | Near-zero (<5ms) |
+| **Location** | Single region (or serverless) | 100+ edge locations globally |
+| **Node APIs** | Full (fs, crypto, Buffer, etc.) | Limited subset only |
+| **Memory** | Up to 1GB+ | 128MB |
+| **NPM packages** | All packages | Edge-compatible only (no native bindings) |
+| **Use case** | DB queries, file I/O, heavy computation | Auth checks, redirects, geo-routing, A/B tests |
+
+**Choose Edge when:**
+- Low latency is critical (auth middleware, redirects, feature flags)
+- You don't need Node.js-specific APIs
+- Global user base needs geographically close responses
+
+**Choose Node.js when:**
+- Connecting to a database (most DB clients require Node.js)
+- Using libraries with native bindings (bcrypt, sharp)
+- Processing uploads or large payloads
+
+Middleware (`middleware.ts`) defaults to the Edge runtime and should stay there — it runs on every request, so cold starts would be unacceptable.
+
+**Related:** [NEXT-032 — Middleware](./08-infra.md#next-032) | [NEXT-035 — Deployment](./08-infra.md#next-035)
+
+**Source:** [mrhrifat/nextjs-interview-questions MRH-NJS B-17](../../sources/nextjs/github/mrhrifat/question-map.md)

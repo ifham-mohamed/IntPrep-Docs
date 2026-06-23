@@ -185,15 +185,12 @@ When adding questions from a new source, follow this process:
 1. **Assign a Source ID** — format: `ABBREV-NNN` (e.g., `YT-001` for YouTube, `RD-001` for Roadmap.sh).
 2. **Create source directory** — `sources/{technology}/{source-type}/{source-name}/`.
 3. **Create a question-map.md** — map EVERY source question to either an existing canonical ID or a new one.
-   <<<<<<< HEAD
-4. # **For new canonicals** — assign next available ID (currently REACT-285), write original answer in the correct doc file.
-5. **For new canonicals** — assign next available ID (React: REACT-283 | Next.js: NEXT-135), write original answer in the correct doc file.
-   > > > > > > > 4b45ae50ddd30fcf6e2b5737b5e4786c06bb3e70
-6. **Update this Source Library** — add the new source entry and coverage map.
-7. **Update `docs/nextjs/README.md` or `docs/react/master-index.md`** — add new ID rows.
-8. **Update [docs/reference/00-master-index.md](./00-master-index.md)** — add new rows.
-9. **Update [docs/reference/01-question-registry.md](./01-question-registry.md)** — add new registry rows.
-10. **Update [README.md](../../README.md)** — update Sources table and question count.
+4. **For new canonicals** — assign next available ID (React: REACT-285 | Next.js: NEXT-135), write original answer in the correct doc file.
+5. **Update this Source Library** — add the new source entry and coverage map.
+6. **Update `docs/nextjs/README.md` or `docs/react/master-index.md`** — add new ID rows.
+7. **Update [docs/reference/00-master-index.md](./00-master-index.md)** — add new rows.
+8. **Update [docs/reference/01-question-registry.md](./01-question-registry.md)** — add new registry rows.
+9. **Update [README.md](../../README.md)** — update Sources table and question count.
 
 ---
 
